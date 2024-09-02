@@ -475,3 +475,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json
+Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props
+Chirp.CLI/obj/project.assets.json
+Chirp.CLI/obj/project.nuget.cache
+Chirp.generated.sln

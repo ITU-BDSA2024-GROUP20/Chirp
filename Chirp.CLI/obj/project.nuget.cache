@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "H/MK+Jmya88=",
+  "dgSpecHash": "xbZwTJsdFlA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+  "projectFilePath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\dueja\\.nuget\\packages\\docopt.net\\0.8.1\\docopt.net.0.8.1.nupkg.sha512",
-    "C:\\Users\\dueja\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+    "C:\\Users\\Alexander\\.nuget\\packages\\docopt.net\\0.8.1\\docopt.net.0.8.1.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

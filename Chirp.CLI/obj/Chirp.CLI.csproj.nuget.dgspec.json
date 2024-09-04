@@ -1,20 +1,83 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {}
+    "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {
+    "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectUniqueName": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
         "projectName": "Chirp.CLI",
-        "projectPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
-        "packagesPath": "C:\\Users\\dueja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\obj\\",
+        "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dueja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "docopt.net": {
+              "target": "Package",
+              "version": "[0.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
+        "projectName": "SimpleDB",
+        "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -37,12 +100,6 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "dependencies": {
-            "docopt.net": {
-              "target": "Package",
-              "version": "[0.8.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

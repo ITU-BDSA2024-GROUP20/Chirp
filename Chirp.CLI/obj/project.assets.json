@@ -25,6 +25,16 @@
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
         }
+      },
+      "SimpleDB/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/SimpleDB.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SimpleDB.dll": {}
+        }
       }
     }
   },
@@ -89,27 +99,33 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "SimpleDB/1.0.0": {
+      "type": "project",
+      "path": "../SimpleDB/SimpleDB.csproj",
+      "msbuildProject": "../SimpleDB/SimpleDB.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "SimpleDB >= 1.0.0",
       "docopt.net >= 0.8.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dueja\\.nuget\\packages\\": {}
+    "C:\\Users\\Alexander\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+      "projectUniqueName": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
       "projectName": "Chirp.CLI",
-      "projectPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
-      "packagesPath": "C:\\Users\\dueja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\Chirp.CLI\\obj\\",
+      "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+      "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dueja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -120,7 +136,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

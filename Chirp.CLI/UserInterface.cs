@@ -3,43 +3,22 @@ namespace Chirp.CLI;
 public class UserInterface
 {
 
-    public static void read()
+    public static void read(IEnumerable<Cheep> cheeps)
     {
-        try
+        foreach (var record in cheeps)
         {
-            using StreamReader reader = new StreamReader(@"chirp_cli_db.csv");
-            string text = reader.ReadToEnd();
-            string[] fullMessage = text.Split('\n');
-            Post[] posts = new Post[fullMessage.Length];
-            for (int i = 1; i < fullMessage.Length; i++)
-            {
-                if(fullMessage[i] != ""){
-                    posts[i] = new Post(fullMessage[i]);
-                    Console.WriteLine(posts[i].getPost());
-                }
-            }
-        }
-        catch (IOException e)
-        {
-            Console.WriteLine("This file could not be read:");
-            Console.WriteLine(e.Message);
+            Console.WriteLine(returnCheep(record));
         }
     }
 
-    public static void cheep(String[] args)
-    {
-        try
-        {
-            using StreamWriter writer = new StreamWriter(@"chirp_cli_db.csv", true);
-            string userName = Environment.UserName;
-            writer.WriteLine(userName + ",\"" + args[1] + "\"," + DateTimeOffset.Now.ToUnixTimeSeconds());
-        
-        }
-        catch (IOException e)
-        {
-            Console.WriteLine("This file could not be written:");
-            Console.WriteLine(e.Message);
-        }
+    static string returnCheep(Cheep cheep){
+    return cheep.Author+" @ "+returnTimeStamp(cheep.Timestamp)+": "+cheep.Message;
     }
+
+    static string returnTimeStamp(Int64 Timestamp){
+        var _timestamp = DateTimeOffset.FromUnixTimeSeconds(Timestamp).LocalDateTime.ToString("MM dd yy HH:mm:ss").Split(" ");
+        return _timestamp[0]+"/"+_timestamp[1]+"/"+_timestamp[2]+" "+_timestamp[3];
     }
+    
+}
 

@@ -16,6 +16,7 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
     {
         using StreamWriter writer = new StreamWriter(@"..\SimpleDB\chirp_cli_db.csv", true);
         using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture)){
+            writer.WriteLine();
             csv.WriteRecord(record);
         }
     }

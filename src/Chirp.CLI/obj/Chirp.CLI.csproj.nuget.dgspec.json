@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {}
+    "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
+    "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectUniqueName": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
         "projectName": "Chirp.CLI",
-        "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-        "packagesPath": "C:\\Users\\Mathias\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\obj\\",
+        "projectPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "packagesPath": "C:\\Users\\dueja\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mathias\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dueja\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
               }
             }
           }
@@ -71,17 +71,17 @@
         }
       }
     },
-    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+    "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\Mathias\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\dueja\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\SimpleDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mathias\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dueja\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

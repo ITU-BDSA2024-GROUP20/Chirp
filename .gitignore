@@ -480,3 +480,7 @@ Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props
 Chirp.CLI/obj/project.assets.json
 Chirp.CLI/obj/project.nuget.cache
 Chirp.generated.sln
+src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json
+src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props
+src/Chirp.CLI/obj/project.assets.json
+src/Chirp.CLI/obj/project.nuget.cache

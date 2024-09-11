@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore "../../src/Chirp.CLI"
+      run: dotnet restore "${{ github.workspace }}/src/Chirp.CLI"
     - name: Build
-      run: dotnet build --no-restore "../../src/Chirp.CLI"
+      run: dotnet build --no-restore "${{ github.workspace }}/src/Chirp.CLI"
     - name: Test
-      run: dotnet test --no-build --verbosity normal "../../src/Chirp.CLI"
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/src/Chirp.CLI"

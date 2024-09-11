@@ -9,7 +9,6 @@ IDatabaseRepository<Cheep> database = new CSVDatabase<Cheep>();
 const string usage = @"Chirp CLI version.
 
 Usage:
-
   chirp read
   chirp read <limit> 
   chirp cheep <message>

@@ -20,9 +20,15 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.x
-    - name: Restore dependencies
+    - name: Restore dependencies for Chirp.CLI
       run: dotnet restore "${{ github.workspace }}/src/Chirp.CLI"
-    - name: Build
+    - name: Restore dependencies for SimpleDB
+      run: dotnet restore "${{ github.workspace }}/src/SimpleDB"
+    - name: Build Chirp.CLI
       run: dotnet build --no-restore "${{ github.workspace }}/src/Chirp.CLI"
-    - name: Test
-      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/src/Chirp.CLI"
+    - name: Build SimpleDB
+      run: dotnet build --no-restore "${{ github.workspace }}/src/SimpleDB"
+    - name: Test Chirp.CLI
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/Chirp.CLI.Test"
+    - name: Test SimpleDB
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/SimpleDB.Test"

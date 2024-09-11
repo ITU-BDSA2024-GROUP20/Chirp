@@ -1,10 +1,54 @@
 namespace test;
+using Chirp.CLI;
 
 public class UnitTest1
 {
     [Fact]
-    public void Test1()
+    public void UnixTimeConverTest()
     {
-        Assert.True(true);
+        string timestamp = UserInterface.returnTimeStamp(1690891760);
+        Assert.Equal("08/01/23 14:09:20:", timestamp);
+        timestamp = UserInterface.returnTimeStamp(1690978778);
+        Assert.Equal("08/02/23 14:19:38:", timestamp);
+        timestamp = UserInterface.returnTimeStamp(1690979858);
+        Assert.Equal("08/02/23 14:37:38:", timestamp);
+        timestamp = UserInterface.returnTimeStamp(1690981487);
+        Assert.Equal("08/02/23 15:04:47:", timestamp);
     }
+
+    [Fact]
+    public void CheepFromRecordTest()
+    {
+        var record = new Cheep("ropf", "Hello, BDSA students!", 1690891760);
+        string cheep = UserInterface.returnCheep(record);
+        Assert.Equal("ropf @ 08/01/23 14:09:20: Hello, BDSA students!", cheep);
+
+        record = new Cheep("adho", "Welcome to the course!", 1690978778);
+        cheep = UserInterface.returnCheep(record);
+        Assert.Equal("adho @ 08/02/23 14:19:38: Welcome to the course!", cheep);
+
+        record = new Cheep("adho", "I hope you had a good summer.", 1690979858);
+        cheep = UserInterface.returnCheep(record);
+        Assert.Equal("adho @ 08/02/23 14:37:38: I hope you had a good summer.", cheep);
+
+        record = new Cheep("ropf", "Cheeping cheeps on Chirp :)", 1690981487);
+        cheep = UserInterface.returnCheep(record);
+        Assert.Equal("ropf @ 08/02/23 15:04:47: Cheeping cheeps on Chirp :)", cheep);
+    }
+
+
+
+    [Fact]
+    public void ReadTest()
+    {
+        StringWriter writer = new StringWriter();
+        Console.SetOut(writer);
+        var record = new Cheep("ropf", "Hello, BDSA students!", 1690891760);
+        
+        UserInterface.read(new List<Cheep> { record });
+      
+        Assert.Equal("ropf @ 08/01/23 14:09:20: Hello, BDSA students!\r\n", writer.ToString());
+    }
+
+
 }

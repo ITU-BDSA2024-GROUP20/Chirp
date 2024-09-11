@@ -10,16 +10,16 @@ public class UserInterface
         }
     }
 
-    static string returnCheep(Cheep cheep)
+    public static string returnCheep(Cheep cheep)
     {
-        return cheep.Author + " @ " + returnTimeStamp(cheep.Timestamp) + ": " + cheep.Message;
+        return cheep.Author + " @ " + returnTimeStamp(cheep.Timestamp) + " " + cheep.Message;
     }
 
-    static string returnTimeStamp(Int64 Timestamp)
+    public static string returnTimeStamp(Int64 Timestamp)
     {
         var _timestamp = DateTimeOffset.FromUnixTimeSeconds(Timestamp)
             .LocalDateTime.ToString("MM dd yy HH:mm:ss")
             .Split(" ");
-        return _timestamp[0] + "/" + _timestamp[1] + "/" + _timestamp[2] + " " + _timestamp[3];
+        return _timestamp[0] + "/" + _timestamp[1] + "/" + _timestamp[2] + " " + _timestamp[3]+":";
     }
 }

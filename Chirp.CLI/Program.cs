@@ -9,7 +9,9 @@ IDatabaseRepository<Cheep> database = new CSVDatabase<Cheep>();
 const string usage = @"Chirp CLI version.
 
 Usage:
-  chirp read <limit>
+
+  chirp read
+  chirp read <limit> 
   chirp cheep <message>
   chirp (-h | --help)
   chirp --version
@@ -23,11 +25,19 @@ var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true);
 //foreach(var (key,value) in arguments){
 //    Console.WriteLine($"{key}: {value}");
 //}
-if(arguments["read"].ToString().ToLower() == "true"){
-    UserInterface.read(database.Read());
-}else if (arguments["cheep"].ToString().ToLower() == "true"){
-    var record = new Cheep(Environment.UserName,arguments["<message>"].ToString(),DateTimeOffset.Now.ToUnixTimeSeconds());
-    database.Store(record);
+if(arguments != null){
+  if(arguments["read"].IsTrue){
+    if(arguments["<limit>"].IsInt){
+      UserInterface.read(database.Read(int.Parse(arguments["<limit>"].ToString())));
+    }else{
+      UserInterface.read(database.Read());
+    }
+  }else if (arguments["cheep"].IsTrue){
+      var record = new Cheep(Environment.UserName,arguments["<message>"].ToString(),DateTimeOffset.Now.ToUnixTimeSeconds());
+      database.Store(record);
+  }
+}else{
+  Console.WriteLine("argument is null");
 }
 
 public record Cheep(string Author, string Message, long Timestamp);

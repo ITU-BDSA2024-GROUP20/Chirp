@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {}
+    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {}
   },
   "projects": {
-    "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
+    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectUniqueName": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
         "projectName": "Chirp.CLI",
-        "projectPath": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-        "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-        "outputPath": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\Chirp.CLI\\obj\\",
+        "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "packagesPath": "C:\\Users\\Mathias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Mathias\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
               }
             }
           }
@@ -71,17 +71,17 @@
         }
       }
     },
-    "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+    "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-        "outputPath": "D:\\Skole\\uni\\analysedesignogsoftwarearchitecture\\net\\project\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\Mathias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Mathias\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

@@ -158,19 +158,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alexander\\.nuget\\packages\\": {}
+    "C:\\Users\\Mathias\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "projectUniqueName": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
       "projectName": "Chirp.CLI",
-      "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-      "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\src\\Chirp.CLI\\obj\\",
+      "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "packagesPath": "C:\\Users\\Mathias\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\Chirp.CLI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Mathias\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -182,8 +182,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-              "projectPath": "C:\\Users\\Alexander\\OneDrive\\Dokumenter\\GitHub\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+            "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+              "projectPath": "C:\\Users\\Mathias\\OneDrive\\Dokumenter\\Universitet\\3. Semester\\Analysis, Design and Software Architecture\\Projekt\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
             }
           }
         }

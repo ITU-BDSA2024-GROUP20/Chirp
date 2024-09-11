@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - run: echo "Tags $TAGS"
+    - run: echo "Tags ${{ inputs.tags }}"
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -43,5 +43,3 @@ jobs:
     - name: Test SimpleDB.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/SimpleDB.Test"
     - run: echo "Testing Complete!"
-    env:
-       TAGS: ${{ inputs.tags }}

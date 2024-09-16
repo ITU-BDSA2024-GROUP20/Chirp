@@ -6,13 +6,13 @@ name: .NET
 on:
   [ create ]
 
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - run: echo "Tags ${{ inputs.tags }}"
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -43,3 +43,31 @@ jobs:
     - name: Test SimpleDB.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/SimpleDB.Test"
     - run: echo "Testing Complete!"
+    - name: Release
+      uses: softprops/action-gh-release@v2
+  
+  release:
+    name: Release
+    strategy:
+      matrix:
+        kind: ['linux', 'windows', 'macOS']
+        include:
+          - kind: linux
+            os: ubuntu-latest
+            target: linux-x64
+          - kind: windows
+            os: windows-latest
+            target: win-x64
+          - kind: macOS
+            os: macos-latest
+            target: osx-x64
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+    - name: Publish 
+      run: dotnet publish releases -c Release -o "Release"
+    - name: Release
+      uses: softprops/action-gh-release@v1

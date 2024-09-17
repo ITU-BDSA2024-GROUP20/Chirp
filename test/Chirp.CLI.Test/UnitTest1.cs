@@ -1,5 +1,6 @@
 namespace test;
 using Chirp.CLI;
+using System.Diagnostics;
 
 public class UnitTest1
 {
@@ -50,5 +51,64 @@ public class UnitTest1
         Assert.Equal("ropf @ 08/01/23 14:09:20: Hello, BDSA students!\r\n", writer.ToString());
     }
 
+    [Fact]
+    public void TestRead()
+    {
+        string path = AppDomain.CurrentDomain.BaseDirectory+@"../../../../../src/Chirp.CLI";
+        // Act
+        string output = "";
+        using (var process = new Process())
+        {
+            process.StartInfo.FileName = "dotnet";
+            process.StartInfo.Arguments = "run read";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = path;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            // Synchronously read the standard output of the spawned process.
+            StreamReader reader = process.StandardOutput;
+            output = reader.ReadToEnd();
+            process.WaitForExit();
+        }
+        string fstCheep = output.Split("\n")[1];
+        // Assert
+        Assert.StartsWith("ropf", fstCheep);
+        Assert.EndsWith("BDSA students!\r", fstCheep);
+    }
+    
+    [Fact]
+    public void TestCheep()
+    {
+        string path = AppDomain.CurrentDomain.BaseDirectory+@"../../../../../src/Chirp.CLI";
+        // Act
+        string output = "";
+        using (var process = new Process())
+        {
+            process.StartInfo.FileName = "dotnet";
+            process.StartInfo.Arguments = "run cheep \"test cheep\"";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = path;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            
+            process.WaitForExit();
+        }
+        using (var process = new Process())
+        {
+            process.StartInfo.FileName = "dotnet";
+            process.StartInfo.Arguments = "run read 1";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = path;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            // Synchronously read the standard output of the spawned process.
+            StreamReader reader = process.StandardOutput;
+            output = reader.ReadToEnd();
+            process.WaitForExit();
+        }
+        string fstCheep = output.Split("\n")[1];
+        // Assert
+        Assert.EndsWith("test cheep\r", fstCheep);
+    }
 
 }

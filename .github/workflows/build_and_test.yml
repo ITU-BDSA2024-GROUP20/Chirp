@@ -12,7 +12,6 @@ jobs:
         matrix:
           kind: [ 'Chirp.CLI' , 'SimpleDB' ]
           target: [ linux-x64 , win-x64 , osx-x64 ]
-          os: [ ubuntu-latest , windows-latest , macos-latest ]
           include:
             - target: linux-x64
               os: ubuntu-latest

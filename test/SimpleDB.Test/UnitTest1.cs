@@ -14,4 +14,14 @@ public class UnitTest1
         Assert.Equal(length + 1, database.Read().Count());
 
     }
+
+    [Fact]
+    public void ReadTest()
+    {
+        var record = new Cheep("ropf", "Hello, BDSA students!", 1690891760);
+        var read = database.Read();
+        Assert.Equal(record, read.First());
+    }
+
+
 }

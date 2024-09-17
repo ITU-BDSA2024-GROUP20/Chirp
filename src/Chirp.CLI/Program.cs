@@ -4,7 +4,7 @@ using Chirp.CLI;
 using DocoptNet;
 using SimpleDB;
 
-IDatabaseRepository<Cheep> database = new CSVDatabase<Cheep>();
+IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
 const string usage = @"Chirp CLI version.
 
 Usage:

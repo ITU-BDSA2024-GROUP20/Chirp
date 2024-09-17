@@ -11,8 +11,17 @@ jobs:
     strategy:
         matrix:
           kind: [ 'Chirp.CLI' , 'SimpleDB' ]
+          target: [ linux-x64 , win-x64 , osx-x64 ]
           os: [ ubuntu-latest , windows-latest , macos-latest ]
+          include:
+            - target: linux-x64
+              os: ubuntu-latest
+            - target: win-x6
+              os: windows-latest
+            - target: osx-x64
+              os: macos-latest
     runs-on: ${{ matrix.os }}
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -20,29 +29,26 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.x
+    
     - run: echo "Restoring Dependencies..."
     - name: Restore dependencies for ${{ matrix.kind }}
       run: dotnet restore "${{ github.workspace }}/src/${{ matrix.kind }}"
-    #- name: Restore dependencies for SimpleDB
-      #run: dotnet restore "${{ github.workspace }}/src/SimpleDB"
     - name: Restore dependencies for ${{ matrix.kind }}.Test
       run: dotnet restore "${{ github.workspace }}/test/${{ matrix.kind }}.Test"
-    #- name: Restore dependencies for SimpleDB.Test
-      #run: dotnet restore "${{ github.workspace }}/test/SimpleDB.Test"
     - run: echo "Restored Dependencies!"
+    
     - run: echo "Building Projects..."
     - name: Build ${{ matrix.kind }}
       run: dotnet build --no-restore "${{ github.workspace }}/src/${{ matrix.kind }}"
-    #- name: Build SimpleDB
-      #run: dotnet build --no-restore "${{ github.workspace }}/src/SimpleDB"
     - name: Build ${{ matrix.kind }}.Test
       run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.kind }}.Test"
-    #- name: Build SimpleDB.Test
-      #run: dotnet build --no-restore "${{ github.workspace }}/test/SimpleDB.Test"
-    - run: echo "Build Projects!"
+    - run: echo "Build the Projects!"
+    
     - run: echo "Testing Projects..."
     - name: Test ${{ matrix.kind }}.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.kind }}.Test"
-    #- name: Test SimpleDB.Test
-      #run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/SimpleDB.Test"
     - run: echo "Testing Complete!"
+
+    - run: echo "Packaging Project"
+    - name: Package
+      run: dotnet pack --configuration Release ${{ matrix.kind }}

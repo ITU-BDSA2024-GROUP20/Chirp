@@ -51,23 +51,5 @@ jobs:
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test" 
     - run: echo "Testing Complete!"
 
-    - name: Pack
-      shell: bash
-      run: |
-        release_name="App-${{ matrix.target }}"
-        dotnet publish src/${{ matrix.project }}/${{ matrix.project }}.csproj --framework net7.0 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
-        if [ "${{ matrix.target }}" == "win-x64" ]; then
-          # Pack to zip for Windows
-          7z a -tzip "${release_name}.zip" "./${release_name}/*"
-        else
-        tar czvf "${release_name}.tar.gz" "$release_name"
-        fi
-        
-        rm -r "$release_name"
-    
     - name: Publish
-      uses: softprops/action-gh-release@v1
-      with:
-        files: "App*"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet publish --runtime ${{ matrix.target }} "${{ github.workspace }}./src/${{ matrix.project }}/${{ matrix.project }}.csproj"

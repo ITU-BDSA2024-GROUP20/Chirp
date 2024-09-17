@@ -34,21 +34,21 @@ jobs:
     
     - run: echo "Restoring Dependencies..."
     - name: Restore dependencies for ${{ matrix.project }}
-      run: dotnet restore "${{ github.workspace }}/src/${{ matrix.project }}"
+      run: dotnet restore "${{ github.workspace }}/src/${{ matrix.project }}/${{ matrix.project }}"
     - name: Restore dependencies for ${{ matrix.project }}.Test
-      run: dotnet restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
+      run: dotnet restore "${{ github.workspace }}/test/${{ matrix.project }}/${{ matrix.project }}.Test"
     - run: echo "Restored Dependencies!"
     
     - run: echo "Building Projects..."
     - name: Build ${{ matrix.project }}
-      run: dotnet build --no-restore "${{ github.workspace }}/src/${{ matrix.project }}"
+      run: dotnet build --no-restore "${{ github.workspace }}/src/${{ matrix.project }}/${{ matrix.project }}"
     - name: Build ${{ matrix.project }}.Test
-      run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
+      run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.project }}.Test/${{ matrix.project }}.Test.csproj"
     - run: echo "Build the Projects!"
     
     - run: echo "Testing Projects..."
     - name: Test ${{ matrix.project }}.Test
-      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test" 
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test/${{ matrix.project }}.Test.csproj"
     - run: echo "Testing Complete!"
 
     - name: Publish

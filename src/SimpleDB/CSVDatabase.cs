@@ -23,7 +23,7 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
     public IEnumerable<T> Read(int? limit = null)
     {
         IEnumerable<T> records;
-        Console.WriteLine(path);
+        //Console.WriteLine(path);
         using StreamReader reader = new StreamReader(path+@"../../../../SimpleDB/chirp_cli_db.csv");
         using var csv = new CsvReader(reader,
             CultureInfo.InvariantCulture);

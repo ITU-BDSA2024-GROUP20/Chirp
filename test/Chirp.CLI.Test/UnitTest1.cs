@@ -48,7 +48,7 @@ public class UnitTest1
         
         UserInterface.read(new List<Cheep> { record });
       
-        Assert.Equal("ropf @ 08/01/23 14:09:20: Hello, BDSA students!\r\n", writer.ToString());
+        Assert.Equal("ropf @ 08/01/23 14:09:20: Hello, BDSA students!", writer.ToString().Trim());
     }
 
     [Fact]
@@ -70,10 +70,10 @@ public class UnitTest1
             output = reader.ReadToEnd();
             process.WaitForExit();
         }
-        string fstCheep = output.Split("\n")[1];
+        string fstCheep = output.Split("\n")[0];
         // Assert
         Assert.StartsWith("ropf", fstCheep);
-        Assert.EndsWith("BDSA students!\r", fstCheep);
+        Assert.EndsWith("BDSA students!", fstCheep.Trim());
     }
     
     [Fact]
@@ -106,9 +106,9 @@ public class UnitTest1
             output = reader.ReadToEnd();
             process.WaitForExit();
         }
-        string fstCheep = output.Split("\n")[1];
+        string fstCheep = output.Split("\n")[0];
         // Assert
-        Assert.EndsWith("test cheep\r", fstCheep);
+        Assert.EndsWith("test cheep", fstCheep.Trim());
     }
 
 }

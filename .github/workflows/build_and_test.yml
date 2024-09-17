@@ -50,7 +50,3 @@ jobs:
     - name: Test ${{ matrix.project }}.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"
     - run: echo "Testing Complete!"
-
-    - run: echo "Packaging Project"
-    - name: Package
-      run: dotnet pack --configuration Release ${{ matrix.project }}

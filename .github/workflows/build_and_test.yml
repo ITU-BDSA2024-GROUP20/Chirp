@@ -55,7 +55,7 @@ jobs:
       shell: bash
       run: |
         release_name="App-${{ matrix.target }}"
-        dotnet publish src/${{ matrix.project }}/${{ matrix.project }}.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
+        dotnet publish src/${{ matrix.project }}/${{ matrix.project }}.csproj --framework ${{ dotnet-version }} --runtime "${{ matrix.target }}" -c Release -o "$release_name"
         if [ "${{ matrix.target }}" == "win-x64" ]; then
           # Pack to zip for Windows
           7z a -tzip "${release_name}.zip" "./${release_name}/*"

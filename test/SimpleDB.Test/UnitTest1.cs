@@ -2,7 +2,7 @@ namespace SimpleDB.Test;
 using SimpleDB;
 public class UnitTest1
 {
-    IDatabaseRepository<Cheep> database = new CSVDatabase<Cheep>();
+    IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
     [Fact]
     public void StoreTest()
     {

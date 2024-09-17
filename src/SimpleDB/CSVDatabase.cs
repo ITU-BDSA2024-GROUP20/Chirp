@@ -5,6 +5,19 @@ using System.Globalization;
 using System.IO;
 public class CSVDatabase<T> : IDatabaseRepository<T>
 {
+
+    private static CSVDatabase<T> instance;
+
+    private CSVDatabase(){}
+
+    public static CSVDatabase<T> getInstance(){
+        if (instance == null)
+        {
+            instance = new CSVDatabase<T>();
+        }
+        return instance;
+    }
+
     string path = AppDomain.CurrentDomain.BaseDirectory; 
     
     public IEnumerable<T> Read(int? limit = null)

@@ -1,10 +1,17 @@
 namespace SimpleDB.Test;
-
+using SimpleDB;
 public class UnitTest1
 {
+    IDatabaseRepository<Cheep> database = new CSVDatabase<Cheep>();
     [Fact]
-    public void Test1()
+    public void StoreTest()
     {
-        Assert.True(true);
+        var length = database.Read().Count();
+        Console.WriteLine(length);
+        var record = new Cheep("ropf", "Hello, BDSA students!", 1690891760);
+        database.Store(record);
+        Console.WriteLine(database.Read().Count());
+        Assert.Equal(length + 1, database.Read().Count());
+
     }
 }

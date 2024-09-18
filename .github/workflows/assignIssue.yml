@@ -10,4 +10,4 @@ jobs:
         with:
           project: ITU-BDSA2024-GROUP20 Chirp
           column: In Progress
-          repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

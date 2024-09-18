@@ -6,8 +6,8 @@ jobs:
   move-assigned-card:
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@7ffb872c64bd809d23563a130a0a97d01dfa8f43
+      - uses: kin/gh-action-move-issue-to-column@1.0
         with:
-          project: ITU-BDSA2024-GROUP20 Chirp
-          column: In Progress
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          project-name: ITU-BDSA2024-GROUP20 Chirp
+          target-column: In Progress
+          access-token: ${{ secrets.GITHUB_TOKEN }}

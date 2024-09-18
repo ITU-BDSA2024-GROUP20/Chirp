@@ -11,17 +11,16 @@ jobs:
     strategy:
         matrix:
           project: [ 'Chirp.CLI' , 'SimpleDB' ]
-          kind: [ 'linux' , 'windows' , 'mac' ]
           include:
-          - kind: linux
-            os: ubuntu-latest
-            target: linux-x64
-          - kind: windows
-            os: windows-latest
-            target: win-x64
-          - kind: mac
-            os: macos-latest
-            target: osx-x64
+          - os: ubuntu-latest
+            artifact_name: ${{ github.event.repository.name }}
+            asset_name: ${{ github.event.repository.name }}-linux-amd64
+          - os: windows-latest
+            artifact_name: ${{ github.event.repository.name }}.exe
+            asset_name: ${{ github.event.repository.name }}-windows-amd64.exe
+          - os: macos-latest
+            artifact_name: ${{ github.event.repository.name }}
+            asset_name: ${{ github.event.repository.name }}-macos-amd64
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -45,7 +44,15 @@ jobs:
     - name: Publishing ${{ matrix.project }}
       run: |
         cd ${{ github.workspace }}/src/${{ matrix.project }}
-        dotnet publish -c Release
+        dotnet publish -c Release -r ${{ matrix.target }}
     
     - name: Test ${{ matrix.project }}.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: ${{ github.ref }}

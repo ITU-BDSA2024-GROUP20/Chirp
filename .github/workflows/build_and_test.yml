@@ -45,7 +45,7 @@ jobs:
     - name: Publishing ${{ matrix.project }}
       run: |
         cd ${{ github.workspace }}/src/${{ matrix.project }}
-        dotnet publish -c Release r- ${{ matrix.target }}
+        dotnet publish -c Release
     
     - name: Test ${{ matrix.project }}.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"

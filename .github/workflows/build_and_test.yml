@@ -42,7 +42,7 @@ jobs:
       run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
 
     - name: Publishing ${{ matrix.project }}
-      run: dotnet publish "${{ github.workspace }/src/Chirp.CLI/Chirp.CLI.csproj" -c Release -r ${{ matrix.target }}
+      run: dotnet publish "${{ github.workspace }}/src/Chirp.CLI/Chirp.CLI.csproj" -c Release -r ${{ matrix.target }}
     
     - name: Test ${{ matrix.project }}.Test
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"

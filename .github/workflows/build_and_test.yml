@@ -26,7 +26,7 @@ jobs:
             asset_name: ${{ github.event.repository.name }}-macos-amd64
     runs-on: ${{ matrix.os }}
     permissions:
-      issues: write
+      contents: write
     
     steps:
     - name: Checkout

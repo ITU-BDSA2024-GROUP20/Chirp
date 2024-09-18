@@ -41,11 +41,11 @@ jobs:
       run: dotnet build --no-restore "${{ github.workspace }}/src/${{ matrix.project }}"
     - name: Build ${{ matrix.project }}.Test
       run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
-    
-    - name: Test ${{ matrix.project }}.Test
-      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"
 
     - name: Publishing ${{ matrix.project }}
       run: |
         cd ${{ github.workspace }}/src/${{ matrix.project }}
-        dotnet publish --configuration Release
+        dotnet publish -c Release r- ${{ matrix.target }}
+    
+    - name: Test ${{ matrix.project }}.Test
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"

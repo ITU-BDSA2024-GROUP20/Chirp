@@ -1,10 +1,14 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http.Json;
 using Chirp.CLI;
 using DocoptNet;
-using SimpleDB;
 
-IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
+
+var baseURL = "http://localhost:5241";
+using HttpClient client = new();
+client.BaseAddress = new Uri(baseURL);
+
 const string usage = @"Chirp CLI version.
 
 Usage:
@@ -31,21 +35,21 @@ if (arguments != null)
     {
         if (arguments["<limit>"].IsInt)
         {
-            UserInterface.read(database.Read(int.Parse(arguments["<limit>"]
-                .ToString())));
+            //UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps", Int32.Parse(arguments["<limit>"].ToString()));
         }
         else
         {
-            UserInterface.read(database.Read());
+            UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps"));
         }
+        
     }
     else if (arguments["cheep"].IsTrue)
     {
-        var record = new Cheep(Environment.UserName,
+        Cheep cheep = new Cheep(Environment.UserName,
             arguments["<message>"]
                 .ToString(),
             DateTimeOffset.Now.ToUnixTimeSeconds());
-        database.Store(record);
+        await client.PostAsJsonAsync("/cheep", cheep );
     }
 }
 else

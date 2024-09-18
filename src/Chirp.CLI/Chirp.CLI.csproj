@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="docopt.net" Version="0.8.1" />
-    <ProjectReference Include="..\SimpleDB\SimpleDB.csproj" />
     <PackageReference Include="CsvHelper" Version="33.0.1" />
   </ItemGroup>
 

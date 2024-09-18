@@ -25,7 +25,6 @@ jobs:
             artifact_name: ${{ github.event.repository.name }}
             asset_name: ${{ github.event.repository.name }}-macos-amd64
     runs-on: ${{ matrix.os }}
-
     permissions:
       issues: write
     

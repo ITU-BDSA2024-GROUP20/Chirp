@@ -1,10 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http.Json;
 using Chirp.CLI;
 using DocoptNet;
-using SimpleDB;
+//https://bdsagroup20chirpremotedb.azurewebsites.net/
+//http://localhost:5241
+var baseURL = "https://bdsagroup20chirpremotedb.azurewebsites.net/";
+using HttpClient client = new();
+client.DefaultRequestHeaders.Clear();
+client.DefaultRequestHeaders.Add("Accept", "application/json");
+client.BaseAddress = new Uri(baseURL);
 
-IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
 const string usage = @"Chirp CLI version.
 
 Usage:
@@ -29,23 +35,15 @@ if (arguments != null)
 {
     if (arguments["read"].IsTrue)
     {
-        if (arguments["<limit>"].IsInt)
-        {
-            UserInterface.read(database.Read(int.Parse(arguments["<limit>"]
-                .ToString())));
-        }
-        else
-        {
-            UserInterface.read(database.Read());
-        }
+        UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps"));
     }
     else if (arguments["cheep"].IsTrue)
     {
-        var record = new Cheep(Environment.UserName,
+        Cheep cheep = new Cheep(Environment.UserName,
             arguments["<message>"]
                 .ToString(),
             DateTimeOffset.Now.ToUnixTimeSeconds());
-        database.Store(record);
+        await client.PostAsJsonAsync("/cheep", cheep );
     }
 }
 else

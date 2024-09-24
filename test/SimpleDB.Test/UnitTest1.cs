@@ -1,8 +1,10 @@
 namespace SimpleDB.Test;
 using SimpleDB;
+using System.Net.Http.Json;
+
 public class UnitTest1
 {
-    IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
+    CSVDatabase<Cheep> database = CSVDatabase<Cheep>.getInstance();
     [Fact]
     public void StoreTest()
     {
@@ -21,5 +23,10 @@ public class UnitTest1
         Assert.Equal(record, read.First());
     }
 
-
+    
 }
+
+public record Cheep(
+    string Author,
+    string Message,
+    long Timestamp);

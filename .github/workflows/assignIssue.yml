@@ -12,4 +12,5 @@ jobs:
         with:
           project: 'ITU-BDSA2024-GROUP20 Chirp'
           column: 'In Progress'
+          repo: Chirp
           github_token: ${{ secrets.GITHUB_TOKEN }}

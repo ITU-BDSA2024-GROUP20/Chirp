@@ -24,10 +24,10 @@ jobs:
           dotnet restore ./test/SimpleDB.Test
       - name: Building Projects
         run: |
-          dotnet build ./src/Chirp.CLI
-          dotnet build ./test/Chirp.CLI.Test
-          dotnet build ./src/SimpleDB
-          dotnet build ./test/SimpleDB.Test
+          dotnet build ./src/Chirp.CLI --no-restore
+          dotnet build ./test/Chirp.CLI.Test --no-restore
+          dotnet build ./src/SimpleDB --no-restore
+          dotnet build ./test/SimpleDB.Test --no-restore
       - name: Testing Projects
         run: |
           dotnet test --no-build --verbosity normal "./test/Chirp.CLI.Test"
@@ -38,9 +38,15 @@ jobs:
           dotnet publish ./src/Chirp.CLI -c Release -r win-x64
           dotnet publish ./src/Chirp.CLI -c Release -r osx-x64
       - name: Zip Project
-        run: zip -r Chirp.CLI.zip ./src/Chirp.CLI/obj/Release
+        run: |
+          zip -r Chirp-Win.zip ./src/Chirp.CLI/obj/Release/net7.0/win-x64
+          zip -r Chirp-Linux.zip ./src/Chirp.CLI/obj/Release/net7.0/linux-x64
+          zip -r Chirp-Mac.zip ./src/Chirp.CLI/obj/Release/net7.0/osx-x64
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           name: Release v${{ github.ref_name }}
-          files: Chirp.CLI.zip
+          files: |
+            Chirp-Win.zip
+            Chirp-Linux.zip
+            Chirp-Mac.zip

@@ -33,7 +33,6 @@ if (arguments != null)
 {
     if (arguments["read"].IsTrue)
     {
-        Console.WriteLine(client.DefaultRequestHeaders);
         UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps"));
     }
     else if (arguments["cheep"].IsTrue)

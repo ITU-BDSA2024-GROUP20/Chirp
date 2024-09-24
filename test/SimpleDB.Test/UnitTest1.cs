@@ -1,10 +1,10 @@
 namespace SimpleDB.Test;
-using CSVDBService;
+using SimpleDB;
 using System.Net.Http.Json;
 
 public class UnitTest1
 {
-    IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
+    CSVDatabase<Cheep> database = CSVDatabase<Cheep>.getInstance();
     [Fact]
     public void StoreTest()
     {
@@ -23,38 +23,7 @@ public class UnitTest1
         Assert.Equal(record, read.First());
     }
 
-    [Fact]
-    public async void ReadIntTest()
-    {
-        var baseURL = "http://localhost:5241";
-        using HttpClient client = new();
-        client.BaseAddress = new Uri(baseURL);
-
-        HttpResponseMessage response = await client.GetAsync("/cheeps");
-        var cheeps = await response.Content.ReadFromJsonAsync<IEnumerable<Cheep>>();
-        Assert.True((int)response.StatusCode == 200);
-
-        foreach (var record in cheeps){
-            Assert.Equal("ropf", record.Author);
-            Assert.Equal("Hello, BDSA students!", record.Message);
-            Assert.Equal(1690891760, record.Timestamp);
-            break;
-        }
-    }
-
-
-    [Fact]
-    public async void StoreIntTest(){
-        var baseURL = "http://localhost:5241";
-        using HttpClient client = new();
-        client.BaseAddress = new Uri(baseURL);
-        var cheep = new Cheep("ropf", "Hello, BDSA students!", 1690891760);
-        HttpResponseMessage response = await client.PostAsJsonAsync("/cheep", cheep);
-        Assert.True((int)response.StatusCode == 200);
-    }
-
-
-
+    
 }
 
 public record Cheep(

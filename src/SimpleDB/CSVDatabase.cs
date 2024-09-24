@@ -9,8 +9,8 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
     private static CSVDatabase<T> instance;
 
     private CSVDatabase(){
-        if(File.Exists(path+@"../../../../../src/SimpleDB/chirp_cli_db.csv")){
-            filename = path+@"../../../../../src/SimpleDB/chirp_cli_db.csv";
+        if(File.Exists(path+@"../../../../../src/CSVDBService/chirp_cli_db.csv")){
+            filename = path+@"../../../../../src/CSVDBService/chirp_cli_db.csv";
         }else{
             File.Create("chirp_cli_db.csv");
             filename = "chirp_cli_db.csv";

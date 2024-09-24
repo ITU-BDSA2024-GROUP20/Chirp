@@ -32,16 +32,16 @@ jobs:
         run: |
           dotnet test --no-build --verbosity normal "./test/Chirp.CLI.Test"
           dotnet test --no-build --verbosity normal "./test/SimpleDB.Test"
-      - name: Publish
+      - name: Publish as Artifacts
         run: |
-          dotnet publish ./src/Chirp.CLI -c Release -r linux-x64
-          dotnet publish ./src/Chirp.CLI -c Release -r win-x64
-          dotnet publish ./src/Chirp.CLI -c Release -r osx-x64
-      - name: Zip Project
+          dotnet publish ./src/Chirp.CLI -c Release -r linux-x64 -o ./artifact/linux
+          dotnet publish ./src/Chirp.CLI -c Release -r win-x64 -o ./artifact/win
+          dotnet publish ./src/Chirp.CLI -c Release -r osx-x64 -o ./artifact/mac
+      - name: Zip Artifacts
         run: |
-          zip -r Chirp-Win.zip ./src/Chirp.CLI/obj/Release/net7.0/win-x64
-          zip -r Chirp-Linux.zip ./src/Chirp.CLI/obj/Release/net7.0/linux-x64
-          zip -r Chirp-Mac.zip ./src/Chirp.CLI/obj/Release/net7.0/osx-x64
+          zip -r Chirp-Win.zip ./artifact/win
+          zip -r Chirp-Linux.zip ./artifact/linux
+          zip -r Chirp-Mac.zip ./artifact/mac
       - name: Release
         uses: softprops/action-gh-release@v2
         with:

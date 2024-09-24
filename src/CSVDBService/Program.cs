@@ -7,7 +7,6 @@ IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
 
 
 app.MapGet("/cheeps", () => database.Read());
-//app.MapGet("/cheeps", (int limit) => database.Read(limit));
 app.MapPost("/cheep", (Cheep cheep) => { database.Store(cheep);});
 
 app.Run();

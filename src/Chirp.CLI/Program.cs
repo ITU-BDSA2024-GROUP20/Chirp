@@ -33,15 +33,8 @@ if (arguments != null)
 {
     if (arguments["read"].IsTrue)
     {
-        if (arguments["<limit>"].IsInt)
-        {
-            //UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps", Int32.Parse(arguments["<limit>"].ToString()));
-        }
-        else
-        {
-            UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps"));
-        }
-        
+        Console.WriteLine(client.DefaultRequestHeaders);
+        UserInterface.read(await client.GetFromJsonAsync<IEnumerable<Cheep>>("/cheeps"));
     }
     else if (arguments["cheep"].IsTrue)
     {

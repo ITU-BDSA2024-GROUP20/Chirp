@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'bdsagroup20chirpremotedb'
           slot-name: 'Production'
-          package: .
+          package: ${{env.DOTNET_ROOT}}/myapp/Release
           

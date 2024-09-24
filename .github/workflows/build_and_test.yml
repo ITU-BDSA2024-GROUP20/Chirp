@@ -1,53 +1,47 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
-
+run-name: Upload of ${{ github.ref_name }} by @${{ github.actor }}
 on:
-  [ create ]
-
+  create
 jobs:
   build:
-    strategy:
-        matrix:
-          project: [ 'Chirp.CLI' , 'SimpleDB' ]
-          os: [ ubuntu-latest , windows-latest , macos-latest ] 
-          include:
-          - os: ubuntu-latest
-            target: linux-x64
-          - os: windows-latest
-            target: win-x64
-          - os: macos-latest
-            target: osx-x64
-    runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-    
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 7.0.x
-    
-    - name: Restore dependencies for ${{ matrix.project }}
-      run: dotnet restore "${{ github.workspace }}/src/${{ matrix.project }}"
-    - name: Restore dependencies for ${{ matrix.project }}.Test
-      run: dotnet restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
-    
-    - name: Build ${{ matrix.project }}
-      run: dotnet build --no-restore "${{ github.workspace }}/src/${{ matrix.project }}"
-    - name: Build ${{ matrix.project }}.Test
-      run: dotnet build --no-restore "${{ github.workspace }}/test/${{ matrix.project }}.Test"
-
-    - name: Publishing ${{ matrix.project }}
-      run: dotnet publish "${{ github.workspace }}/src/Chirp.CLI/Chirp.CLI.csproj" -c Release -r ${{ matrix.target }}
-    
-    - name: Test ${{ matrix.project }}.Test
-      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/test/${{ matrix.project }}.Test"
-
-    - name: Release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: "App*"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 7.0.x
+      - name: Restoring Projects
+        run: |
+          dotnet restore ./src/Chirp.CLI
+          dotnet restore ./test/Chirp.CLI.Test
+          dotnet restore ./src/SimpleDB
+          dotnet restore ./test/SimpleDB.Test
+      - name: Building Projects
+        run: |
+          dotnet build ./src/Chirp.CLI
+          dotnet build ./test/Chirp.CLI.Test
+          dotnet build ./src/SimpleDB
+          dotnet build ./test/SimpleDB.Test
+      - name: Testing Projects
+        run: |
+          dotnet test --no-build --verbosity normal "./test/Chirp.CLI.Test"
+          dotnet test --no-build --verbosity normal "./test/SimpleDB.Test"
+      - name: Publish
+        run: |
+          dotnet publish ./src/Chirp.CLI -c Release -r linux-x64
+          dotnet publish ./src/Chirp.CLI -c Release -r win-x64
+          dotnet publish ./src/Chirp.CLI -c Release -r osx-x64
+          dotnet publish ./src/SimpleDB -c Release -r linux-x64
+          dotnet publish ./src/SimpleDB -c Release -r win-x64
+          dotnet publish ./src/SimpleDB -c Release -r osx-x64
+      #- name: Release
+      #  run: |
+      #    cd ./src/Chirp.CLI/bin/Release/net7.0/release
+       #   gh release create ${{ github.ref_name }} -t "Release v${{ github.ref_name }}" ./Chirp.CLI.exe ./Chirp.CLI.dll ./Chirp.CLI.pdb
+       #   cd ../../../../../SimpleDB/bin/Release/net7.0/release

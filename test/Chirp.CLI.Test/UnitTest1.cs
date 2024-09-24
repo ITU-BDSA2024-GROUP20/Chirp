@@ -40,7 +40,7 @@ public class UnitTest1
 
 
     [Fact]
-    public void ReadTest()
+    public void UserInterfaceReadTest()
     {
         StringWriter writer = new StringWriter();
         Console.SetOut(writer);
@@ -96,7 +96,7 @@ public class UnitTest1
         using (var process = new Process())
         {
             process.StartInfo.FileName = "dotnet";
-            process.StartInfo.Arguments = "run read 1";
+            process.StartInfo.Arguments = "run read";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.WorkingDirectory = path;
             process.StartInfo.RedirectStandardOutput = true;
@@ -106,7 +106,8 @@ public class UnitTest1
             output = reader.ReadToEnd();
             process.WaitForExit();
         }
-        string fstCheep = output.Split("\n")[0];
+        var outputList = output.Split("\n");
+        string fstCheep = outputList[outputList.Length - 2];
         // Assert
         Assert.EndsWith("test cheep", fstCheep.Trim());
     }

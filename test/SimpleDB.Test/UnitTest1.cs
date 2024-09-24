@@ -1,5 +1,6 @@
 namespace SimpleDB.Test;
-using SimpleDB;
+using CSVDBService;
+
 public class UnitTest1
 {
     IDatabaseRepository<Cheep> database = CSVDatabase<Cheep>.getInstance();
@@ -23,3 +24,8 @@ public class UnitTest1
 
 
 }
+
+public record Cheep(
+    string Author,
+    string Message,
+    long Timestamp);

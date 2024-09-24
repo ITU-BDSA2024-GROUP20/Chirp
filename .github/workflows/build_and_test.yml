@@ -37,11 +37,9 @@ jobs:
           dotnet publish ./src/Chirp.CLI -c Release -r linux-x64
           dotnet publish ./src/Chirp.CLI -c Release -r win-x64
           dotnet publish ./src/Chirp.CLI -c Release -r osx-x64
-          dotnet publish ./src/SimpleDB -c Release -r linux-x64
-          dotnet publish ./src/SimpleDB -c Release -r win-x64
-          dotnet publish ./src/SimpleDB -c Release -r osx-x64
-      #- name: Release
-      #  run: |
-      #    cd ./src/Chirp.CLI/bin/Release/net7.0/release
-       #   gh release create ${{ github.ref_name }} -t "Release v${{ github.ref_name }}" ./Chirp.CLI.exe ./Chirp.CLI.dll ./Chirp.CLI.pdb
-       #   cd ../../../../../SimpleDB/bin/Release/net7.0/release
+      - name: Zip Project
+        run: zip -r Chirp.CLI.zip ./src/Chirp.CLI/obj/Release
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release v${{ github.ref_name }}

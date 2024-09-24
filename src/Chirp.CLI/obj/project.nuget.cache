@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "twwzkkvnblYKXyME7NcwicdTnrLgLCSE1sxUwCR/G5860oOaGgN23RnELimcunAcjyyLwDVVDvJgtlKpW7vJwg==",
+  "dgSpecHash": "HhmqxcpWA3ZHOqR6yItbiMiiPikjb+B/1HAEFJ7uD5E9O0NddNST5lJYp/5E40WzOMFlqYPMyUvovlLH8jZKEw==",
   "success": true,
   "projectFilePath": "C:\\Users\\dueja\\OneDrive - ITU\\Analysis, Design and Software\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dueja\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512",
     "C:\\Users\\dueja\\.nuget\\packages\\docopt.net\\0.8.1\\docopt.net.0.8.1.nupkg.sha512",
     "C:\\Users\\dueja\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
-    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.20\\microsoft.netcore.app.runtime.win-x64.7.0.20.nupkg.sha512",
-    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.20\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.20.nupkg.sha512",
-    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.20\\microsoft.aspnetcore.app.runtime.win-x64.7.0.20.nupkg.sha512"
+    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.netcore.app.runtime.osx-x64\\7.0.20\\microsoft.netcore.app.runtime.osx-x64.7.0.20.nupkg.sha512",
+    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.osx-x64\\7.0.20\\microsoft.aspnetcore.app.runtime.osx-x64.7.0.20.nupkg.sha512",
+    "C:\\Users\\dueja\\.nuget\\packages\\microsoft.netcore.app.host.osx-x64\\7.0.20\\microsoft.netcore.app.host.osx-x64.7.0.20.nupkg.sha512"
   ],
   "logs": []
 }

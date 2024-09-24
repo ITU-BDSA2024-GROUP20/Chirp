@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Move assigned to In Progress
-      - uses: fojia/action-move-issues-to-column@master
+        uses: fojia/action-move-issues-to-column@master
         with:
           project: 'ITU-BDSA2024-GROUP20 Chirp'
           column: 'In Progress'

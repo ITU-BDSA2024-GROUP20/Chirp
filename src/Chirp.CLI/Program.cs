@@ -3,10 +3,12 @@ using System.IO;
 using System.Net.Http.Json;
 using Chirp.CLI;
 using DocoptNet;
-
-
-var baseURL = "http://localhost:5241";
+//https://bdsagroup20chirpremotedb.azurewebsites.net/
+//http://localhost:5241
+var baseURL = "https://bdsagroup20chirpremotedb.azurewebsites.net/";
 using HttpClient client = new();
+client.DefaultRequestHeaders.Clear();
+client.DefaultRequestHeaders.Add("Accept", "application/json");
 client.BaseAddress = new Uri(baseURL);
 
 const string usage = @"Chirp CLI version.

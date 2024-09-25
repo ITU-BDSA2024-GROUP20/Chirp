@@ -11,6 +11,23 @@ public class CheepService : ICheepService
     // These would normally be loaded from a database for example
     private static readonly List<CheepViewModel> _cheeps = new()
         {
+            var sqlDBFilePath = "chirp.db";
+            var sqlQuery = @"SELECT * FROM message ORDER by message.pub_date desc";
+
+            using (var connection = new SqliteConnection($"Data Source={sqlDBFilePath}"))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = sqlQuery;
+
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    new CheepViewModel(reader)
+                }
+            }
+            
             new CheepViewModel("Helge", "Hello, BDSA students!", UnixTimeStampToDateTimeString(1690892208)),
             new CheepViewModel("Adrian", "Hej, velkommen til kurset.", UnixTimeStampToDateTimeString(1690895308)),
         };

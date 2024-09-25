@@ -27,11 +27,14 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Restore
+        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+
       - name: Build with dotnet
-        run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+        run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
 
       - name: dotnet publish
-        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}  --output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build  --output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -55,12 +58,12 @@ jobs:
           name: webapp
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_479D5C0D94FD4F59ADBA7D434F442CF1 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CF15846ACF7E4FAA9D3DA6361037E9EB }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7DB36C4BEF264393A029B4AB0B468A29 }}
+      #- name: Login to Azure
+       # uses: azure/login@v2
+        #with:
+         # client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_479D5C0D94FD4F59ADBA7D434F442CF1 }}
+          #tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CF15846ACF7E4FAA9D3DA6361037E9EB }}
+          #subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7DB36C4BEF264393A029B4AB0B468A29 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp

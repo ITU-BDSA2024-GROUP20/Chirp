@@ -3,9 +3,9 @@ using System.IO;
 using System.Net.Http.Json;
 using Chirp.CLI;
 using DocoptNet;
-//https://bdsagroup20chirpremotedb.azurewebsites.net/
+//https://bdsagroup20chirpremotedb-gxcbg4fma2fch0c3.northeurope-01.azurewebsites.net/
 //http://localhost:5241
-var baseURL = "https://bdsagroup20chirpremotedb.azurewebsites.net/";
+var baseURL = "https://bdsagroup20chirpremotedb-gxcbg4fma2fch0c3.northeurope-01.azurewebsites.net/";
 using HttpClient client = new();
 client.DefaultRequestHeaders.Clear();
 client.DefaultRequestHeaders.Add("Accept", "application/json");

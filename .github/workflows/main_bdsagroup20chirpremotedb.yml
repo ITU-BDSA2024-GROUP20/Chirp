@@ -4,7 +4,10 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - bdsagroup20chirpremotedb
 
 on:
-  create
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,13 +19,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.x'
+          dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build src/CSVDBService/ --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish src/CSVDBService/ -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -48,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2634D4C035CE4F508A2777C1985BC66E }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AA63501618CA4717B3155E717E2E92AA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E4C16C8C6CC24C19BE0476A1D3E5BBB5 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FDFB66A8248742CAABF217957E7A25AF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2DBDBA03049C433E97D24A5E5C33DCEB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_41EBB918DCD04149B37619139DBD4FBF }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp

@@ -7,7 +7,8 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
 {
 
     private static CSVDatabase<T> instance;
-
+    string path = AppDomain.CurrentDomain.BaseDirectory; 
+    string filename;
     private CSVDatabase(){
         if(File.Exists(path+@"../../../../../src/CSVDBService/chirp_cli_db.csv")){
             filename = path+@"../../../../../src/CSVDBService/chirp_cli_db.csv";
@@ -25,8 +26,6 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
         return instance;
     }
 
-    string path = AppDomain.CurrentDomain.BaseDirectory; 
-    string filename;
     public IEnumerable<T> Read(int? limit = null)
     {
         

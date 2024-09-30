@@ -9,12 +9,6 @@ on:
       - Chirp.CLi
   workflow_dispatch:
 
-env:
-  AZURE_WEBAPP_NAME: bdsagroup20chirpremotedb
-  AZURE_WEBAPP_PACKAGE_PATH: src/CSVDBService/published
-  CONFIGURATION: Release
-  WORKING_DIRECTORY: src/CSVDBService
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,20 +21,17 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Restore
-        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
-
       - name: Build with dotnet
-        run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+        run: dotnet build ./src/CSVDBService/ --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+        run: dotnet publish ./src/CSVDBService/ -c Release  -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: webapp
-          path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,8 +47,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: webapp
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          name: .net-app
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -70,6 +60,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }} 
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          app-name: 'bdsagroup20chirpremotedb'
+          slot-name: 'Production'
+          package: .
           

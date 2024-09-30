@@ -22,7 +22,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build ./src/CSVDBService/ -r linux-x64 --configuration Release
+        run: dotnet build ./src/CSVDBService/  --configuration Release
 
       - name: dotnet publish
         run: dotnet publish ./src/CSVDBService/ -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/myapp

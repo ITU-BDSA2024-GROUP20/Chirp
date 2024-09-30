@@ -26,8 +26,10 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish ./src/CSVDBService/ -c Release -r osx-x64 -o ${{env.DOTNET_ROOT}}/myapp
-        run: ls
         
+      - name: List published files
+        run: ls -R ${{env.DOTNET_ROOT}}/myapp
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:

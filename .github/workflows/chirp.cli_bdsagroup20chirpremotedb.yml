@@ -25,8 +25,8 @@ jobs:
         run: dotnet build ./src/CSVDBService/  --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./src/CSVDBService/ -c Release -r osx-x64 -o ${{env.DOTNET_ROOT}}/myapp
-        
+        run: dotnet publish ./src/CSVDBService/ -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/myapp
+
       - name: List published files
         run: ls -R ${{env.DOTNET_ROOT}}/myapp
 

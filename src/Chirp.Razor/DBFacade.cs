@@ -1,4 +1,4 @@
-namespace DefaultNamespace;
+namespace Chirp.Razor;
 
 public class DBFacade
 {

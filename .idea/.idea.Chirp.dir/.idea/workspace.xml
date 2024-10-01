@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30eb2d03-e62c-42e2-9897-9d102125984c" name="Changes" comment="" />
+    <list default="true" id="30eb2d03-e62c-42e2-9897-9d102125984c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +32,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/CSVDBService/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Chirp.CLI.Test/GlobalUsings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Chirp.CLI.Test/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -136,6 +141,7 @@
       <workItem from="1727269989579" duration="949000" />
       <workItem from="1727271033099" duration="1196000" />
       <workItem from="1727777943911" duration="310000" />
+      <workItem from="1727788145271" duration="608000" />
     </task>
     <servers />
   </component>

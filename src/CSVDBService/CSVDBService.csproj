@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleDB\SimpleDB.csproj" />
+    <DotnetPublishFiles Include="chirp_cli_db.csv" />
   </ItemGroup>
 
   <PropertyGroup>

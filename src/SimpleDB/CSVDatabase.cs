@@ -12,6 +12,8 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
     private CSVDatabase(){
         if(File.Exists(path+@"../../../../../src/CSVDBService/chirp_cli_db.csv")){
             filename = path+@"../../../../../src/CSVDBService/chirp_cli_db.csv";
+        }else if(File.Exists("chirp_cli_db.csv")){
+            filename = "chirp_cli_db.csv";
         }else{
             File.Create("chirp_cli_db.csv");
             filename = "chirp_cli_db.csv";

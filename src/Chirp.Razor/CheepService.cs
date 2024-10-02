@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor;
 using System.Data;
@@ -54,4 +55,27 @@ public class CheepService : ICheepService
         return dateTime.ToString("MM/dd/yy H:mm:ss");
     }
 
+}
+
+public class Message
+{
+    public int MessageId { get; set; }
+    public int UserId { get; set; }
+    public string Text { get; set; }
+    public User User { get; set; }
+}
+
+public class User
+{
+    public int UserId { get; set; }
+    public string Name { get; set; }
+    public ICollection<Message> Messages { get; set; }
+}
+
+public class CSDBService : DbContext
+{
+    public DbSet<Message> Messages { get; set; }
+    public DbSet<User> Users { get; set; }
+    
+    public CSDBService(DbContextOptions<CSDBService> options) : base(options) { }
 }

@@ -1,5 +1,6 @@
 namespace Chirp.Razor;
 using Microsoft.Data.Sqlite;
+using System.Data;
 
 public class DBFacade
 {
@@ -10,14 +11,14 @@ public class DBFacade
         this.path = path;
     }
 
-    public SqliteConnection establishConnection()
+    public SqliteConnection EstablishConnection()
     {
         return new SqliteConnection($"Data Source={path}");
     }
     
-    public List<CheepViewModel> query(string query){
+    public List<CheepViewModel> Query(string query, string? author = null){
         List<CheepViewModel> cheeps = new List<CheepViewModel>();
-        using (var connection = new SqliteConnection(establishConnection()){
+        using (var connection = EstablishConnection()){
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = query;
@@ -27,9 +28,12 @@ public class DBFacade
                 cheeps.Add(
                     new CheepViewModel(
                         dataRecord[0].ToString(),
-                        dataRecord[1].ToString(), 
-                        UnixTimeStampToDateTimeString(Double.Parse(dataRecord[2].ToString()))));
+                        dataRecord[1].ToString(),
+                        dataRecord[2].ToString()
+                        )
+                    );
             }
         }
+        return cheeps;
     }
 }

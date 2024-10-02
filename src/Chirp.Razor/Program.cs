@@ -6,13 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 string pathtodb;
-if (Environment.GetEnvironmentVariable("CHIRPDBPATH()") != null)
+Console.WriteLine("here");
+Console.WriteLine(Environment.GetEnvironmentVariable("CHIRPDBPATH"));
+if (Environment.GetEnvironmentVariable("CHIRPDBPATH") != null)
 {
     pathtodb = Environment.GetEnvironmentVariable("CHIRPDBPATH");
 }
 else
 {
-    pathtodb = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "chirp.db");
+    pathtodb = Path.Combine(Path.GetTempPath(), "chirp.db");
 }
 
 
@@ -20,6 +22,7 @@ if (!File.Exists(pathtodb))
 {
     makeDB(pathtodb);
 }
+builder.Services.AddSingleton(new DBFacade(pathtodb));
 static void makeDB(string pathtodb)
 {
     using var connection = new SqliteConnection($"Data Source={pathtodb};");

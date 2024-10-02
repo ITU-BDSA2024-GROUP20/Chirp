@@ -12,9 +12,9 @@
     <list default="true" id="30eb2d03-e62c-42e2-9897-9d102125984c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Chirp.Razor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Chirp.Razor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Migrations/CSDBServiceModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Migrations/CSDBServiceModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/mychirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/mychirp.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -70,6 +70,7 @@ public class User
     public int UserId { get; set; }
     public string Name { get; set; }
     public ICollection<Message> Messages { get; set; }
+    public string Email { get; set; }
 }
 
 public class CSDBService : DbContext
@@ -78,4 +79,35 @@ public class CSDBService : DbContext
     public DbSet<User> Users { get; set; }
     
     public CSDBService(DbContextOptions<CSDBService> options) : base(options) { }
+}
+
+// Constructed for later usage, for when we find out what MessageDTO actually is
+public interface IMessageRepository
+{
+    public Task CreateMessage(MessageDTO newMessage);
+    public Task<List<MessageDTO>> ReadMessage(string userName);
+    public Task UpdateMessage(MessageDTO alteredMessage);
+}
+
+public class MessageRepository : IMessageRepository
+{
+    public Task CreateMessage(MessageDTO newMessage)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<MessageDTO>> ReadMessage(string userName)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateMessage(MessageDTO alteredMessage)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class MessageDTO
+{
+    
 }

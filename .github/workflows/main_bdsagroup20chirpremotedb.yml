@@ -4,7 +4,7 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - bdsagroup20chirpremotedb
 
 on:
-  #create
+  create
 
 jobs:
   build:

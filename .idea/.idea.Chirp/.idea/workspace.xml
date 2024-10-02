@@ -14,15 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/chirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/mychirp.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +172,7 @@
       <updated>1727781066981</updated>
       <workItem from="1727781069846" duration="412000" />
       <workItem from="1727781519972" duration="2346000" />
-      <workItem from="1727785128541" duration="6105000" />
+      <workItem from="1727785128541" duration="6266000" />
     </task>
     <servers />
   </component>

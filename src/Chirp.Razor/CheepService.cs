@@ -57,26 +57,26 @@ public class CheepService : ICheepService
 
 }
 
-public class Message
+public class Cheep
 {
     public int MessageId { get; set; }
-    public int UserId { get; set; }
     public string Text { get; set; }
-    public User User { get; set; }
+    public Author Author { get; set; }
+    public DateTime TimeStamp { get; set; }
 }
 
-public class User
+public class Author
 {
     public int UserId { get; set; }
     public string Name { get; set; }
-    public ICollection<Message> Messages { get; set; }
+    public ICollection<Cheep> Cheep { get; set; }
     public string Email { get; set; }
 }
 
 public class CSDBService : DbContext
 {
-    public DbSet<Message> Messages { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<Cheep> Cheeps { get; set; }
+    public DbSet<Author> Authors { get; set; }
     
     public CSDBService(DbContextOptions<CSDBService> options) : base(options) { }
 }

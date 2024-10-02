@@ -4,10 +4,8 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - bdsagroup20chirprazor
 
 on:
-  push:
-    branches:
-      - razor-implementation
-  workflow_dispatch:
+  create
+  
 
 jobs:
   build:
@@ -22,10 +20,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build src/Chirp.Razor --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish src/Chirp.Razor -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4

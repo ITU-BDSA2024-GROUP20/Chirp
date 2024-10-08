@@ -59,17 +59,18 @@ public class CheepService : ICheepService
 
 public class Cheep
 {
-    public int MessageId { get; set; }
+    public int CheepId { get; set; }
     public string Text { get; set; }
+    public int AuthorId { get; set; }
     public Author Author { get; set; }
     public DateTime TimeStamp { get; set; }
 }
 
 public class Author
 {
-    public int UserId { get; set; }
+    public int AuthorId { get; set; }
     public string Name { get; set; }
-    public ICollection<Cheep> Cheep { get; set; }
+    public ICollection<Cheep> Cheeps { get; set; }
     public string Email { get; set; }
 }
 
@@ -82,32 +83,34 @@ public class CSDBService : DbContext
 }
 
 // Constructed for later usage, for when we find out what MessageDTO actually is
-public interface IMessageRepository
+public interface ICheepRepository
 {
-    public Task CreateMessage(MessageDTO newMessage);
-    public Task<List<MessageDTO>> ReadMessage(string userName);
-    public Task UpdateMessage(MessageDTO alteredMessage);
+    public Task CreateCheep(CheepDTO newCheep);
+    public Task<List<CheepDTO>> ReadCheep(string userName);
+    public Task UpdateCheep(CheepDTO alteredCheep);
 }
 
-public class MessageRepository : IMessageRepository
+public class CheepRepository : ICheepRepository
 {
-    public Task CreateMessage(MessageDTO newMessage)
+    public Task CreateCheep(CheepDTO newCheep)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<MessageDTO>> ReadMessage(string userName)
+    public Task<List<CheepDTO>> ReadCheep(string userName)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateMessage(MessageDTO alteredMessage)
+    public Task UpdateCheep(CheepDTO alteredCheep)
     {
         throw new NotImplementedException();
     }
 }
 
-public class MessageDTO
+public class CheepDTO
 {
-    
+    string Author { get; set; }
+    string Message { get; set; }
+    string Timestamp { get; set; }
 }

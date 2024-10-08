@@ -10,7 +10,7 @@ builder.Services.AddDbContext<CSDBService>(options => options.UseSqlite(connecti
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepService, CheepService>();
-builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 
 string pathtodb;
 Console.WriteLine("here");

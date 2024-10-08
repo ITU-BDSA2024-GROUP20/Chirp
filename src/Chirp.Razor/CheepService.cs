@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor;
-using System.Data;
-using Microsoft.Data.Sqlite;
+
 public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
@@ -92,14 +90,71 @@ public interface ICheepRepository
 
 public class CheepRepository : ICheepRepository
 {
+    CSDBService service;
+    CheepRepository()
+    {
+        service = new CSDBService(new DbContextOptions<CSDBService>());
+    }
     public Task CreateCheep(CheepDTO newCheep)
     {
-        throw new NotImplementedException();
+        Author author = service.Authors.Find(newCheep.Author);
+        if (author == null) // If no matching author was found
+        {
+            int nr = service.Authors.Count();
+            author.AuthorId = nr + 1;
+            author.Name = newCheep.Author;
+            author.Email = newCheep.Email;
+            author.Cheeps = new List<Cheep>();
+            service.Authors.Add(author);
+        }
+
+        Cheep cheep = new Cheep();
+        cheep.CheepId = service.Cheeps.Count();
+        cheep.AuthorId = author.AuthorId;
+        cheep.Author = author;
+        cheep.Text = newCheep.Text;
+        cheep.TimeStamp = DateTime.Parse(newCheep.Timestamp);
+        
+        author.Cheeps.Add(cheep);
+        
+        service.Cheeps.Add(cheep);
+        service.Authors.Update(author);
+        service.SaveChanges();
+        
+        throw new NotImplementedException(); // Don't know how to return a task. What is a task? :shrug:
     }
 
-    public Task<List<CheepDTO>> ReadCheep(string userName)
+    public Task<List<CheepDTO>> ReadCheep(string? userName)
     {
-        throw new NotImplementedException();
+        List<CheepDTO> cheeps = new List<CheepDTO>();
+        Author author = service.Authors.Find(userName);
+        if (author != null)
+        {
+            foreach (Cheep cheep in author.Cheeps)
+            {
+                CheepDTO ch = new CheepDTO();
+                ch.Author = cheep.Author.Name;
+                ch.Text = cheep.Text;
+                ch.Timestamp = cheep.TimeStamp.ToString();
+                ch.Email = cheep.Author.Email;
+                cheeps.Add(ch);
+            }
+        }
+        else
+        {
+            foreach (Cheep cheep in service.Cheeps.AsNoTracking().ToList())
+            {
+                CheepDTO ch = new CheepDTO();
+                ch.Author = cheep.Author.Name;
+                ch.Text = cheep.Text;
+                ch.Timestamp = cheep.TimeStamp.ToString();
+                ch.Email = cheep.Author.Email;
+                cheeps.Add(ch);
+            }
+        }
+
+        service.SaveChanges();
+        throw new NotImplementedException(); // I still don't know how to return a task, especially if it is of a list of cheeps, this is torture.
     }
 
     public Task UpdateCheep(CheepDTO alteredCheep)
@@ -110,7 +165,8 @@ public class CheepRepository : ICheepRepository
 
 public class CheepDTO
 {
-    string Author { get; set; }
-    string Message { get; set; }
-    string Timestamp { get; set; }
+    public string Author { get; set; }
+    public string Text { get; set; }
+    public string Timestamp { get; set; }
+    public string Email { get; set; }
 }

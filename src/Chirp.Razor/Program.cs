@@ -12,6 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepService, CheepService>();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 
+/*
 string pathtodb;
 Console.WriteLine("here");
 Console.WriteLine(Environment.GetEnvironmentVariable("CHIRPDBPATH"));
@@ -53,11 +54,8 @@ static void makeDB(string pathtodb)
     ";
     
     command.ExecuteNonQuery();
-}
+}*/
 
-
-
-builder.Services.AddSingleton<ICheepService, CheepService>();
 
 
 var app = builder.Build();

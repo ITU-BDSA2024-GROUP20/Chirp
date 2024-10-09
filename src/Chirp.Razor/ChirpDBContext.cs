@@ -34,16 +34,17 @@ public class Author
 public interface ICheepRepository
 {
     public void CreateCheep(CheepDTO newCheep);
-    public List<CheepDTO> ReadCheep(string userName);
+    public List<CheepDTO> ReadCheep( int page , string userName);
     public void UpdateCheep(CheepDTO alteredCheep);
 }
 
 public class CheepRepository : ICheepRepository
 {
     private ChirpDBContext service;
-    public CheepRepository()
+    public CheepRepository(ChirpDBContext service)
     {
-        service = new ChirpDBContext(new DbContextOptions<ChirpDBContext>());
+        this.service = service;
+        DbInitializer.SeedDatabase(this.service);
     }
     public void CreateCheep(CheepDTO newCheep)
     {
@@ -72,33 +73,36 @@ public class CheepRepository : ICheepRepository
         service.SaveChanges();
     }
 
-    public List<CheepDTO> ReadCheep(string? userName)
+    public List<CheepDTO> ReadCheep(int page, string? userName = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
         Author author = service.Authors.Find(userName);
         if (author != null)
         {
-            foreach (Cheep cheep in author.Cheeps)
+            List<Cheep> cheepList = author.Cheeps.ToList();
+            for (int i = page; i < page + 32 && i < service.Cheeps.AsNoTracking().ToList().Count(); i++)
             {
                 CheepDTO ch = new CheepDTO();
-                ch.Author = cheep.Author.Name;
-                ch.Text = cheep.Text;
-                ch.Timestamp = cheep.TimeStamp.ToString();
-                ch.Email = cheep.Author.Email;
+                ch.Author = cheepList[i].Author.Name;
+                ch.Text = cheepList[i].Text;
+                ch.Timestamp = cheepList[i].TimeStamp.ToString();
+                ch.Email = cheepList[i].Author.Email;
                 cheeps.Add(ch);
             }
         }
         else
         {
-            foreach (Cheep cheep in service.Cheeps.AsNoTracking().ToList())
+            List<Cheep> cheepList = service.Cheeps.AsNoTracking().ToList();
+            for (int i = page; i < page + 32 && i < cheepList.Count(); i++)
             {
                 CheepDTO ch = new CheepDTO();
-                ch.Author = cheep.Author.Name;
-                ch.Text = cheep.Text;
-                ch.Timestamp = cheep.TimeStamp.ToString();
-                ch.Email = cheep.Author.Email;
+                ch.Author = cheepList[i].Author.Name;
+                ch.Text = cheepList[i].Text;
+                ch.Timestamp = cheepList[i].TimeStamp.ToString();
+                ch.Email = cheepList[i].Author.Email;
                 cheeps.Add(ch);
             }
+           
         }
 
         return cheeps;

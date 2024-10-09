@@ -6,20 +6,22 @@ public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
 {
-    public List<CheepViewModel> GetCheeps(int page);
-    public List<CheepViewModel> GetCheepsFromAuthor(string author , int page);
+    public List<CheepDTO> GetCheeps(int page);
+    public List<CheepDTO> GetCheepsFromAuthor(string author , int page);
 }
 
 public class CheepService : ICheepService
 {
-    private readonly DBFacade facade;
+    //private readonly DBFacade facade;
+    private readonly ICheepRepository repository;
     
-    public CheepService(DBFacade facade)
+    public CheepService( ICheepRepository repository)
     {
-        this.facade = facade;
+        //this.facade = facade;
+        this.repository = repository;
     }
 	
-    public List<CheepViewModel> GetCheeps(int page)
+    public List<CheepDTO> GetCheeps(int page)
     {
         string query = 
             @"SELECT u.username, m.text, m.pub_date
@@ -28,10 +30,10 @@ public class CheepService : ICheepService
             ORDER by m.pub_date desc
             LIMIT 32
             OFFSET @page";
-        return facade.Query(query, page);
+        return repository.ReadCheep(page, null);
     }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
+    public List<CheepDTO> GetCheepsFromAuthor(string author, int page)
     {
         string query = 
             @"SELECT u.username, m.text, m.pub_date
@@ -42,7 +44,7 @@ public class CheepService : ICheepService
             LIMIT 32
             OFFSET @page";
         // filter by the provided author name
-        return facade.Query(query, page ,author);
+        return repository.ReadCheep( page ,author);
     }
 
     public static string UnixTimeStampToDateTimeString(double unixTimeStamp)

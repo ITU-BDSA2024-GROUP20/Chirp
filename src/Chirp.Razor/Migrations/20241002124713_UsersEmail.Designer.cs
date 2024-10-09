@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Chirp.Razor.Migrations
 {
-    [DbContext(typeof(CSDBService))]
+    [DbContext(typeof(ChripDBContext))]
     [Migration("20241002124713_UsersEmail")]
     partial class UsersEmail
     {

@@ -83,9 +83,9 @@ public class CSDBService : DbContext
 // Constructed for later usage, for when we find out what MessageDTO actually is
 public interface ICheepRepository
 {
-    public Task CreateCheep(CheepDTO newCheep);
-    public Task<List<CheepDTO>> ReadCheep(string userName);
-    public Task UpdateCheep(CheepDTO alteredCheep);
+    public void CreateCheep(CheepDTO newCheep);
+    public List<CheepDTO> ReadCheep(string userName);
+    public void UpdateCheep(CheepDTO alteredCheep);
 }
 
 public class CheepRepository : ICheepRepository
@@ -95,7 +95,7 @@ public class CheepRepository : ICheepRepository
     {
         service = new CSDBService(new DbContextOptions<CSDBService>());
     }
-    public Task CreateCheep(CheepDTO newCheep)
+    public void CreateCheep(CheepDTO newCheep)
     {
         Author author = service.Authors.Find(newCheep.Author);
         if (author == null) // If no matching author was found
@@ -120,11 +120,9 @@ public class CheepRepository : ICheepRepository
         service.Cheeps.Add(cheep);
         service.Authors.Update(author);
         service.SaveChanges();
-        
-        throw new NotImplementedException(); // Don't know how to return a task. What is a task? :shrug:
     }
 
-    public Task<List<CheepDTO>> ReadCheep(string? userName)
+    public List<CheepDTO> ReadCheep(string? userName)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
         Author author = service.Authors.Find(userName);
@@ -153,11 +151,10 @@ public class CheepRepository : ICheepRepository
             }
         }
 
-        service.SaveChanges();
-        throw new NotImplementedException(); // I still don't know how to return a task, especially if it is of a list of cheeps, this is torture.
+        return cheeps;
     }
 
-    public Task UpdateCheep(CheepDTO alteredCheep)
+    public void UpdateCheep(CheepDTO alteredCheep)
     {
         throw new NotImplementedException();
     }

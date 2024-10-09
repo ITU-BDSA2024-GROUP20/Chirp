@@ -72,12 +72,12 @@ public class Author
     public string Email { get; set; }
 }
 
-public class ChripDBContext : DbContext
+public class ChirpDBContext : DbContext
 {
     public DbSet<Cheep> Cheeps { get; set; }
     public DbSet<Author> Authors { get; set; }
     
-    public ChripDBContext(DbContextOptions<ChripDBContext> options) : base(options) { }
+    public ChirpDBContext(DbContextOptions<ChirpDBContext> options) : base(options) { }
 }
 
 // Constructed for later usage, for when we find out what MessageDTO actually is
@@ -90,10 +90,10 @@ public interface ICheepRepository
 
 public class CheepRepository : ICheepRepository
 {
-    public ChripDBContext service;
+    public ChirpDBContext service;
     public CheepRepository()
     {
-        service = new ChripDBContext(new DbContextOptions<ChripDBContext>());
+        service = new ChirpDBContext(new DbContextOptions<ChirpDBContext>());
     }
     public void CreateCheep(CheepDTO newCheep)
     {

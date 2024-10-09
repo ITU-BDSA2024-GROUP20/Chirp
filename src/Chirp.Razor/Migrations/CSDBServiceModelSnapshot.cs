@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Chirp.Razor.Migrations
 {
-    [DbContext(typeof(ChripDBContext))]
+    [DbContext(typeof(ChirpDBContext))]
     partial class CSDBServiceModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

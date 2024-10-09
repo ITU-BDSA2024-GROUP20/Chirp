@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor;
@@ -13,6 +14,9 @@ public class ChirpDBContext : DbContext
 public class Cheep
 {
     public int CheepId { get; set; }
+    
+    [Required]
+    [StringLength(160)]
     public string Text { get; set; }
     public int AuthorId { get; set; }
     public Author Author { get; set; }
@@ -27,7 +31,6 @@ public class Author
     public string Email { get; set; }
 }
 
-// Constructed for later usage, for when we find out what MessageDTO actually is
 public interface ICheepRepository
 {
     public void CreateCheep(CheepDTO newCheep);
@@ -37,7 +40,7 @@ public interface ICheepRepository
 
 public class CheepRepository : ICheepRepository
 {
-    public ChirpDBContext service;
+    private ChirpDBContext service;
     public CheepRepository()
     {
         service = new ChirpDBContext(new DbContextOptions<ChirpDBContext>());
@@ -103,6 +106,7 @@ public class CheepRepository : ICheepRepository
 
     public void UpdateCheep(CheepDTO alteredCheep)
     {
+        // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
     }
 }

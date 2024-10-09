@@ -12,6 +12,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepService, CheepService>();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 
+
+
 /*
 string pathtodb;
 Console.WriteLine("here");
@@ -59,6 +61,16 @@ static void makeDB(string pathtodb)
 
 
 var app = builder.Build();
+// Create a disposable service scope
+using (var scope = app.Services.CreateScope())
+{
+    // From the scope, get an instance of our database context.
+    // Through the `using` keyword, we make sure to dispose it after we are done.
+    using var context = scope.ServiceProvider.GetService<ChirpDBContext>();
+
+    // Execute the migration from code.
+    context.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

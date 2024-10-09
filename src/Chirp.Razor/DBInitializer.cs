@@ -7,6 +7,7 @@ public static class DbInitializer
 {
     public static void SeedDatabase(ChirpDBContext chirpContext)
     {
+        Console.WriteLine("Seeding database...");
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))
         {
             var a1 = new Author() { AuthorId = 1, Name = "Roger Histand", Email = "Roger+Histand@hotmail.com", Cheeps = new List<Cheep>() };

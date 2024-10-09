@@ -5,7 +5,7 @@ using System;
 
 public static class DbInitializer
 {
-    public static void SeedDatabase(CSDBService chirpContext)
+    public static void SeedDatabase(ChripDBContext chirpContext)
     {
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))
         {

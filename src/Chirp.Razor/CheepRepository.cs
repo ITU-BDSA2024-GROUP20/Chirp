@@ -1,4 +1,6 @@
+using System.Net.Mime;
 using Microsoft.EntityFrameworkCore;
+
 namespace Chirp.Razor;
 
 public interface ICheepRepository
@@ -42,37 +44,45 @@ public class CheepRepository : ICheepRepository
         service.Authors.Update(author);
         service.SaveChanges();
     }
-
+    
     public List<CheepDTO> ReadCheep(int page, string? userName = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
-        Author author = service.Authors.Find(userName);
-        if (author != null)
+        if (userName != null)
         {
-            List<Cheep> cheepList = author.Cheeps.ToList();
-            for (int i = page; i < page + 32 && i < service.Cheeps.AsNoTracking().ToList().Count(); i++)
+            var query = (from author in service.Authors
+                    from message in author.Cheeps
+                    where author.Name == userName
+                    orderby message.TimeStamp descending
+                    select new { author.Name, message.Text, message.TimeStamp, author.Email }
+                    );
+            var result =  query.Skip(page).Take(32).ToList();
+            foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO();
-                ch.Author = cheepList[i].Author.Name;
-                ch.Text = cheepList[i].Text;
-                ch.Timestamp = cheepList[i].TimeStamp.ToString();
-                ch.Email = cheepList[i].Author.Email;
+                ch.Author = message.Name;
+                ch.Text = message.Text;
+                ch.Timestamp = message.TimeStamp.ToString();
+                ch.Email = message.Email;
                 cheeps.Add(ch);
             }
         }
         else
         {
-            List<Cheep> cheepList = service.Cheeps.AsNoTracking().ToList();
-            for (int i = page; i < page + 32 && i < cheepList.Count(); i++)
+            var query = (from message in service.Cheeps
+                join author in service.Authors on message.AuthorId equals author.AuthorId
+                orderby message.TimeStamp descending 
+                select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            var result =  query.Skip(page).Take(32).ToList();
+            foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO();
-                ch.Author = cheepList[i].Author.Name;
-                ch.Text = cheepList[i].Text;
-                ch.Timestamp = cheepList[i].TimeStamp.ToString();
-                ch.Email = cheepList[i].Author.Email;
+                ch.Author = message.Name;
+                ch.Text = message.Text;
+                ch.Timestamp = message.TimeStamp.ToString();
+                ch.Email = message.Email;
                 cheeps.Add(ch);
             }
-           
         }
 
         return cheeps;

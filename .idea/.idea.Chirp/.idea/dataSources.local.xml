@@ -13,5 +13,9 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="mychirp" uuid="1f7bdac2-1305-4b45-a1f8-9f07073b346b">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

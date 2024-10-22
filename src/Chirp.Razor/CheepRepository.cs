@@ -18,6 +18,8 @@ public class CheepRepository : ICheepRepository
         this.service = service;
         DbInitializer.SeedDatabase(this.service);
     }
+    
+    // Command
     public void CreateCheep(CheepDTO newCheep)
     {
         Author author = service.Authors.Find(newCheep.Author);
@@ -40,6 +42,7 @@ public class CheepRepository : ICheepRepository
         service.SaveChanges();
     }
     
+    // Query
     public List<CheepDTO> ReadCheep(int page, string? userName = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
@@ -83,12 +86,14 @@ public class CheepRepository : ICheepRepository
         return cheeps;
     }
 
+    // Command
     public void UpdateCheep(CheepDTO alteredCheep)
     {
         // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
     }
 
+    // Command
     public void CreateAuthor(string name, string email)
     {
         Author author = new Author()
@@ -101,6 +106,7 @@ public class CheepRepository : ICheepRepository
         service.Authors.Add(author);
     }
 
+    // Query
     public Author GetAuthorByName(string name)
     {
         var query = (
@@ -111,6 +117,7 @@ public class CheepRepository : ICheepRepository
         return query.FirstOrDefault();
     }
 
+    // Query
     public Author GetAuthorByEmail(string email)
     {
         var query = (

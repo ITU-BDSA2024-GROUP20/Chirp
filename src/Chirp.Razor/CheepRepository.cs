@@ -16,7 +16,6 @@ public class CheepRepository : ICheepRepository
     public CheepRepository(ChirpDBContext service)
     {
         this.service = service;
-        DbInitializer.SeedDatabase(this.service);
     }
     
     // Command
@@ -104,6 +103,7 @@ public class CheepRepository : ICheepRepository
             Cheeps = new List<Cheep>()
         };
         service.Authors.Add(author);
+        service.SaveChanges();
     }
 
     // Query

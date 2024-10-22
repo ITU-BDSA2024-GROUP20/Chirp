@@ -1,10 +1,11 @@
-using Chirp.Razor;
+using Chirp.Web;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Chirp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string was not found");
 builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
 
 // Add services to the container.
@@ -24,6 +25,7 @@ using (var scope = app.Services.CreateScope())
 
     // Execute the migration from code.
     context.Database.EnsureCreated();
+    DbInitializer.SeedDatabase(context);
 }
 
 // Configure the HTTP request pipeline.
@@ -42,5 +44,3 @@ app.UseRouting();
 app.MapRazorPages();
 
 app.Run();
-
-

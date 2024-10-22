@@ -23,12 +23,7 @@ public class CheepRepository : ICheepRepository
         Author author = service.Authors.Find(newCheep.Author);
         if (author == null) // If no matching author was found
         {
-            int nr = service.Authors.Count();
-            author.AuthorId = nr + 1;
-            author.Name = newCheep.Author;
-            author.Email = newCheep.Email;
-            author.Cheeps = new List<Cheep>();
-            service.Authors.Add(author);
+            CreateAuthor(newCheep.Author, newCheep.Email);
         }
 
         Cheep cheep = new Cheep();
@@ -92,6 +87,38 @@ public class CheepRepository : ICheepRepository
     {
         // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
+    }
+
+    public void CreateAuthor(string name, string email)
+    {
+        Author author = new Author()
+        {
+            AuthorId = service.Authors.Count(),
+            Name = name,
+            Email = email,
+            Cheeps = new List<Cheep>()
+        };
+        service.Authors.Add(author);
+    }
+
+    public Author GetAuthorByName(string name)
+    {
+        var query = (
+            from author in service.Authors
+            where author.Name == name
+            select author
+            );
+        return query.FirstOrDefault();
+    }
+
+    public Author GetAuthorByEmail(string email)
+    {
+        var query = (
+            from author in service.Authors
+            where author.Email == email
+            select author
+        );
+        return query.FirstOrDefault();
     }
 }
 

@@ -23,26 +23,11 @@ public class CheepService : ICheepService
 	
     public List<CheepDTO> GetCheeps(int page)
     {
-        string query = 
-            @"SELECT u.username, m.text, m.pub_date
-            FROM message m
-            JOIN user u ON m.author_id = u.user_id
-            ORDER by m.pub_date desc
-            LIMIT 32
-            OFFSET @page";
         return repository.ReadCheep(page, null);
     }
 
     public List<CheepDTO> GetCheepsFromAuthor(string author, int page)
     {
-        string query = 
-            @"SELECT u.username, m.text, m.pub_date
-            FROM message m
-            JOIN user u ON m.author_id = u.user_id
-            WHERE u.username = @username
-            ORDER by m.pub_date desc
-            LIMIT 32
-            OFFSET @page";
         // filter by the provided author name
         return repository.ReadCheep( page ,author);
     }

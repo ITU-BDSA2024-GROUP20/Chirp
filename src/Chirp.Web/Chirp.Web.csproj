@@ -3,13 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Chirp.Infrastructure\Chirp.Infrastructure.csproj" />
   </ItemGroup>
-
   
-  <ItemGroup>
-    <AdditionalFiles Include="Pages\Public.cshtml" />
-    <AdditionalFiles Include="Pages\Shared\_Layout.cshtml" />
-    <AdditionalFiles Include="Pages\UserTimeline.cshtml" />
-  </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

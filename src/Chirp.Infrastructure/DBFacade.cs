@@ -2,6 +2,7 @@ namespace Chirp.Infrastructure;
 using Microsoft.Data.Sqlite;
 using System.Data;
 
+public record CheepViewModel(string Author, string Message, string Timestamp);
 public class DBFacade
 {
     private string path ;
@@ -34,11 +35,18 @@ public class DBFacade
                     new CheepViewModel(
                         dataRecord[0].ToString(),
                         dataRecord[1].ToString(),
-                        CheepService.UnixTimeStampToDateTimeString(Double.Parse(dataRecord[2].ToString()))
+                        UnixTimeStampToDateTimeString(Double.Parse(dataRecord[2].ToString()))
                         )
                     );
             }
         }
         return cheeps;
+    }
+    public static string UnixTimeStampToDateTimeString(double unixTimeStamp)
+    {
+        // Unix timestamp is seconds past epoch
+        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        dateTime = dateTime.AddSeconds(unixTimeStamp);
+        return dateTime.ToString("MM/dd/yy H:mm:ss");
     }
 }

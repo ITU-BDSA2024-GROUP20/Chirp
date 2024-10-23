@@ -13,10 +13,12 @@ public class CheepRepository : ICheepRepository
     }
     public void CreateCheep(CheepDTO newCheep)
     {
-        Author author = service.Authors.Find(newCheep.Author);
+        Author author = GetAuthorByName(newCheep.Author);
+        
         if (author == null) // If no matching author was found
         {
             CreateAuthor(newCheep.Author, newCheep.Email);
+            author = GetAuthorByName(newCheep.Author);
         }
 
         Cheep cheep = new Cheep();
@@ -92,6 +94,7 @@ public class CheepRepository : ICheepRepository
             Cheeps = new List<Cheep>()
         };
         service.Authors.Add(author);
+        service.SaveChanges();
     }
 
     public Author GetAuthorByName(string name)
@@ -115,10 +118,3 @@ public class CheepRepository : ICheepRepository
     }
 }
 
-public class CheepDTO
-{
-    public string Author { get; set; }
-    public string Text { get; set; }
-    public string Timestamp { get; set; }
-    public string Email { get; set; }
-}

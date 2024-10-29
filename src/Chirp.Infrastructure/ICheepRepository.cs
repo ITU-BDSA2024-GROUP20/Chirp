@@ -1,6 +1,6 @@
 namespace Chirp.Infrastructure;
 
-using Chirp.Core;
+using Core;
 
 public interface ICheepRepository
 {

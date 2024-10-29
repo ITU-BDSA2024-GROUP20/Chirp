@@ -18,7 +18,7 @@ public class CheepService : ICheepService
 	
     public List<CheepDTO> GetCheeps(int page)
     {
-        return repository.ReadCheep(page, null);
+        return repository.ReadCheep(page, null!);
     }
 
     public List<CheepDTO> GetCheepsFromAuthor(string author, int page)

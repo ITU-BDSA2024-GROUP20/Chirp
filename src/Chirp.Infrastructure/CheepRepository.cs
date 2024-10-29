@@ -21,13 +21,15 @@ public class CheepRepository : ICheepRepository
             author = GetAuthorByName(newCheep.Author);
         }
 
-        Cheep cheep = new Cheep();
-        cheep.CheepId = service.Cheeps.Count();
-        cheep.AuthorId = author.AuthorId;
-        cheep.Author = author;
-        cheep.Text = newCheep.Text;
-        cheep.TimeStamp = DateTime.Parse(newCheep.Timestamp);
-        
+        Cheep cheep = new Cheep
+        {
+            CheepId = service.Cheeps.Count(),
+            AuthorId = author.AuthorId,
+            Author = author,
+            Text = newCheep.Text,
+            TimeStamp = DateTime.Parse(newCheep.Timestamp)
+        };
+
         author.Cheeps.Add(cheep);
         
         service.Cheeps.Add(cheep);
@@ -49,11 +51,13 @@ public class CheepRepository : ICheepRepository
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
-                CheepDTO ch = new CheepDTO();
-                ch.Author = message.Name;
-                ch.Text = message.Text;
-                ch.Timestamp = message.TimeStamp.ToString();
-                ch.Email = message.Email;
+                CheepDTO ch = new CheepDTO
+                {
+                    Author = message.Name,
+                    Text = message.Text,
+                    Timestamp = message.TimeStamp.ToString(),
+                    Email = message.Email
+                };
                 cheeps.Add(ch);
             }
         }
@@ -66,11 +70,13 @@ public class CheepRepository : ICheepRepository
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
-                CheepDTO ch = new CheepDTO();
-                ch.Author = message.Name;
-                ch.Text = message.Text;
-                ch.Timestamp = message.TimeStamp.ToString();
-                ch.Email = message.Email;
+                CheepDTO ch = new CheepDTO
+                {
+                    Author = message.Name,
+                    Text = message.Text,
+                    Timestamp = message.TimeStamp.ToString(),
+                    Email = message.Email
+                };
                 cheeps.Add(ch);
             }
         }

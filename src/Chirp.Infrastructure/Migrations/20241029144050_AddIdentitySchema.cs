@@ -54,10 +54,12 @@ namespace Chirp.Infrastructure.Migrations
                 name: "Authors",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", nullable: true),
                     NormalizedEmail = table.Column<string>(type: "TEXT", nullable: true),
@@ -74,7 +76,7 @@ namespace Chirp.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.Id);
+                    table.PrimaryKey("PK_Authors", x => x.AuthorId);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,7 +192,7 @@ namespace Chirp.Infrastructure.Migrations
                     CheepId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Text = table.Column<string>(type: "TEXT", maxLength: 160, nullable: false),
-                    AuthorId = table.Column<string>(type: "TEXT", nullable: false),
+                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -200,7 +202,7 @@ namespace Chirp.Infrastructure.Migrations
                         name: "FK_Cheeps_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "Id",
+                        principalColumn: "AuthorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

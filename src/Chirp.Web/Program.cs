@@ -32,7 +32,8 @@ using (var scope = app.Services.CreateScope())
 
     // Execute the migration from code.
     context.Database.EnsureCreated();
-    DbInitializer.SeedDatabase(context);
+    DBInitializer2.SeedDatabase2(context);
+    Console.WriteLine("seeding done");
 }
 
 // Configure the HTTP request pipeline.

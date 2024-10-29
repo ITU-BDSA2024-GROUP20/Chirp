@@ -94,6 +94,7 @@ public class CheepRepository : ICheepRepository
     {
         Author author = new Author()
         {
+            AuthorId = service.Authors.Count(),
             Name = name,
             Email = email,
             Cheeps = new List<Cheep>()

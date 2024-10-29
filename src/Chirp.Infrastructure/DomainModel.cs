@@ -16,11 +16,11 @@ public class Cheep
     public DateTime TimeStamp { get; set; }
 }
 
+[PrimaryKey(nameof(AuthorId))]
 public class Author : IdentityUser<string>
 {
-    public string Name { get; set; }
-    [Key]
     public int AuthorId { get; set; }
+    public string Name { get; set; }
     public ICollection<Cheep> Cheeps { get; set; }
     public string Email { get; set; }
     

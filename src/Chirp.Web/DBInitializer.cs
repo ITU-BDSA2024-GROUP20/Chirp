@@ -22,8 +22,8 @@ public static class DbInitializer
             var a8 = new Author() { AuthorId = 8, Name = "Octavio Wagganer", Email = "Octavio.Wagganer@dtu.dk", Cheeps = new List<Cheep>() };
             var a9 = new Author() { AuthorId = 9, Name = "Johnnie Calixto", Email = "Johnnie+Calixto@itu.dk", Cheeps = new List<Cheep>() };
             var a10 = new Author() { AuthorId = 10, Name = "Jacqualine Gilcoine", Email = "Jacqualine.Gilcoine@gmail.com", Cheeps = new List<Cheep>() };
-            var a11 = new Author() { AuthorId = 11, Name = "Helge", Email = "ropf@itu.dk", Cheeps = new List<Cheep>() };
-            var a12 = new Author() { AuthorId = 12, Name = "Adrian", Email = "adho@itu.dk", Cheeps = new List<Cheep>() };
+            var a11 = new Author() { AuthorId = 11, Name = "Helge", Email = "ropf@itu.dk", Cheeps = new List<Cheep>(), Password = "LetM31n!"};
+            var a12 = new Author() { AuthorId = 12, Name = "Adrian", Email = "adho@itu.dk", Cheeps = new List<Cheep>(), Password = "M32Want_Access"};
 
             var authors = new List<Author>() { a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12 };
 

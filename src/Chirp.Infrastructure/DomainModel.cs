@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace Chirp.Core;
+namespace Chirp.Infrastructure;
 
 public class Cheep
 {
@@ -15,7 +15,7 @@ public class Cheep
     public DateTime TimeStamp { get; set; }
 }
 
-public class Author : IdentityUser<Guid>
+public class Author : IdentityUser<String>
 {
     public string Name { get; set; }
     public ICollection<Cheep> Cheeps { get; set; }

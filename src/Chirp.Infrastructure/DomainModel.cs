@@ -10,12 +10,12 @@ public class Cheep
     [Required]
     [StringLength(160)]
     public string Text { get; set; }
-    public String AuthorId { get; set; }
+    public int AuthorId { get; set; }
     public Author Author { get; set; }
     public DateTime TimeStamp { get; set; }
 }
 
-public class Author : IdentityUser<String>
+public class Author : IdentityUser<string>
 {
     public string Name { get; set; }
     public int AuthorId { get; set; }

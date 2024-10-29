@@ -15,30 +15,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepService, CheepService>();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = "GitHub";
-    })
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/signin";
-        options.LogoutPath = "/signout";
-    })
-    .AddGitHub(o =>
-    {
-        o.ClientId = builder.Configuration["authentication:github:clientId"];
-        o.ClientSecret = builder.Configuration["authentication:github:clientSecret"];
-        o.CallbackPath = "/signin-github";
-    });
-
 
 
 var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseSession();
+
 // Create a disposable service scope
 using (var scope = app.Services.CreateScope())
 {

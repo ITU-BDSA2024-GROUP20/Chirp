@@ -24,7 +24,7 @@ public class CheepRepository : ICheepRepository
         Cheep cheep = new Cheep
         {
             CheepId = service.Cheeps.Count(),
-            AuthorId = author.AuthorId,
+            AuthorId = author.Id,
             Author = author,
             Text = newCheep.Text,
             TimeStamp = DateTime.Parse(newCheep.Timestamp)
@@ -64,7 +64,7 @@ public class CheepRepository : ICheepRepository
         else
         {
             var query = (from message in service.Cheeps
-                join author in service.Authors on message.AuthorId equals author.AuthorId
+                join author in service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
             var result =  query.Skip(page).Take(32).ToList();
@@ -94,7 +94,6 @@ public class CheepRepository : ICheepRepository
     {
         Author author = new Author()
         {
-            AuthorId = service.Authors.Count(),
             Name = name,
             Email = email,
             Cheeps = new List<Cheep>()

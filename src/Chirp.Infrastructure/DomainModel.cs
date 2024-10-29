@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Infrastructure;
 
@@ -18,6 +19,7 @@ public class Cheep
 public class Author : IdentityUser<string>
 {
     public string Name { get; set; }
+    [Key]
     public int AuthorId { get; set; }
     public ICollection<Cheep> Cheeps { get; set; }
     public string Email { get; set; }

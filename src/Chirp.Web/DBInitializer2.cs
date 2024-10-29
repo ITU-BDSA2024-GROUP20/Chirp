@@ -10,33 +10,33 @@ public class DBInitializer2
         Console.WriteLine("Seeding database...");
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))
         {
-            var a11 = new Author()
+            var a1 = new Author()
             {
-                AuthorId = 11, Name = "Helge", Email = "ropf@itu.dk", Cheeps = new List<Cheep>(), Password = "LetM31n!"
+                AuthorId = 1 , Name = "Helge", Email = "ropf@itu.dk", Cheeps = new List<Cheep>(), Password = "LetM31n!" 
             };
-            var a12 = new Author()
+            var a2 = new Author()
             {
-                AuthorId = 12, Name = "Adrian", Email = "adho@itu.dk", Cheeps = new List<Cheep>(),
+                AuthorId = 2, Name = "Adrian", Email = "adho@itu.dk", Cheeps = new List<Cheep>(),
                 Password = "M32Want_Access"
             };
 
-            var authors = new List<Author>() { a11, a12 };
+            var authors = new List<Author>() { a1, a2 };
 
-            var c656 = new Cheep()
+            var c1 = new Cheep()
             {
-                CheepId = 656, AuthorId = a11.AuthorId, Author = a11, Text = "Hello, BDSA students!",
+                CheepId = 1, AuthorId = a1.AuthorId, Author = a1, Text = "Hello, BDSA students!",
                 TimeStamp = DateTime.Parse("2023-08-01 12:16:48")
             };
-            var c657 = new Cheep()
+            var c2 = new Cheep()
             {
-                CheepId = 657, AuthorId = a12.AuthorId, Author = a12, Text = "Hej, velkommen til kurset.",
+                CheepId = 2, AuthorId = a2.AuthorId, Author = a2, Text = "Hej, velkommen til kurset.",
                 TimeStamp = DateTime.Parse("2023-08-01 13:08:28")
             };
 
-            var cheeps = new List<Cheep>() { c656, c657 };
+            var cheeps = new List<Cheep>() { c1, c2 };
 
-            a11.Cheeps = new List<Cheep>() { c656 };
-            a12.Cheeps = new List<Cheep>() { c657 };
+            a1.Cheeps = new List<Cheep>() { c1 };
+            a2.Cheeps = new List<Cheep>() { c2 };
 
 
             chirpContext.Authors.AddRange(authors);

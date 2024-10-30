@@ -22,11 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-wal" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

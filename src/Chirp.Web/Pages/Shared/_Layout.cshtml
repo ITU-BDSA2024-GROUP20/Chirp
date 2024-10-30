@@ -13,19 +13,26 @@
     <div class=navigation>
         @if (User.Identity.IsAuthenticated)
         {
-        <div>
-            <a href="/@(User.Identity.Name)">my timeline</a> |
-            <a href="/">public timeline</a> |
-            <a href="/Identity/Account/Logout" >logout [@(User.Identity.Name)]</a>
-        </div>
+            <div>
+                <a href="/@(User.Identity.Name)">my timeline</a> |
+                <a href="/">public timeline</a> |
+                <a href="/Identity/Account/Logout" >logout [@(User.Identity.Name)]</a>
+            </div>
+            <div class="cheepbox">
+                <h3>What's on your mind @(User.Identity.Name)?</h3>
+                <form method="post">
+                    <input style="float: left" type="text" asp-for="Text">
+                    <input type="submit" value="Share">
+                </form>
+            </div>
         }
         else
         {
-        <div>
-            <a href="/">public timeline</a> |
-            <a ... >register</a>
-            <a href="/Identity/Account/Login" >login</a>
-        </div>
+            <div>
+                <a href="/">public timeline</a> |
+                <a ... >register</a>
+                <a href="/Identity/Account/Login" >login</a>
+            </div>
         }
     </div>
     <div class=body>

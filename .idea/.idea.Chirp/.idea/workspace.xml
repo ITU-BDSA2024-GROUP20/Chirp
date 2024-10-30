@@ -23,23 +23,9 @@
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/14b0be52-91ed-4eb4-bffb-9f777350372b.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/1cc8b078-a3bd-48c2-920f-4f81e2e2da70.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/2217816c-7d9a-4976-a75d-10dc97963982.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/42c17062-eee6-4116-acd4-49e3a8298698.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/5552f475-d795-455c-a54c-4e2df30191bb.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/c2eb77ee-48e0-4fbb-931d-4b413304ca69.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/DomainModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/DomainModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/20241030084140_AddIdentitySchema.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/20241030084140_AddIdentitySchema.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/ChirpDBContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/DBInitializer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-wal" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +184,9 @@
       <workItem from="1729593823422" duration="771000" />
       <workItem from="1729594653121" duration="2278000" />
       <workItem from="1730272532546" duration="6446000" />
+      <workItem from="1730288521015" duration="58000" />
+      <workItem from="1730288612710" duration="2301000" />
+      <workItem from="1730295927656" duration="302000" />
     </task>
     <servers />
   </component>

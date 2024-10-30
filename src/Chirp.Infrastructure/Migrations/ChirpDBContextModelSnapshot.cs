@@ -251,6 +251,10 @@ namespace Chirp.Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("Author");
                 });
 

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="RD-242.22855.90">
     <data-source name="mychirp" uuid="6150e194-8601-4650-9c7c-a3e7633eadbe">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <auth-provider>no-auth</auth-provider>
       <schema-mapping />
     </data-source>

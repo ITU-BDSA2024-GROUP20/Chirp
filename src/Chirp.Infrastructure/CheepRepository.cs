@@ -43,16 +43,16 @@ public class CheepRepository : ICheepRepository
         {
             var query = (from author in service.Authors
                     from message in author.Cheeps
-                    where author.UserName == userName
+                    where author.Name == userName
                     orderby message.TimeStamp descending
-                    select new { author.UserName, message.Text, message.TimeStamp, author.Email }
+                    select new { author.Name, message.Text, message.TimeStamp, author.Email }
                     );
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
                 {
-                    Author = message.UserName,
+                    Author = message.Name,
                     Text = message.Text,
                     Timestamp = message.TimeStamp.ToString(),
                     Email = message.Email
@@ -65,13 +65,13 @@ public class CheepRepository : ICheepRepository
             var query = (from message in service.Cheeps
                 join author in service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
-                select new { author.UserName, message.Text, message.TimeStamp, author.Email });
+                select new { author.Name, message.Text, message.TimeStamp, author.Email });
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
                 {
-                    Author = message.UserName,
+                    Author = message.Name,
                     Text = message.Text,
                     Timestamp = message.TimeStamp.ToString(),
                     Email = message.Email
@@ -94,7 +94,7 @@ public class CheepRepository : ICheepRepository
     {
         var query = (
             from author in service.Authors
-            where author.UserName == name
+            where author.Name == name
             select author
             );
         return query.FirstOrDefault();

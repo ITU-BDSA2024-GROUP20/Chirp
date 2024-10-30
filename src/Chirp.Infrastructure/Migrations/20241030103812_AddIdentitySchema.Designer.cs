@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Infrastructure.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241030084140_AddIdentitySchema")]
+    [Migration("20241030103812_AddIdentitySchema")]
     partial class AddIdentitySchema
     {
         /// <inheritdoc />
@@ -253,6 +253,10 @@ namespace Chirp.Infrastructure.Migrations
             modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("Author");
                 });

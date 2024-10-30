@@ -24,6 +24,7 @@ public class UserTimelineModel : PageModel
         List<CheepDTO> _Cheeps = _service.GetCheepsFromAuthor(author, page * 32);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
+        
         return Page();
     }
 }

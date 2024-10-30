@@ -19,6 +19,7 @@ public class Cheep
 
 public class Author : IdentityUser
 {
+    public string Name { get; set; }
     public ICollection<Cheep> Cheeps { get; set; }
 }
 

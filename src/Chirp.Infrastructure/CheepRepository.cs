@@ -17,14 +17,13 @@ public class CheepRepository : ICheepRepository
         
         if (author == null) // If no matching author was found
         {
-            CreateAuthor(newCheep.Author, newCheep.Email);
             author = GetAuthorByName(newCheep.Author);
         }
 
         Cheep cheep = new Cheep
         {
             CheepId = service.Cheeps.Count(),
-            AuthorId = author.AuthorId,
+            AuthorId = author.Id,
             Author = author,
             Text = newCheep.Text,
             TimeStamp = DateTime.Parse(newCheep.Timestamp)
@@ -44,16 +43,16 @@ public class CheepRepository : ICheepRepository
         {
             var query = (from author in service.Authors
                     from message in author.Cheeps
-                    where author.Name == userName
+                    where author.UserName == userName
                     orderby message.TimeStamp descending
-                    select new { author.Name, message.Text, message.TimeStamp, author.Email }
+                    select new { author.UserName, message.Text, message.TimeStamp, author.Email }
                     );
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
                 {
-                    Author = message.Name,
+                    Author = message.UserName,
                     Text = message.Text,
                     Timestamp = message.TimeStamp.ToString(),
                     Email = message.Email
@@ -64,15 +63,15 @@ public class CheepRepository : ICheepRepository
         else
         {
             var query = (from message in service.Cheeps
-                join author in service.Authors on message.AuthorId equals author.AuthorId
+                join author in service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
-                select new { author.Name, message.Text, message.TimeStamp, author.Email });
+                select new { author.UserName, message.Text, message.TimeStamp, author.Email });
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
                 {
-                    Author = message.Name,
+                    Author = message.UserName,
                     Text = message.Text,
                     Timestamp = message.TimeStamp.ToString(),
                     Email = message.Email
@@ -89,25 +88,13 @@ public class CheepRepository : ICheepRepository
         // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
     }
-
-    public void CreateAuthor(string name, string email)
-    {
-        Author author = new Author()
-        {
-            AuthorId = service.Authors.Count(),
-            Name = name,
-            Email = email,
-            Cheeps = new List<Cheep>()
-        };
-        service.Authors.Add(author);
-        service.SaveChanges();
-    }
+    
 
     public Author GetAuthorByName(string name)
     {
         var query = (
             from author in service.Authors
-            where author.Name == name
+            where author.UserName == name
             select author
             );
         return query.FirstOrDefault();

@@ -11,20 +11,15 @@ public class Cheep
     [Required]
     [StringLength(160)]
     public string Text { get; set; }
-    public int AuthorId { get; set; }
+    public string AuthorId { get; set; }
     public Author Author { get; set; }
     public DateTime TimeStamp { get; set; }
 }
 
-[PrimaryKey(nameof(AuthorId))]
-public class Author : IdentityUser<string>
+
+public class Author : IdentityUser
 {
-    public int AuthorId { get; set; }
-    public string Name { get; set; }
     public ICollection<Cheep> Cheeps { get; set; }
-    public string Email { get; set; }
-    
-    public string Password { get; set; }
 }
 
 

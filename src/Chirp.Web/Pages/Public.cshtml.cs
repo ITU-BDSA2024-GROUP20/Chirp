@@ -35,4 +35,15 @@ public class PublicModel : PageModel
         
         return Page();
     }
+    
+    public ActionResult OnPost()
+    {
+        cheepDTO.Author = Username;
+        cheepDTO.Email = User.Identity.Name;
+        cheepDTO.Timestamp = DateTime.Now.ToLongDateString();
+        
+        _service.CreateCheep(cheepDTO);
+        
+        return RedirectToPage("/");
+    }
 }

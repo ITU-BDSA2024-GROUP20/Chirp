@@ -40,10 +40,9 @@ public class PublicModel : PageModel
     {
         cheepDTO.Author = Username;
         cheepDTO.Email = User.Identity.Name;
-        cheepDTO.Timestamp = DateTime.Now.ToLongDateString();
+        cheepDTO.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
         
         _service.CreateCheep(cheepDTO);
-        
-        return RedirectToPage("/");
+        return RedirectToPage("Public");
     }
 }

@@ -11,30 +11,46 @@ public class CheepRepository : ICheepRepository
     {
         this.service = service;
     }
+
+    public bool validdateString(string str)
+    {
+        if (str == null)
+            return false;
+        if (str.Length <= 160 && str.Length > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     public void CreateCheep(CheepDTO newCheep)
     {
-        Author author = GetAuthorByName(newCheep.Author);
-        
-        if (author == null) // If no matching author was found
+        if (validdateString(newCheep.Text))
         {
-            author = GetAuthorByName(newCheep.Author);
+            Author author = GetAuthorByEmail(newCheep.Email);
+            if (author.Cheeps == null)
+                author.Cheeps = new List<Cheep>();
+            Console.WriteLine(author.Cheeps.Count());
+
+            Cheep cheep = new Cheep
+            {
+                CheepId = service.Cheeps.Count() + 1,
+                AuthorId = author.Id,
+                Author = author,
+                Text = newCheep.Text,
+                TimeStamp = DateTime.Parse(newCheep.Timestamp)
+            };
+
+            author.Cheeps.Add(cheep);
+
+            service.Cheeps.Add(cheep);
+            service.Authors.Update(author);
+            service.SaveChanges();
         }
-
-        Cheep cheep = new Cheep
-        {
-            CheepId = service.Cheeps.Count(),
-            AuthorId = author.Id,
-            Author = author,
-            Text = newCheep.Text,
-            TimeStamp = DateTime.Parse(newCheep.Timestamp)
-        };
-
-        author.Cheeps.Add(cheep);
-        
-        service.Cheeps.Add(cheep);
-        service.Authors.Update(author);
-        service.SaveChanges();
     }
+    
+    
+    
     
     public List<CheepDTO> ReadCheep(int page, string? userName = null)
     {

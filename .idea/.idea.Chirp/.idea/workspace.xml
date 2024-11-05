@@ -22,10 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Chirp.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Chirp.Web.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +186,7 @@
       <workItem from="1730288612710" duration="2301000" />
       <workItem from="1730295927656" duration="2208000" />
       <workItem from="1730713687840" duration="10691000" />
-      <workItem from="1730807258339" duration="2832000" />
+      <workItem from="1730807258339" duration="3216000" />
     </task>
     <servers />
   </component>

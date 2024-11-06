@@ -10,6 +10,7 @@ public class PublicModel : PostablePage
     
     public ActionResult OnGet()
     {   
+        
         if (User.Identity.IsAuthenticated)
         {
             Username = _service.GetAuthorByEmail(User.Identity.Name).Name;

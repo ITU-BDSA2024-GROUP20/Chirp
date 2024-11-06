@@ -5,18 +5,9 @@ using Chirp.Core;
 
 namespace Chirp.Razor.Pages;
 
-public class UserTimelineModel : PageModel
+public class UserTimelineModel : PostablePage
 {
-    private readonly ICheepRepository _service;
-    public List<CheepDTO> Cheeps { get; set; }
-    public int page = 0;
-    
-    public string Username { get; set; }
-
-    public UserTimelineModel(ICheepRepository service)
-    {
-        _service = service;
-    }
+    public UserTimelineModel(ICheepRepository service) : base(service){}
 
     public ActionResult OnGet(string author)
     {

@@ -60,6 +60,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+if(app.Environment.IsProduction())
+{
+    app.UseHsts(); // Send HSTS headers, but only in production
+}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

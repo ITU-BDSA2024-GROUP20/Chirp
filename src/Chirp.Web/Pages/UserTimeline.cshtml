@@ -4,9 +4,22 @@
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
     var routeName = HttpContext.GetRouteValue("author");
+    int next = Model.page + 2;
+    int previous = Model.page;
 }
 
 <div>
+    @if (User.Identity.IsAuthenticated)
+    {
+    <div class="cheepbox">
+        <h3>What's on your mind @(Model.Username)?</h3>
+        <form method="post">
+            <input required style="float: left" type="text" asp-for="cheepDTO.Text" maxlength="160">
+            <input type="submit" value="Share">
+        </form>
+    </div>
+    }
+    
     <h2> @routeName's Timeline </h2>
 
     @if (Model.Cheeps.Any())
@@ -30,4 +43,15 @@
     {
         <em>There are no cheeps so far.</em>
     }
+    <div>
+        @if (previous > 0)
+        {
+        <button>
+            <a href="?page=@previous" class="button">Previous @(previous)</a>
+        </button>
+        }
+        <button>
+            <a href="?page=@next" class="button">Next @(next)</a>
+        </button>
+    </div>
 </div>

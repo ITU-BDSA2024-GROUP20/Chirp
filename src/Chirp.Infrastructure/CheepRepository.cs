@@ -11,29 +11,46 @@ public class CheepRepository : ICheepRepository
     {
         this.service = service;
     }
+
+    public bool validdateString(string str)
+    {
+        if (str == null)
+            return false;
+        if (str.Length <= 160 && str.Length > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     public void CreateCheep(CheepDTO newCheep)
     {
-        Author author = GetAuthorByName(newCheep.Author);
-        
-        if (author == null) // If no matching author was found
+        if (validdateString(newCheep.Text))
         {
-            CreateAuthor(newCheep.Author, newCheep.Email);
-            author = GetAuthorByName(newCheep.Author);
-        }
+            Author author = GetAuthorByEmail(newCheep.Email);
+            if (author.Cheeps == null)
+                author.Cheeps = new List<Cheep>();
+            Console.WriteLine(author.Cheeps.Count());
 
-        Cheep cheep = new Cheep();
-        cheep.CheepId = service.Cheeps.Count();
-        cheep.AuthorId = author.AuthorId;
-        cheep.Author = author;
-        cheep.Text = newCheep.Text;
-        cheep.TimeStamp = DateTime.Parse(newCheep.Timestamp);
-        
-        author.Cheeps.Add(cheep);
-        
-        service.Cheeps.Add(cheep);
-        service.Authors.Update(author);
-        service.SaveChanges();
+            Cheep cheep = new Cheep
+            {
+                CheepId = service.Cheeps.Count() + 1,
+                AuthorId = author.Id,
+                Author = author,
+                Text = newCheep.Text,
+                TimeStamp = DateTime.Parse(newCheep.Timestamp)
+            };
+
+            author.Cheeps.Add(cheep);
+
+            service.Cheeps.Add(cheep);
+            service.Authors.Update(author);
+            service.SaveChanges();
+        }
     }
+    
+    
+    
     
     public List<CheepDTO> ReadCheep(int page, string? userName = null)
     {
@@ -49,28 +66,32 @@ public class CheepRepository : ICheepRepository
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
-                CheepDTO ch = new CheepDTO();
-                ch.Author = message.Name;
-                ch.Text = message.Text;
-                ch.Timestamp = message.TimeStamp.ToString();
-                ch.Email = message.Email;
+                CheepDTO ch = new CheepDTO
+                {
+                    Author = message.Name,
+                    Text = message.Text,
+                    Timestamp = message.TimeStamp.ToString(),
+                    Email = message.Email
+                };
                 cheeps.Add(ch);
             }
         }
         else
         {
             var query = (from message in service.Cheeps
-                join author in service.Authors on message.AuthorId equals author.AuthorId
+                join author in service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
-                CheepDTO ch = new CheepDTO();
-                ch.Author = message.Name;
-                ch.Text = message.Text;
-                ch.Timestamp = message.TimeStamp.ToString();
-                ch.Email = message.Email;
+                CheepDTO ch = new CheepDTO
+                {
+                    Author = message.Name,
+                    Text = message.Text,
+                    Timestamp = message.TimeStamp.ToString(),
+                    Email = message.Email
+                };
                 cheeps.Add(ch);
             }
         }
@@ -83,19 +104,7 @@ public class CheepRepository : ICheepRepository
         // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
     }
-
-    public void CreateAuthor(string name, string email)
-    {
-        Author author = new Author()
-        {
-            AuthorId = service.Authors.Count(),
-            Name = name,
-            Email = email,
-            Cheeps = new List<Cheep>()
-        };
-        service.Authors.Add(author);
-        service.SaveChanges();
-    }
+    
 
     public Author GetAuthorByName(string name)
     {

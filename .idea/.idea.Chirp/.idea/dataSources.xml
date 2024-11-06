@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="chirp" uuid="64b85509-0b95-4b0b-8a85-1f1ff960b1dd">
+    <data-source source="LOCAL" name="mychirp" uuid="c4737a8e-3767-40c5-bac3-83ccebea319e">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Skole\uni\analysedesignogsoftwarearchitecture\net\project\Chirp\src\Chirp.Razor\chirp.db</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-      </jdbc-additional-properties>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="mychirp" uuid="1f7bdac2-1305-4b45-a1f8-9f07073b346b">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Skole\uni\analysedesignogsoftwarearchitecture\net\project\Chirp\src\Chirp.Razor\mychirp.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Skole\uni\analysedesignogsoftwarearchitecture\net\project\Chirp\src\Chirp.Web\mychirp.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

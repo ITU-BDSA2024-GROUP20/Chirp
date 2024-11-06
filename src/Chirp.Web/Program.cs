@@ -1,21 +1,43 @@
+using Chirp.Core;
 using Chirp.Web;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);   
 
-string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string was not found");
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string was not found");
 builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
+
+
+builder.Services.AddDefaultIdentity<Author>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+}).AddEntityFrameworkStores<ChirpDBContext>();
+
+builder.Services.AddAuthentication(options =>
+    {
+        /*options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = "GitHub";*/
+    })
+    //.AddCookie()
+    .AddGitHub(o =>
+    {
+        o.ClientId = builder.Configuration["authentication:github:clientId"];
+        o.ClientSecret = builder.Configuration["authentication:github:clientSecret"];
+        o.CallbackPath = "/signin-github";
+    });
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<ICheepService, CheepService>();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 
 
-
 var app = builder.Build();
+
 // Create a disposable service scope
 using (var scope = app.Services.CreateScope())
 {
@@ -25,7 +47,8 @@ using (var scope = app.Services.CreateScope())
 
     // Execute the migration from code.
     context.Database.EnsureCreated();
-    DbInitializer.SeedDatabase(context);
+    DBInitializer2.SeedDatabase2(context, scope.ServiceProvider);
+    Console.WriteLine("seeding done");
 }
 
 // Configure the HTTP request pipeline.
@@ -40,6 +63,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+//app.UseSession();
+
 
 app.MapRazorPages();
 

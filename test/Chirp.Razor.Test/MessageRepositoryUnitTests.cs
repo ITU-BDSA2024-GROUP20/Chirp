@@ -9,25 +9,6 @@ namespace Chirp.Razor.Test;
 public class MessageRepositoryUnitTests
 {
     
-    
-    [Fact]
-    public async void TestCreateAuthor()
-    {
-        using var connection = new SqliteConnection("Filename=:memory:");
-        await connection.OpenAsync();
-        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
-        
-        using var context = new ChirpDBContext(builder.Options);
-        await context.Database.EnsureCreatedAsync();
-        
-        ICheepRepository cheepRepository = new CheepRepository(context);
-        
-        Assert.Equal(0, context.Authors.Count());
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
-        Assert.Equal(1, context.Authors.Count());
-        Assert.Equal("SifDJ", context.Authors.First().Name);
-        Assert.Equal("esja@itu.dk", context.Authors.First().Email);
-    }
 
     [Fact]
     public async void TestCreateCheepWithAuthor()
@@ -40,8 +21,13 @@ public class MessageRepositoryUnitTests
         await context.Database.EnsureCreatedAsync();
         
         ICheepRepository cheepRepository = new CheepRepository(context);
+        var a1 = new Author()
+        {
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+        };
         
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
+        context.Authors.Add(a1);
+        context.SaveChanges();
 
         Assert.Empty(context.Cheeps);
         Assert.Empty(context.Authors.First().Cheeps);
@@ -56,42 +42,10 @@ public class MessageRepositoryUnitTests
         Assert.Equal(1, context.Authors.Count());
         Assert.Equal(1, context.Cheeps.Count());
         Assert.Equal("Hello, World!", context.Cheeps.First().Text);
-        Assert.Equal(1, context.Cheeps.First().AuthorId);
+        Assert.Equal("611e3fa1-be3b-413d-b7d7-333738c17a3a", context.Cheeps.First().AuthorId);
         Assert.Equal("Hello, World!", context.Authors.First().Cheeps.First().Text);
     }
-
-
-    [Fact]
-    public async void TestCreateCheepWithoutAuthor()
-    {
-        using var connection = new SqliteConnection("Filename=:memory:");
-        await connection.OpenAsync();
-        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
-        
-        using var context = new ChirpDBContext(builder.Options);
-        await context.Database.EnsureCreatedAsync();
-        
-        ICheepRepository cheepRepository = new CheepRepository(context);
-        
-
-        Assert.Empty(context.Cheeps);
-        Assert.Empty(context.Authors);
-        cheepRepository.CreateCheep(new CheepDTO
-        {
-            Author = "SifDJ",
-            Text = "Hello, World!",
-            Timestamp = DateTime.Now.ToString(),
-            Email = "esja@itu.dk"
-            
-        });
-        Assert.Equal(1, context.Authors.Count());
-        Assert.Equal("SifDJ", context.Authors.First().Name);
-        Assert.Equal("esja@itu.dk", context.Authors.First().Email);
-        Assert.Equal(1, context.Cheeps.Count());
-        Assert.Equal("Hello, World!", context.Cheeps.First().Text);
-        Assert.Equal(1, context.Cheeps.First().AuthorId);
-        Assert.Equal("Hello, World!", context.Authors.First().Cheeps.First().Text);
-    }
+    
 
 
     [Fact]
@@ -106,7 +60,14 @@ public class MessageRepositoryUnitTests
 
         ICheepRepository cheepRepository = new CheepRepository(context);
 
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
+        var a1 = new Author()
+        {
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+        };
+        
+        context.Authors.Add(a1);
+        context.SaveChanges();
+        
         var cheep = new CheepDTO
         {
             Author = "SifDJ",
@@ -137,7 +98,13 @@ public class MessageRepositoryUnitTests
 
         ICheepRepository cheepRepository = new CheepRepository(context);
 
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
+        var a1 = new Author()
+        {
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+        };
+        
+        context.Authors.Add(a1);
+        context.SaveChanges();
         var cheep = new CheepDTO
         {
             Author = "SifDJ",
@@ -168,7 +135,13 @@ public class MessageRepositoryUnitTests
 
         ICheepRepository cheepRepository = new CheepRepository(context);
 
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
+        var a1 = new Author()
+        {
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+        };
+        
+        context.Authors.Add(a1);
+        context.SaveChanges();
         var author = cheepRepository.GetAuthorByName("SifDJ");
         Assert.Equal("SifDJ", author.Name);
         Assert.Equal("esja@itu.dk", author.Email);
@@ -187,7 +160,13 @@ public class MessageRepositoryUnitTests
 
         ICheepRepository cheepRepository = new CheepRepository(context);
 
-        cheepRepository.CreateAuthor("SifDJ", "esja@itu.dk");
+        var a1 = new Author()
+        {
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+        };
+        
+        context.Authors.Add(a1);
+        context.SaveChanges();
         var author = cheepRepository.GetAuthorByEmail("esja@itu.dk");
         Assert.Equal("SifDJ", author.Name);
         Assert.Equal("esja@itu.dk", author.Email);

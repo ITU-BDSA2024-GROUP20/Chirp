@@ -47,7 +47,8 @@ using (var scope = app.Services.CreateScope())
 
     // Execute the migration from code.
     context.Database.EnsureCreated();
-    DBInitializer2.SeedDatabase2(context, scope.ServiceProvider);
+    DbInitializer.SeedDatabase(context, scope.ServiceProvider);
+    
     Console.WriteLine("seeding done");
 }
 

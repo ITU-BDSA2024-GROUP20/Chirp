@@ -4,21 +4,9 @@ using Chirp.Infrastructure;
 using Chirp.Core;
 namespace Chirp.Razor.Pages;
 
-public class PublicModel : PageModel
+public class PublicModel : PostablePage
 {
-    private readonly ICheepRepository _service;
-    public List<CheepDTO> Cheeps { get; set; }
-    
-    public String Username { get; set; }
-    
-    [BindProperty]
-    public CheepDTO cheepDTO { get; set; }
-    int page = 0;
-
-    public PublicModel(ICheepRepository service)
-    {
-        _service = service;
-    }
+    public PublicModel(ICheepRepository service) : base(service){}
     
     public ActionResult OnGet()
     {   
@@ -34,15 +22,5 @@ public class PublicModel : PageModel
         
         
         return Page();
-    }
-    
-    public ActionResult OnPost()
-    {
-        cheepDTO.Author = Username;
-        cheepDTO.Email = User.Identity.Name;
-        cheepDTO.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
-        
-        _service.CreateCheep(cheepDTO);
-        return RedirectToPage("Public");
     }
 }

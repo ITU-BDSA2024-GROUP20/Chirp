@@ -27,16 +27,16 @@ public static class DbInitializer
             var a11 = new Author() { Id = "bc14be86-0984-4ab0-8d0a-0f3b90bb5c2e", Name = "Helge", UserName = "ropf@itu.dk", Email = "ropf@itu.dk", Cheeps = new List<Cheep>()};
             var a12 = new Author() { Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a", Name = "Adrian", UserName = "adho@itu.dk", Email = "adho@itu.dk", Cheeps = new List<Cheep>()};
 
-            usermanager.CreateAsync(a1, "1234");
-            usermanager.CreateAsync(a2, "1234");
-            usermanager.CreateAsync(a3, "1234");
-            usermanager.CreateAsync(a4, "1234");
-            usermanager.CreateAsync(a5, "1234");
-            usermanager.CreateAsync(a6, "1234");
-            usermanager.CreateAsync(a7, "1234");
-            usermanager.CreateAsync(a8, "1234");
-            usermanager.CreateAsync(a9, "1234");
-            usermanager.CreateAsync(a10, "1234");
+            usermanager.CreateAsync(a1, "Password1!");
+            usermanager.CreateAsync(a2, "Password1!");
+            usermanager.CreateAsync(a3, "Password1!");
+            usermanager.CreateAsync(a4, "Password1!");
+            usermanager.CreateAsync(a5, "Password1!");
+            usermanager.CreateAsync(a6, "Password1!");
+            usermanager.CreateAsync(a7, "Password1!");
+            usermanager.CreateAsync(a8, "Password1!");
+            usermanager.CreateAsync(a9, "Password1!");
+            usermanager.CreateAsync(a10, "Password1!");
             usermanager.CreateAsync(a11, "LetM31n!");
             usermanager.CreateAsync(a12, "M32Want_Access");
             

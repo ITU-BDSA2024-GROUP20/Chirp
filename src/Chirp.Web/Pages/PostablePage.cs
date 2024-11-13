@@ -29,6 +29,6 @@ public class PostablePage : PageModel
         cheepDTO.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
         
         _service.CreateCheep(cheepDTO);
-        return RedirectToPage("Public");
+        return RedirectToPage();
     }
 }

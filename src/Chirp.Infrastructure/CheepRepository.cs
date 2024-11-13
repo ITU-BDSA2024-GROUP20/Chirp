@@ -124,5 +124,27 @@ public class CheepRepository : ICheepRepository
         );
         return query.FirstOrDefault();
     }
+
+    public void ToggleFollow(string self, CheepDTO cheep)
+    {
+        Author authorToFollow = GetAuthorByName(cheep.Author);
+        Author authorSelf = GetAuthorByName(self);
+        if (authorSelf.Following.Contains(authorToFollow))
+        {
+            authorSelf.Following.Remove(authorToFollow);
+        }
+        else
+        {
+            authorSelf.Following.Add(authorToFollow);
+        }
+        service.SaveChanges();
+    }
+
+    public bool isFollowing(string self, CheepDTO cheep)
+    {
+        Author authorToFollow = GetAuthorByName(cheep.Author);
+        Author authorSelf = GetAuthorByName(self);
+        return authorSelf.Following.Contains(authorToFollow);
+    }
 }
 

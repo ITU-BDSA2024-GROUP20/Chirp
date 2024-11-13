@@ -34,6 +34,11 @@
                         </strong>
                         @cheep.Text
                         <small>&mdash; @cheep.Timestamp</small>
+                        <object align="right">
+                            <button onclick="">
+                                Delete
+                            </button>
+                        </object>
                     </p>
                 </li>
             }
@@ -46,12 +51,19 @@
     <div>
         @if (previous > 0)
         {
-        <button>
-            <a href="?page=@previous" class="button" style=" color: white">Previous @(previous)</a>
-        </button>
+            <a href="?page=@previous" class="button" style="text-decoration: none">
+                <button style="color: white;">◀</button>
+            </a>
         }
-        <button>
-            <a href="?page=@next" class="button" style=" color: white">Next @(next)</a>
-        </button>
+        else
+        {
+            <a href="?page=@previous" class="button" style="text-decoration: none">
+                <button style="color: white; background-color: dimgrey">◀</button>
+            </a>
+        }
+        @(previous+1)
+        <a href="?page=@next" class="button" style="text-decoration: none">
+            <button style="color: white;">▶</button>
+        </a>
     </div>
 </div>

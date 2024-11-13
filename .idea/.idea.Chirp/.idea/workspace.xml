@@ -22,11 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Deletion-of-Things&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -208,7 +207,9 @@
       <workItem from="1730891904526" duration="2642000" />
       <workItem from="1731320339246" duration="1181000" />
       <workItem from="1731399023769" duration="398000" />
-      <workItem from="1731410390345" duration="1283000" />
+      <workItem from="1731410390345" duration="2065000" />
+      <workItem from="1731492772939" duration="50000" />
+      <workItem from="1731492849306" duration="1793000" />
     </task>
     <servers />
   </component>

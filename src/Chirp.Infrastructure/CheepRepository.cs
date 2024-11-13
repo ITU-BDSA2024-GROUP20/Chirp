@@ -105,7 +105,6 @@ public class CheepRepository : ICheepRepository
         throw new NotImplementedException();
     }
     
-
     public Author GetAuthorByName(string name)
     {
         var query = (

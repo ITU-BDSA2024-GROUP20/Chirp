@@ -251,9 +251,14 @@ namespace Chirp.Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasDiscriminator().HasValue("Author");
                 });
@@ -322,7 +327,16 @@ namespace Chirp.Infrastructure.Migrations
 
             modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
                 {
+                    b.HasOne("Chirp.Infrastructure.Author", null)
+                        .WithMany("Following")
+                        .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
+                {
                     b.Navigation("Cheeps");
+
+                    b.Navigation("Following");
                 });
 #pragma warning restore 612, 618
         }

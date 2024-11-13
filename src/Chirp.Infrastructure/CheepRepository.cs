@@ -104,28 +104,6 @@ public class CheepRepository : ICheepRepository
         // This does not currently make sense within the bounds of the database. Maybe return here later.
         throw new NotImplementedException();
     }
-
-    public void DeleteCheep(int cheepId)
-    {
-        service.Cheeps.Remove(service.Cheeps.Find(cheepId));
-        service.SaveChanges();
-    }
-
-    public void DeleteCheepsByAuthor(string authorId)
-    {
-        var query = (from author in service.Authors
-                from message in author.Cheeps
-                where author.Id == authorId
-                orderby message.TimeStamp descending
-                select new { message.CheepId }
-            );
-        var result =  query.ToList();
-        for (int i = 0; i < result.Count(); i++)
-        {
-            service.Cheeps.Remove(service.Cheeps.Find(result[i].CheepId));
-        }
-        service.Authors.Remove(service.Authors.Find(authorId));
-    }
     
     public Author GetAuthorByName(string name)
     {

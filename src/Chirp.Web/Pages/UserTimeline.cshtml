@@ -32,13 +32,15 @@
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
                         </strong>
-                        @cheep.Text
-                        <small>&mdash; @cheep.Timestamp</small>
-                        <object align="right">
+                        <object align="right" style="padding: 5px">
                             <button onclick="">
                                 Delete
                             </button>
                         </object>
+                        <div style="word-wrap: break-word;">
+                            @cheep.Text
+                        </div>
+                        <small>&mdash; @cheep.Timestamp</small>
                     </p>
                 </li>
             }

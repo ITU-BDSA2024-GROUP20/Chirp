@@ -142,8 +142,12 @@ public class CheepRepository : ICheepRepository
 
     public bool isFollowing(string self, CheepDTO cheep)
     {
-        Author authorToFollow = GetAuthorByName(cheep.Author);
         Author authorSelf = GetAuthorByName(self);
+        if (authorSelf.Following == null)
+        {
+            authorSelf.Following = new List<Author>();
+        }
+        Author authorToFollow = GetAuthorByName(cheep.Author);
         return authorSelf.Following.Contains(authorToFollow);
     }
 }

@@ -31,6 +31,23 @@
                     <p>
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a>
+                                    @if (Model._service.isFollowing(Model.Username, cheep))
+                                    {
+                                        <button>
+                                            UnFollow
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button>
+                                            Follow
+                                        </button>
+                                    }
+                                </a>
+                            }
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text

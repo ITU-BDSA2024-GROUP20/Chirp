@@ -9,4 +9,6 @@ public interface ICheepRepository
     public void UpdateCheep(CheepDTO alteredCheep);
     public Author GetAuthorByName(string name);
     public Author GetAuthorByEmail(string email);
+    public void ToggleFollow(string self, CheepDTO cheep);
+    public bool isFollowing(string self, CheepDTO cheep);
 }

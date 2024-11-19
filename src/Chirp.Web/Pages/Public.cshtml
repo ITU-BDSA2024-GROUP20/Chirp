@@ -31,23 +31,25 @@
                     <p>
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
+                            <a>
                             @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author))
                             {
-                                <a>
-                                    @if (Model._service.isFollowing(Model.Username, cheep.Author))
-                                    {
-                                        <button onclick="@{ Model._service.ToggleFollow(Model.Username, cheep.Author); }">
-                                            UnFollow
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button onclick="@{ Model._service.ToggleFollow(Model.Username, cheep.Author); }">
-                                            Follow
-                                        </button>
-                                    }
-                                </a>
+                                <form method="post">
+                                    <button class="button" asp-page-handler="ToggleFollow">
+                                        @if (Model._service.isFollowing(Model.Username, cheep.Author))
+                                        {
+                                            <span>UnFollow</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Follow</span>
+                                        }
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Username"/>
+                                    <input type="hidden" name="follow" value="@cheep.Author"/>
+                                </form>
                             }
+                            </a>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text

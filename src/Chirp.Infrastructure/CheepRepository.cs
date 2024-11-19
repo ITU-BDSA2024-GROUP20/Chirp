@@ -63,7 +63,14 @@ public class CheepRepository : ICheepRepository
                     orderby message.TimeStamp descending
                     select new { author.Name, message.Text, message.TimeStamp, author.Email }
                     );
-            var result =  query.Skip(page).Take(32).ToList();
+            var query2 = (from author in service.Authors
+                    from authors in author.Following
+                    from cheep in authors.Cheeps
+                    orderby cheep.TimeStamp descending
+                    select new { authors.Name, cheep.Text, cheep.TimeStamp, authors.Email }
+                );
+            var finalQuery = query.Union(query2).OrderByDescending(x => x.TimeStamp);
+            var result =  finalQuery.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
@@ -131,6 +138,10 @@ public class CheepRepository : ICheepRepository
             return;
         Author authorToFollow = GetAuthorByName(other);
         Author authorSelf = GetAuthorByName(self);
+        if (authorSelf.Following == null)
+        {
+            authorSelf.Following = new List<Author>();
+        }
         if (authorSelf.Following.Contains(authorToFollow))
         {
             authorSelf.Following.Remove(authorToFollow);

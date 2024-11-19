@@ -22,10 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/PostablePage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/PostablePage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" afterDir="false" />
@@ -64,20 +63,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Follow&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Unnamed.executor": "Run",
+    ".NET Executable.dotnet watch.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "Follow",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.CSVDBService: IIS Express">
+}]]></component>
+  <component name="RunManager" selected=".NET Executable.dotnet watch">
     <configuration name="Chirp.CLI" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -186,6 +188,39 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="RunDotNetWatch" factoryName="RunDotNetWatch">
+      <option name="exePath" value="$PROJECT_DIR$/src/Chirp.Web/bin/Debug/net8.0/Chirp.Web.exe" />
+      <option name="programParameters" value="" />
+      <option name="projectFilePath" value="$PROJECT_DIR$/src/Chirp.Web/Chirp.Web.csproj" />
+      <option name="projectTfm" value="net8.0" />
+      <option name="watchParameters" value="" />
+      <option name="workingDirectory" value="$PROJECT_DIR$/src/Chirp.Web" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dotnet watch" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/src/Chirp.Web/Program.cs" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chirp.Web" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue=".NET Executable.dotnet watch" />
+      <item itemvalue=".NET Launch Settings Profile.Chirp.Razor: http" />
+      <item itemvalue=".NET Launch Settings Profile.Chirp.Razor: https" />
+      <item itemvalue=".NET Launch Settings Profile.Chirp.Razor: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.CSVDBService: http" />
+      <item itemvalue=".NET Launch Settings Profile.CSVDBService: https" />
+      <item itemvalue=".NET Launch Settings Profile.CSVDBService: IIS Express" />
+      <item itemvalue=".NET Project.Chirp.CLI" />
+      <item itemvalue="dotnet-watch.Unnamed" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -217,6 +252,10 @@
       <workItem from="1731492849306" duration="2802000" />
       <workItem from="1731507504992" duration="335000" />
       <workItem from="1731507890131" duration="726000" />
+      <workItem from="1731930157407" duration="33000" />
+      <workItem from="1731930214643" duration="251000" />
+      <workItem from="1732016173572" duration="329000" />
+      <workItem from="1732016567356" duration="3635000" />
     </task>
     <servers />
   </component>

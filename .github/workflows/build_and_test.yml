@@ -28,8 +28,8 @@ jobs:
           dotnet build ./test/Chirp.Web.Test --no-restore
       - name: Testing Projects
         run: |
-          dotnet test --no-build --verbosity normal "./test/Chirp.Web.Test"
           dotnet test --no-build --verbosity normal "./test/Chirp.Razor.Test"
+          dotnet test --no-build --verbosity normal "./test/Chirp.Web.Test"
       - name: Publish as Artifacts
         run: |
           dotnet publish ./src/Chirp.Web -c Release -r linux-x64 -o ./artifact/linux

@@ -3,7 +3,10 @@
 
 run-name: Upload of ${{ github.ref_name }} by @${{ github.actor }}
 on:
-  create
+  create:
+  workflow_dispatch: 
+    
+
 jobs:
   build:
     runs-on: ubuntu-latest

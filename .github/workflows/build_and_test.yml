@@ -26,6 +26,8 @@ jobs:
           dotnet build ./src/Chirp.Web --no-restore
           dotnet build ./test/Chirp.Razor.Test --no-restore
           dotnet build ./test/Chirp.Web.Test --no-restore
+      - name: Ensure browsers are installed
+        run: pwsh ./test/Chirp.Web.Test/bin/Debug/net8.0/playwright.ps1 install --with-deps
       - name: Testing Projects
         run: |
           dotnet test --no-build --verbosity normal "./test/Chirp.Razor.Test"

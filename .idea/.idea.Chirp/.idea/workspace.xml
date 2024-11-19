@@ -22,10 +22,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-shm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db-wal" afterDir="false" />
     </list>
@@ -255,7 +251,7 @@
       <workItem from="1731930214643" duration="251000" />
       <workItem from="1732016173572" duration="329000" />
       <workItem from="1732016567356" duration="3635000" />
-      <workItem from="1732021163182" duration="1680000" />
+      <workItem from="1732021163182" duration="2009000" />
     </task>
     <servers />
   </component>

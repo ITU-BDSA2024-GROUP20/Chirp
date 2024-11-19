@@ -64,6 +64,7 @@ public class CheepRepository : ICheepRepository
                     select new { author.Name, message.Text, message.TimeStamp, author.Email }
                     );
             var query2 = (from author in service.Authors
+                    where author.Name == userName
                     from authors in author.Following
                     from cheep in authors.Cheeps
                     orderby cheep.TimeStamp descending

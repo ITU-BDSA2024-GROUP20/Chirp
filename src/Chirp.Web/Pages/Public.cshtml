@@ -30,11 +30,11 @@
                 <li>
                     <p>
                         <strong>
-                            <a href="/@cheep.Author">@cheep.Author</a>
-                            <a>
+                            <div>
                             @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author))
                             {
                                 <form method="post">
+                                    <a href="/@cheep.Author">@cheep.Author</a>
                                     <button class="button" asp-page-handler="ToggleFollow">
                                         @if (Model._service.isFollowing(Model.Username, cheep.Author))
                                         {
@@ -49,7 +49,7 @@
                                     <input type="hidden" name="follow" value="@cheep.Author"/>
                                 </form>
                             }
-                            </a>
+                            </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text

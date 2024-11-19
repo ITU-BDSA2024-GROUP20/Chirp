@@ -52,7 +52,7 @@ public class CheepRepository : ICheepRepository
     
     
     
-    public List<CheepDTO> ReadCheep(int page, string? userName = null)
+    public List<CheepDTO> ReadCheep(int page, string? userName = null, string? self = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
         if (userName != null)
@@ -62,16 +62,21 @@ public class CheepRepository : ICheepRepository
                     where author.Name == userName
                     orderby message.TimeStamp descending
                     select new { author.Name, message.Text, message.TimeStamp, author.Email }
-                    );
-            var query2 = (from author in service.Authors
-                    where author.Name == userName
-                    from authors in author.Following
-                    from cheep in authors.Cheeps
-                    orderby cheep.TimeStamp descending
-                    select new { authors.Name, cheep.Text, cheep.TimeStamp, authors.Email }
                 );
-            var finalQuery = query.Union(query2).OrderByDescending(x => x.TimeStamp);
-            var result =  finalQuery.Skip(page).Take(32).ToList();
+            if (self != null && self == userName)
+            {
+                query = (from author in service.Authors
+                        where author.Name == userName
+                        from authors in author.Following
+                        from cheep in authors.Cheeps
+                        orderby cheep.TimeStamp descending
+                        select new { authors.Name, cheep.Text, cheep.TimeStamp, authors.Email }
+                    ).Union(query).OrderByDescending(x => x.TimeStamp);
+
+            }
+            
+            var result = query.Skip(page).Take(32).ToList();
+        
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO

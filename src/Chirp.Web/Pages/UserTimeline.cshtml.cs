@@ -18,7 +18,7 @@ public class UserTimelineModel : PostablePage
         if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]) > 0) 
             page =Int32.Parse( Request.Query["page"])-1;
         
-        List<CheepDTO> _Cheeps = _service.ReadCheep(page * 32, author);
+        List<CheepDTO> _Cheeps = _service.ReadCheep(page * 32, author, Username);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         

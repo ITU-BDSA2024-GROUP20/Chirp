@@ -138,7 +138,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect("/");
+                    return LocalRedirect("/"+_service.GetAuthorByEmail(username).Name);
                 }
                 if (result.RequiresTwoFactor)
                 {

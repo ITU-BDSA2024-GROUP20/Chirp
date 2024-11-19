@@ -177,6 +177,12 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                         }
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                        if (returnUrl == "/")
+                        {
+                            returnUrl = "/"+user.Name;
+                        }
+                        Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
+
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -185,6 +191,11 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
                 ProviderDisplayName = info.ProviderDisplayName;
+                if (returnUrl == "/")
+                {
+                    returnUrl = "/"+user.Name;
+                }
+                Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
                 ReturnUrl = returnUrl;
                 return Page();
             }
@@ -253,6 +264,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                         }
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                        if (returnUrl == "/")
+                        {
+                            returnUrl = "/"+user.Name;
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -263,6 +278,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             }
 
             ProviderDisplayName = info.ProviderDisplayName;
+            if (returnUrl == "/")
+            {
+                returnUrl = "/"+info.Principal.Identity.Name;
+            }
             ReturnUrl = returnUrl;
             return Page();
         }

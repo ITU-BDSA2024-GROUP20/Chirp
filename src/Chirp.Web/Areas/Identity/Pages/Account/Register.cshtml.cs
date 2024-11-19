@@ -162,6 +162,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (returnUrl == "/")
+                        {
+                            returnUrl = "/"+user.Name;
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

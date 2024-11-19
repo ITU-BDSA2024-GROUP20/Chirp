@@ -34,6 +34,7 @@ jobs:
       - name: Testing Projects
         run: |
           dotnet test --no-build --verbosity normal "./test/Chirp.Razor.Test"
+          dotnet run ./artifact/linux --no-build
           dotnet test --no-build --verbosity normal "./test/Chirp.Web.Test"
       - name: Publish as Artifacts
         run: |

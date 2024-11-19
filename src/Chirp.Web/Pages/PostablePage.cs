@@ -31,4 +31,10 @@ public class PostablePage : PageModel
         _service.CreateCheep(cheepDTO);
         return RedirectToPage();
     }
+
+    public ActionResult OnPostToggleFollow(string self, string follow)
+    {
+        _service.ToggleFollow(self, follow);
+        return RedirectToPage();
+    }
 }

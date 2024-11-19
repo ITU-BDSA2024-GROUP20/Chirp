@@ -79,7 +79,7 @@ public class MessageRepositoryUnitTests
         cheepRepository.CreateCheep(cheep);
         Assert.Equal(1, context.Cheeps.Count());
         Assert.Equal(1, context.Authors.Count());
-        List<CheepDTO> result = cheepRepository.ReadCheep(0,null);        
+        List<CheepDTO> result = cheepRepository.ReadCheep(0,null, null);        
         Assert.Equal(cheep.Author, result.First().Author);
         Assert.Equal(cheep.Text, result.First().Text);
         Assert.Equal(cheep.Timestamp, result.First().Timestamp);
@@ -116,7 +116,7 @@ public class MessageRepositoryUnitTests
         cheepRepository.CreateCheep(cheep);
         Assert.Equal(1, context.Cheeps.Count());
         Assert.Equal(1, context.Authors.Count());
-        List<CheepDTO> result = cheepRepository.ReadCheep(0,"SifDJ");        
+        List<CheepDTO> result = cheepRepository.ReadCheep(0,"SifDJ", null);        
         Assert.Equal(cheep.Author, result.First().Author);
         Assert.Equal(cheep.Text, result.First().Text);
         Assert.Equal(cheep.Timestamp, result.First().Timestamp);

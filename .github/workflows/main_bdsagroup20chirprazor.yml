@@ -4,7 +4,8 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - bdsagroup20chirprazor
 
 on:
-  create
+  create:
+  workflow_dispatch:
 
 jobs:
   build:

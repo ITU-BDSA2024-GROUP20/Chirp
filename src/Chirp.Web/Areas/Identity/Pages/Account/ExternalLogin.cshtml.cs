@@ -84,11 +84,6 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -144,6 +139,66 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             {
                 return RedirectToPage("./Lockout");
             }
+            else if (info.Principal.Identity.Name != null &&   info.Principal.FindFirstValue(ClaimTypes.Email) != null)
+            {
+                var user = CreateUser();
+                
+                user.Name = info.Principal.Identity.Name;
+                user.Cheeps = new List<Cheep>();
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
+                await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
+
+                var resultLogin = await _userManager.CreateAsync(user);
+                if (resultLogin.Succeeded)
+                {
+                    resultLogin = await _userManager.AddLoginAsync(user, info);
+                    if (resultLogin.Succeeded)
+                    {
+                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+
+                        var userId = await _userManager.GetUserIdAsync(user);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = userId, code = code },
+                            protocol: Request.Scheme);
+
+                        await _emailSender.SendEmailAsync(email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                        // If account confirmation is required, we need to show the link if we don't have a real email sender
+                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        {
+                            return RedirectToPage("./RegisterConfirmation", new { Email = email });
+                        }
+
+                        await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                        if (returnUrl == "/")
+                        {
+                            returnUrl = "/"+user.Name;
+                        }
+                        Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
+
+                        return LocalRedirect(returnUrl);
+                    }
+                }
+                foreach (var error in resultLogin.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                ProviderDisplayName = info.ProviderDisplayName;
+                if (returnUrl == "/")
+                {
+                    returnUrl = "/"+user.Name;
+                }
+                Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
+                ReturnUrl = returnUrl;
+                return Page();
+            }
             else
             {
                 // If the user does not have an account, then ask the user to create an account.
@@ -158,6 +213,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 }
                 return Page();
             }
+            
         }
 
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
@@ -175,9 +231,9 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
                 
-                user.Name = Input.Username;
+                user.Name = info.Principal.Identity.Name;
                 user.Cheeps = new List<Cheep>();
-                
+                //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
@@ -208,6 +264,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                         }
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                        if (returnUrl == "/")
+                        {
+                            returnUrl = "/"+user.Name;
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -218,6 +278,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             }
 
             ProviderDisplayName = info.ProviderDisplayName;
+            if (returnUrl == "/")
+            {
+                returnUrl = "/"+info.Principal.Identity.Name;
+            }
             ReturnUrl = returnUrl;
             return Page();
         }

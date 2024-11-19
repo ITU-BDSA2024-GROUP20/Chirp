@@ -3,6 +3,7 @@ using Chirp.Web;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Infrastructure;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 
@@ -29,6 +30,7 @@ builder.Services.AddAuthentication(options =>
         o.ClientId = builder.Configuration["authentication_github_clientId"];
         o.ClientSecret = builder.Configuration["authentication_github_clientSecret"];
         o.CallbackPath = "/signin-github";
+        
     });
 
 // Add services to the container.

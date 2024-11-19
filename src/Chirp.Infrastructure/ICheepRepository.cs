@@ -5,7 +5,7 @@ using Core;
 public interface ICheepRepository
 {
     public void CreateCheep(CheepDTO newCheep);
-    public List<CheepDTO> ReadCheep( int page, string? userName, string? self);
+    public List<CheepDTO> ReadCheep( int page, string userName, string self);
     public void UpdateCheep(CheepDTO alteredCheep);
     public Author GetAuthorByName(string name);
     public Author GetAuthorByEmail(string email);

@@ -18,25 +18,23 @@ jobs:
           dotnet-version: 7.0.x
       - name: Restoring Projects
         run: |
-          dotnet restore ./src/Chirp.CLI
-          dotnet restore ./test/Chirp.CLI.Test
-          dotnet restore ./src/SimpleDB
-          dotnet restore ./test/SimpleDB.Test
+          dotnet restore ./src/Chirp.Web
+          dotnet restore ./test/Chirp.Razor.Test
+          dotnet restore ./test/Chirp.Web.Test
       - name: Building Projects
         run: |
-          dotnet build ./src/Chirp.CLI --no-restore
-          dotnet build ./test/Chirp.CLI.Test --no-restore
-          dotnet build ./src/SimpleDB --no-restore
-          dotnet build ./test/SimpleDB.Test --no-restore
-      #- name: Testing Projects
-      #  run: |
-      #    dotnet test --no-build --verbosity normal "./test/Chirp.CLI.Test"
-      #    dotnet test --no-build --verbosity normal "./test/SimpleDB.Test"
+          dotnet build ./src/Chirp.Web --no-restore
+          dotnet build ./test/Chirp.Razor.Test --no-restore
+          dotnet build ./test/Chirp.Web.Test --no-restore
+      - name: Testing Projects
+        run: |
+          dotnet test --no-build --verbosity normal "./test/Chirp.Web.Test"
+          dotnet test --no-build --verbosity normal "./test/Chirp.Razor.Test"
       - name: Publish as Artifacts
         run: |
-          dotnet publish ./src/Chirp.CLI -c Release -r linux-x64 -o ./artifact/linux
-          dotnet publish ./src/Chirp.CLI -c Release -r win-x64 -o ./artifact/win
-          dotnet publish ./src/Chirp.CLI -c Release -r osx-x64 -o ./artifact/mac
+          dotnet publish ./src/Chirp.Web -c Release -r linux-x64 -o ./artifact/linux
+          dotnet publish ./src/Chirp.Web -c Release -r win-x64 -o ./artifact/win
+          dotnet publish ./src/Chirp.Web -c Release -r osx-x64 -o ./artifact/mac
       - name: Zip Artifacts
         run: |
           zip -r Chirp-Win.zip ./artifact/win

@@ -37,8 +37,11 @@ public class UserTimelineModel : PostablePage
     public async Task<IActionResult> OnPostDeleteUser(string username)
     {
         var info = await _signInManager.GetExternalLoginInfoAsync();
-        await _signInManager.UserManager.RemoveLoginAsync(_service.GetAuthorByEmail(User.Identity.Name),
-            info.LoginProvider, info.ProviderKey);
+        if (info != null)
+        {
+            await _signInManager.UserManager.RemoveLoginAsync(_service.GetAuthorByEmail(User.Identity.Name),
+                info.LoginProvider, info.ProviderKey);
+        }
         _service.DeleteAuthor(username); // Anon user
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main

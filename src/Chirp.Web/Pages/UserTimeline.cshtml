@@ -38,7 +38,7 @@
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author))
+                                @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
                                 {
                                     <form method="post">
 

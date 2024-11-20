@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Playwright.NUnit;
 using Microsoft.Playwright;
 
@@ -5,6 +6,10 @@ using Microsoft.Playwright;
 [TestFixture]
 public class Tests : PageTest
 {
+    
+   
+    
+    
     [Test]
     public async Task TestRegister()
     {
@@ -20,6 +25,7 @@ public class Tests : PageTest
         await Page.GetByLabel("Confirm Password").FillAsync("HellaC00!");
         await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
     }
+    
     [Test]
     public async Task TestLogin()
     {

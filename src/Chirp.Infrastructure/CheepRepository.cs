@@ -113,10 +113,10 @@ public class CheepRepository : ICheepRepository
         return cheeps;
     }
 
-    /**
-     * While this function may imply deletion of said user, due to the current implementation of the userId system,should not be fully removed from the database.
-     * However, their username, name, and email will be anonymised and who they followed.
-     */
+    /// <summary>
+    /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
+    /// However, their username, name, and email will be anonymised and who they followed.
+    /// </summary>
     public void DeleteAuthor(string username)
     {
         Author author = GetAuthorByName(username);
@@ -133,6 +133,11 @@ public class CheepRepository : ICheepRepository
         service.SaveChanges();
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name">string with username of user</param>
+    /// <returns><c>Author</c> of the first name that matches the name</returns>
     public Author GetAuthorByName(string name)
     {
         var query = (

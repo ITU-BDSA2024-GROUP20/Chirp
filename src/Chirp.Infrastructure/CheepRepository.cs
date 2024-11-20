@@ -126,6 +126,8 @@ public class CheepRepository : ICheepRepository
         author.PasswordHash = "[DELETED]";
         author.SecurityStamp = "[DELETED]";
         author.ConcurrencyStamp = "[DELETED]";
+        author.NormalizedEmail = "[DELETED " + author.Id + "]";
+        author.NormalizedUserName = "[DELETED " + author.Id + "]";
         if (author.Following != null)
         {
             author.Following.Clear();

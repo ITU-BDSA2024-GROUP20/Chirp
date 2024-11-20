@@ -16,9 +16,9 @@ public class Tests : PageTest
         await Page.GotoAsync("http://localhost:5273/");
         await Page.GetByRole(AriaRole.Link, new() { Name = "register" }).ClickAsync();
         await Page.GetByPlaceholder("username").ClickAsync();
-        await Page.GetByPlaceholder("username").FillAsync("SifDJ");
+        await Page.GetByPlaceholder("username").FillAsync("anon");
         await Page.GetByPlaceholder("username").PressAsync("Tab");
-        await Page.GetByPlaceholder("name@example.com").FillAsync("sif@gmail.com");
+        await Page.GetByPlaceholder("name@example.com").FillAsync("anon@mail.com");
         await Page.GetByPlaceholder("name@example.com").PressAsync("Tab");
         await Page.GetByLabel("Password", new() { Exact = true }).FillAsync("HellaC00!");
         await Page.GetByLabel("Password", new() { Exact = true }).PressAsync("Tab");

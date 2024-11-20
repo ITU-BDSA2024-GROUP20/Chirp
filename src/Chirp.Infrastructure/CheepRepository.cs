@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Core;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Chirp.Infrastructure;
 
@@ -122,6 +123,9 @@ public class CheepRepository : ICheepRepository
         author.Name = "[DELETED]";
         author.Email = "[DELETED]";
         author.UserName = "[DELETED]";
+        author.PasswordHash = "[DELETED]";
+        author.SecurityStamp = "[DELETED]";
+        author.ConcurrencyStamp = "[DELETED]";
         if (author.Following != null)
         {
             author.Following.Clear();

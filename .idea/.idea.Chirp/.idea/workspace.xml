@@ -22,12 +22,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/b6a9bf5f-a898-42da-b0ac-f1e754d11f95.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +261,8 @@
       <workItem from="1732024516158" duration="22000" />
       <workItem from="1732024549608" duration="686000" />
       <workItem from="1732098893522" duration="56000" />
-      <workItem from="1732099440664" duration="1155000" />
+      <workItem from="1732099440664" duration="2192000" />
+      <workItem from="1732101761371" duration="633000" />
     </task>
     <servers />
   </component>

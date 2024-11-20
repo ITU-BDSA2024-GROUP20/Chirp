@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Chirp.Infrastructure;
 using Chirp.Core;
+using Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal;
 
 namespace Chirp.Razor.Pages;
 
@@ -23,5 +24,12 @@ public class UserTimelineModel : PostablePage
         
         
         return Page();
+    }
+    
+    public ActionResult OnPostDeleteUser(string username)
+    {
+        _service.DeleteAuthor(username);
+        // Logout user somehow
+        return RedirectToPage();
     }
 }

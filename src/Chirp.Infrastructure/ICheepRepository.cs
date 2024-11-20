@@ -6,7 +6,7 @@ public interface ICheepRepository
 {
     public void CreateCheep(CheepDTO newCheep);
     public List<CheepDTO> ReadCheep( int page, string userName, string self);
-    public void UpdateCheep(CheepDTO alteredCheep);
+    public void DeleteAuthor(string username);
     public Author GetAuthorByName(string name);
     public Author GetAuthorByEmail(string email);
     public void ToggleFollow(string self, string other);

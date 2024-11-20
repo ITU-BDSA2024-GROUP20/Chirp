@@ -112,10 +112,21 @@ public class CheepRepository : ICheepRepository
         return cheeps;
     }
 
-    public void UpdateCheep(CheepDTO alteredCheep)
+    /**
+     * While this function may imply deletion of said user, due to the current implementation of the userId system,should not be fully removed from the database.
+     * However, their username, name, and email will be anonymised and who they followed.
+     */
+    public void DeleteAuthor(string username)
     {
-        // This does not currently make sense within the bounds of the database. Maybe return here later.
-        throw new NotImplementedException();
+        Author author = GetAuthorByName(username);
+        author.Name = "[DELETED]";
+        author.Email = "[DELETED]";
+        author.UserName = "[DELETED]";
+        if (author.Following != null)
+        {
+            author.Following.Clear();
+        }
+        service.SaveChanges();
     }
     
     public Author GetAuthorByName(string name)

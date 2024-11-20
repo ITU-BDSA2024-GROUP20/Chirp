@@ -22,13 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="093f02c2-ba3e-42d5-aaf1-b9da85b91803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/4ae3e170-f281-45d6-a054-898a96b42ef8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources/c4737a8e-3767-40c5-bac3-83ccebea319e.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +57,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.dotnet watch.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Follow&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Unnamed.executor": "Run",
+    ".NET Executable.dotnet watch.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.dotnet watch">
     <configuration name="Chirp.CLI" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />

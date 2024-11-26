@@ -11,12 +11,6 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <form method="post">
-            <button asp-page-handler="DeleteUser">
-                Forget me!
-            </button>
-            <input type="hidden" name="username" value="@Model.Username"/>
-        </form>
     <div class="cheepbox">
         <h3>What's on your mind @(Model.Username)?</h3>
         <form method="post">

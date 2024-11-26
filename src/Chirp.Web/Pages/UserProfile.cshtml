@@ -8,6 +8,64 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <h1>dhjsjfhfjapfjhajgpojs9jpsmgaoigsgpishgshgf</h1>
+        <h1>User: @Model.Username</h1>
+        <div>
+            Email: [ @Model.Author.Email ]
+            <span style="float:right">
+                <form method="post">
+                    <button asp-page-handler="DeleteUser">
+                        Forget me!
+                    </button>
+                    <input type="hidden" name="username" value="@Model.Username"/>
+                </form>
+            </span>
+        </div>
+        <br/>
+        <span>@Model.Author</span>
+        <br/>
+        <h2>Cheeps:</h2>
+        @if (Model.Cheeps.Any())
+        {
+            <ul id="messagelist" class="cheeps">
+                @foreach (var cheep in Model.Cheeps)
+                {
+                    <li>
+                        <p>
+                            <strong>
+                                <div>
+                                    <a href="/@cheep.Author">@cheep.Author</a>
+                                    @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
+                                    {
+                                        <form method="post">
+
+                                            <button class="button" asp-page-handler="ToggleFollow">
+                                                @if (Model._service.isFollowing(Model.Username, cheep.Author))
+                                                {
+                                                    <span>UnFollow</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Follow</span>
+                                                }
+                                            </button>
+                                            <input type="hidden" name="self" value="@Model.Username"/>
+                                            <input type="hidden" name="follow" value="@cheep.Author"/>
+                                        </form>
+                                    }
+                                </div>
+                            </strong>
+                            <div style="word-wrap: break-word;">
+                                @cheep.Text
+                            </div>
+                            <small>&mdash; @cheep.Timestamp</small>
+                        </p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <em>There are no cheeps so far.</em>
+        }
     }
 </div>

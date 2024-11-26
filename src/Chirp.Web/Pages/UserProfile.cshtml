@@ -8,9 +8,8 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <h1>User: @Model.Username</h1>
+        <h1>About Me!</h1>
         <div>
-            Email: [ @Model.Author.Email ]
             <span style="float:right">
                 <form method="post">
                     <button asp-page-handler="DeleteUser">
@@ -19,10 +18,36 @@
                     <input type="hidden" name="username" value="@Model.Username"/>
                 </form>
             </span>
+            <h2>User: @Model.Username</h2>
+            <h2>Email: [ @Model.Author.Email ]</h2>
         </div>
-        <br/>
-        <span>@Model.Author</span>
-        <br/>
+        <div>
+            Following: @Model.following.Count
+            @if (Model.following.Any())
+            {
+                <ul id="messagelist">
+                    @foreach (var author in Model.following)
+                    {
+                        <li>
+                            <div>
+                                <span style="float: right">
+                                    <form method="post">
+                                        <button class="button" asp-page-handler="ToggleFollow">
+                                            <span>UnFollow</span>
+                                        </button>
+                                        <input type="hidden" name="self" value="@Model.Username"/>
+                                        <input type="hidden" name="follow" value="@author.Name"/>
+                                    </form>
+                                </span>
+                                <h3>
+                                    <a href="/@author.Name">@author.Name</a>
+                                </h3>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
         <h2>Cheeps:</h2>
         @if (Model.Cheeps.Any())
         {
@@ -34,24 +59,6 @@
                             <strong>
                                 <div>
                                     <a href="/@cheep.Author">@cheep.Author</a>
-                                    @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
-                                    {
-                                        <form method="post">
-
-                                            <button class="button" asp-page-handler="ToggleFollow">
-                                                @if (Model._service.isFollowing(Model.Username, cheep.Author))
-                                                {
-                                                    <span>UnFollow</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>Follow</span>
-                                                }
-                                            </button>
-                                            <input type="hidden" name="self" value="@Model.Username"/>
-                                            <input type="hidden" name="follow" value="@cheep.Author"/>
-                                        </form>
-                                    }
                                 </div>
                             </strong>
                             <div style="word-wrap: break-word;">

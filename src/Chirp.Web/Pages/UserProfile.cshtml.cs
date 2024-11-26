@@ -14,6 +14,7 @@ public class UserProfileModel : PageModel
     public List<CheepDTO> Cheeps { get; set; }
     
     SignInManager<Author> _signInManager;
+    public List<AuthorDTO> following { get; set; }
     
     public UserProfileModel(ICheepRepository service, SignInManager<Author> signInManager)
     {
@@ -28,6 +29,7 @@ public class UserProfileModel : PageModel
         {
             Author = _service.GetAuthorByEmail(User.Identity.Name);
             Username = Author.Name;
+            following = _service.GetFollowing(Username);
         }
         else
         {

@@ -200,5 +200,23 @@ public class CheepRepository : ICheepRepository
             return true;
         return false;
     }
+
+    public List<AuthorDTO> GetFollowing(string self)
+    {
+        List<AuthorDTO> following = new List<AuthorDTO>();
+        var query = (from author in service.Authors
+            from follow in author.Following
+            where author.Name == self
+            orderby follow.Name
+            select new { follow.Name });
+        var result = query.ToList();
+        foreach (var follow in result)
+        {
+            var author = new AuthorDTO();
+            author.Name = follow.Name;
+            following.Add(author);
+        }
+        return following;
+    }
 }
 

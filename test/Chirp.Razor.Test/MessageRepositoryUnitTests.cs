@@ -23,7 +23,7 @@ public class MessageRepositoryUnitTests
         ICheepRepository cheepRepository = new CheepRepository(context);
         var a1 = new Author()
         {
-            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocked = new List<Author>()
         };
         
         context.Authors.Add(a1);
@@ -62,7 +62,7 @@ public class MessageRepositoryUnitTests
 
         var a1 = new Author()
         {
-            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocked = new List<Author>()
         };
         
         context.Authors.Add(a1);
@@ -100,7 +100,7 @@ public class MessageRepositoryUnitTests
 
         var a1 = new Author()
         {
-            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocked = new List<Author>()
         };
         
         context.Authors.Add(a1);
@@ -137,7 +137,7 @@ public class MessageRepositoryUnitTests
 
         var a1 = new Author()
         {
-            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocked = new List<Author>()
         };
         
         context.Authors.Add(a1);
@@ -162,7 +162,7 @@ public class MessageRepositoryUnitTests
 
         var a1 = new Author()
         {
-            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>()
+            Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "SifDJ",UserName = "esja@itu.dk", Email = "esja@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocked = new List<Author>()
         };
         
         context.Authors.Add(a1);

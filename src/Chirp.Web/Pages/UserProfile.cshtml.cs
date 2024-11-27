@@ -15,7 +15,7 @@ public class UserProfileModel : PageModel
     
     SignInManager<Author> _signInManager;
     public List<AuthorDTO> following { get; set; }
-    
+    public List<AuthorDTO> blocking { get; set; }
     public UserProfileModel(ICheepRepository service, SignInManager<Author> signInManager)
     {
         _signInManager = signInManager;
@@ -30,6 +30,7 @@ public class UserProfileModel : PageModel
             Author = _service.GetAuthorByEmail(User.Identity.Name);
             Username = Author.Name;
             following = _service.GetFollowing(Username);
+            blocking = _service.GetBlocking(Username);
         }
         else
         {
@@ -58,6 +59,12 @@ public class UserProfileModel : PageModel
     public ActionResult OnPostToggleFollow(string self, string follow)
     {
         _service.ToggleFollow(self, follow);
+        return RedirectToPage();
+    }
+    
+    public ActionResult OnPostToggleBlock(string self, string follow)
+    {
+        _service.ToggleBlocking(self, follow);
         return RedirectToPage();
     }
 }

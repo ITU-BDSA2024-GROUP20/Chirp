@@ -14,4 +14,6 @@ public interface ICheepRepository
     public bool isSelf(string self, string other);
     public List<AuthorDTO> GetFollowing(string self);
     public List<AuthorDTO> GetBlocking(string self);
+    public void ToggleBlocking(string self, string other);
+    public bool isBlocking(string self, string other);
 }

@@ -20,9 +20,12 @@ public class Cheep
 public class Author : IdentityUser
 {
     public string Name { get; set; }
-    public ICollection<Cheep> Cheeps { get; set; }
-    public ICollection<Author> Following { get; set; }
-    public ICollection<Author> Blocked { get; set; }
+    [Required]
+    public required ICollection<Cheep> Cheeps { get; set; }
+    [Required]
+    public required ICollection<Author> Following { get; set; }
+    [Required]
+    public required ICollection<Author> Blocked { get; set; }
 }
 
 

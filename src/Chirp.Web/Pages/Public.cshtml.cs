@@ -17,8 +17,16 @@ public class PublicModel : PostablePage
         }
         if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]) > 0) 
             page =Int32.Parse( Request.Query["page"])-1;
-        
-        List<CheepDTO> _Cheeps = _service.ReadCheep( page*32 ,null, null);;
+        List<CheepDTO> _Cheeps;
+        if (User.Identity.IsAuthenticated)
+        {
+            _Cheeps = _service.ReadCheep(page * 32, null, Username);
+        }
+        else
+        {
+            _Cheeps = _service.ReadCheep(page * 32, null, null);
+        }
+
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         

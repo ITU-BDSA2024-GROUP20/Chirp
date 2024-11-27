@@ -7,17 +7,22 @@
     <projectFile profileName="http">src/Chirp.Web/Chirp.Web.csproj</projectFile>
     <projectFile profileName="https">src/Chirp.Web/Chirp.Web.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ac8717fa-87d8-491c-96f9-610adce01ce6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/CheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/DomainModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/DomainModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Infrastructure/ICheepRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/20241113132130_Follow.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/20241113132130_Follow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Infrastructure/Migrations/ChirpDBContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/PostablePage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/PostablePage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/mychirp.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +45,14 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Block&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.make&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -137,6 +148,13 @@
       <option name="presentableId" value="Default" />
       <updated>1732707970026</updated>
       <workItem from="1732707972712" duration="24000" />
+      <workItem from="1732709329243" duration="26000" />
+      <workItem from="1732709377788" duration="33000" />
+      <workItem from="1732709530602" duration="38000" />
+      <workItem from="1732709871031" duration="70000" />
+      <workItem from="1732710128044" duration="219000" />
+      <workItem from="1732710385587" duration="54000" />
+      <workItem from="1732711754192" duration="2282000" />
     </task>
     <servers />
   </component>

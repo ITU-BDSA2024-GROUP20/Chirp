@@ -94,9 +94,22 @@ public class CheepRepository : ICheepRepository
         {
             var query = (from message in service.Cheeps
                 join author in service.Authors on message.AuthorId equals author.Id
-                orderby message.TimeStamp descending 
+                orderby message.TimeStamp descending
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
-            var result =  query.Skip(page).Take(32).ToList();
+            if (self != null)
+            {
+                query = (from message in service.Cheeps
+                    join author in service.Authors on message.AuthorId equals author.Id
+                    orderby message.TimeStamp descending
+                    where !(from aut in service.Authors
+                            where aut.Name == self
+                            from blocks in aut.Blocked
+                            select blocks.Id 
+                        ).Contains(message.AuthorId)
+                    select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            }
+            
+            var result = query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
                 CheepDTO ch = new CheepDTO
@@ -147,7 +160,7 @@ public class CheepRepository : ICheepRepository
             where author.Name == name
             select author
             );
-        return query.FirstOrDefault();
+        return query.First();
     }
 
     public Author GetAuthorByEmail(string email)
@@ -157,7 +170,7 @@ public class CheepRepository : ICheepRepository
             where author.Email == email
             select author
         );
-        return query.FirstOrDefault();
+        return query.First();
     }
 
     public void ToggleFollow(string self, string other)
@@ -184,10 +197,6 @@ public class CheepRepository : ICheepRepository
     public bool isFollowing(string self, string other)
     {
         Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
         Author authorToFollow = GetAuthorByName(other);
         return authorSelf.Following.Contains(authorToFollow);
     }
@@ -235,6 +244,40 @@ public class CheepRepository : ICheepRepository
             blocking.Add(author);
         }
         return blocking;
+    }
+
+    public void ToggleBlocking(string self, string other)
+    {
+        if (isSelf(self, other))
+            return;
+        Author authorToBlock = GetAuthorByName(other);
+        Author authorSelf = GetAuthorByName(self);
+        if (authorSelf.Blocked == null)
+        {
+            authorSelf.Blocked = new List<Author>();
+        }
+        if (authorSelf.Blocked.Contains(authorToBlock))
+        {
+            authorSelf.Blocked.Remove(authorToBlock);
+        }
+        else
+        {
+            authorSelf.Blocked.Add(authorToBlock);
+        }
+
+        service.Authors.Update((authorSelf));
+        service.SaveChanges();
+    }
+
+    public bool isBlocking(string self, string other)
+    {
+        Author authorSelf = GetAuthorByName(self);
+        if (authorSelf.Blocked == null)
+        {
+            authorSelf.Blocked = new List<Author>();
+        }
+        Author authorToBlock = GetAuthorByName(other);
+        return authorSelf.Blocked.Contains(authorToBlock);
     }
 }
 

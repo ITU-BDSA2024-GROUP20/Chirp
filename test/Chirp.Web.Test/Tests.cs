@@ -64,7 +64,7 @@ public class Tests
             await Page.GetByPlaceholder("name@example.com").PressAsync("Tab");
             await Page.GetByLabel("Password", new() { Exact = true }).FillAsync("Password1!");
             await Page.GetByLabel("Password", new() { Exact = true }).PressAsync("Tab");
-            await Page.GetByLabel("Confirm Password").FillAsync("HellaC00!");
+            await Page.GetByLabel("Confirm Password").FillAsync("Password1!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
             await Page.GetByRole(AriaRole.Link, new() { Name = "public timeline" }).ClickAsync();
         }

@@ -89,6 +89,11 @@ public class Tests
             await Page.GetByPlaceholder("email/username").PressAsync("Tab");
             await Page.GetByPlaceholder("password").FillAsync("LetM31n!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Log in" }).ClickAsync();
+            
+            var helgatimeline = Page.GetByRole(AriaRole.Heading, new(){Name = "Helge's Timeline"});
+            bool isHelgatimelineVisible = await helgatimeline.IsVisibleAsync();
+            Console.WriteLine(helgatimeline);
+            Assert.IsTrue(isHelgatimelineVisible);
         }
     }
 
@@ -179,7 +184,7 @@ public class Tests
             await Page.GetByLabel("Password", new() { Exact = true }).PressAsync("Tab");
             await Page.GetByLabel("Confirm Password").FillAsync("Password1!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
-            await Page.GetByRole(AriaRole.Link, new() { Name = "logout [Anonymous]" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = "logout [Anonymous1]" }).ClickAsync();
             await Page.GetByRole(AriaRole.Button, new() { Name = "Click here to Logout" }).ClickAsync();
             await Page.GetByPlaceholder("email/username").ClickAsync();
             await Page.GetByPlaceholder("email/username").FillAsync("Anonymous1");

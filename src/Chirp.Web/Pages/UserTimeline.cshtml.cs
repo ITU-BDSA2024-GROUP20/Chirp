@@ -1,13 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNet.Security.OAuth.GitHub;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Chirp.Infrastructure;
 using Chirp.Core;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal;
 
 namespace Chirp.Razor.Pages;
 
 public class UserTimelineModel : PostablePage
 {
-    public UserTimelineModel(ICheepRepository service) : base(service){}
+    SignInManager<Author> _signInManager;
+    UserManager<Author> _userManager;
+    public UserTimelineModel(ICheepRepository service, SignInManager<Author> signInManager, UserManager<Author> userManager) : base(service)
+    {
+        _signInManager = signInManager;
+        _userManager = userManager;
+    }
 
     public ActionResult OnGet(string author)
     {

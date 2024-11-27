@@ -15,14 +15,15 @@ public class _Layout_cshtml : PageModel
     {
         _service = service;
     }
-    
+
     public ActionResult OnGet()
     {
         if (User.Identity.IsAuthenticated)
         {
             UsernameLayout = _service.GetAuthorByEmail(User.Identity.Name).Name;
         }
+
         return Page();
     }
-    
+
 }

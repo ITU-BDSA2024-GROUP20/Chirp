@@ -15,9 +15,13 @@
         @if (User.Identity.IsAuthenticated)
         {
             <div>
-                <a href="/@(Model.Username)">my timeline</a> |
                 <a href="/">public timeline</a> |
-                <a href="/Identity/Account/Logout" >logout [@(Model.Username)]</a>
+                <a href="/@(Model.Username)">my timeline</a> |
+                <a href="AboutMe">About Me</a>
+
+                <span style="float:right">
+                    <a style="text-align: right" href="/Identity/Account/Logout" >logout [@(Model.Username)]</a>
+                </span>
             </div>
         }
         else

@@ -1,0 +1,74 @@
+@page "/AboutMe"
+@model Chirp.Razor.Pages.UserProfileModel
+@{
+    ViewData["Title"] = "Chirp!";
+    Layout = "Shared/_Layout";
+}
+
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1>About Me!</h1>
+        <div>
+            <span style="float:right">
+                <form method="post">
+                    <button asp-page-handler="DeleteUser">
+                        Forget me!
+                    </button>
+                    <input type="hidden" name="username" value="@Model.Username"/>
+                </form>
+            </span>
+            <h2>User: @Model.Username</h2>
+            <h2>Email: [ @Model.Author.Email ]</h2>
+        </div>
+        <div>
+            @if (Model.following.Any())
+            {
+                <hr style="border-top: 3px solid #bbbbbb">
+                <h2>Following: @Model.following.Count</h2>
+                <ul id="messagelist" class="cheeps">
+                    @foreach (var author in Model.following)
+                    {
+                        <li>
+                            <span style="float: right">
+                                <form method="post">
+                                    <button class="button" asp-page-handler="ToggleFollow" style="transform: translateY(25%);">
+                                        UnFollow
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Username"/>
+                                    <input type="hidden" name="follow" value="@author.Name"/>
+                                </form>
+                            </span>
+                            <h3>
+                                <a href="/@author.Name">@author.Name</a>
+                            </h3>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        @if (Model.Cheeps.Any())
+        {
+            <hr style="border-top: 3px solid #bbbbbb">
+            <h2>Cheeps:</h2>
+            <ul id="messagelist" class="cheeps">
+                @foreach (var cheep in Model.Cheeps)
+                {
+                    <li>
+                        <p>
+                            <strong>
+                                <div>
+                                    <a href="/@cheep.Author">@cheep.Author</a>
+                                </div>
+                            </strong>
+                            <div style="word-wrap: break-word;">
+                                @cheep.Text
+                            </div>
+                            <small>&mdash; @cheep.Timestamp</small>
+                        </p>
+                    </li>
+                }
+            </ul>
+        }
+    }
+</div>

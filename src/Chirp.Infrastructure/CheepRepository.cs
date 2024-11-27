@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Core;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Chirp.Infrastructure;
 
@@ -112,12 +113,33 @@ public class CheepRepository : ICheepRepository
         return cheeps;
     }
 
-    public void UpdateCheep(CheepDTO alteredCheep)
+    /// <summary>
+    /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
+    /// However, their username, name, and email will be anonymised and who they followed.
+    /// </summary>
+    public void DeleteAuthor(string username)
     {
-        // This does not currently make sense within the bounds of the database. Maybe return here later.
-        throw new NotImplementedException();
+        Author author = GetAuthorByName(username);
+        author.Name = "[DELETED]";
+        author.Email = "[DELETED]";
+        author.UserName = "[DELETED]";
+        author.PasswordHash = "[DELETED]";
+        author.SecurityStamp = "[DELETED]";
+        author.ConcurrencyStamp = "[DELETED]";
+        author.NormalizedEmail = "[DELETED " + author.Id + "]";
+        author.NormalizedUserName = "[DELETED " + author.Id + "]";
+        if (author.Following != null)
+        {
+            author.Following.Clear();
+        }
+        service.SaveChanges();
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name">string with username of user</param>
+    /// <returns><c>Author</c> of the first name that matches the name</returns>
     public Author GetAuthorByName(string name)
     {
         var query = (
@@ -177,6 +199,24 @@ public class CheepRepository : ICheepRepository
         if (authorToFollow.Equals(authorSelf))
             return true;
         return false;
+    }
+
+    public List<AuthorDTO> GetFollowing(string self)
+    {
+        List<AuthorDTO> following = new List<AuthorDTO>();
+        var query = (from author in service.Authors
+            from follow in author.Following
+            where author.Name == self
+            orderby follow.Name
+            select new { follow.Name });
+        var result = query.ToList();
+        foreach (var follow in result)
+        {
+            var author = new AuthorDTO();
+            author.Name = follow.Name;
+            following.Add(author);
+        }
+        return following;
     }
 }
 

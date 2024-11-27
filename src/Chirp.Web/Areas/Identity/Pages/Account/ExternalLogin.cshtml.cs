@@ -146,6 +146,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 user.Name = info.Principal.Identity.Name;
                 user.Cheeps = new List<Cheep>();
                 user.Following = new List<Author>();
+                user.Blocked = new List<Author>();
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
                 await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
@@ -235,6 +236,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 user.Name = info.Principal.Identity.Name;
                 user.Cheeps = new List<Cheep>();
                 user.Following = new List<Author>();
+                user.Blocked = new List<Author>();
                 //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

@@ -218,5 +218,23 @@ public class CheepRepository : ICheepRepository
         }
         return following;
     }
+
+    public List<AuthorDTO> GetBlocking(string self)
+    {
+        List<AuthorDTO> blocking = new List<AuthorDTO>();
+        var query = (from author in service.Authors
+            from block in author.Blocked
+            where author.Name == self
+            orderby block.Name
+            select new { block.Name });
+        var result = query.ToList();
+        foreach (var blocked in result)
+        {
+            var author = new AuthorDTO();
+            author.Name = blocked.Name;
+            blocking.Add(author);
+        }
+        return blocking;
+    }
 }
 

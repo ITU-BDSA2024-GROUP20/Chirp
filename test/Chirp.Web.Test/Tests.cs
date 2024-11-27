@@ -92,7 +92,6 @@ public class Tests
             
             var helgatimeline = Page.GetByRole(AriaRole.Heading, new(){Name = "Helge's Timeline"});
             bool isHelgatimelineVisible = await helgatimeline.IsVisibleAsync();
-            Console.WriteLine(helgatimeline);
             Assert.IsTrue(isHelgatimelineVisible);
         }
     }
@@ -251,4 +250,38 @@ public class Tests
             await Page.Locator("li").Filter(new() { HasText = "Mellie Yost UnFollow But what" }).GetByRole(AriaRole.Button).ClickAsync();
         }
     }
+
+    [Test]
+    public async Task GitHubLoginTest()
+    {
+        if(Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
+        {
+            Assert.Ignore("Test ignored on GitHub Actions");
+        }
+        else{
+            await Page.GotoAsync("http://localhost:5273/");
+            await Page.GetByRole(AriaRole.Link, new() { Name = "login" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Button, new() { Name = "GitHub" }).ClickAsync();
+            await Page.GetByLabel("Username or email address").ClickAsync();
+            await Page.GetByLabel("Username or email address").FillAsync("Chirp20");
+            await Page.GetByLabel("Password").ClickAsync();
+            await Page.GetByLabel("Password").FillAsync("Chirpdummy1");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Sign in", Exact = true }).ClickAsync();
+            
+            //if first time login in with the acount uncomment this
+            //await Page.GetByRole(AriaRole.Button, new() { Name = "Authorize ITU-BDSA2024-GROUP20" }).ClickAsync();
+            
+            await Page.WaitForURLAsync(url => url.StartsWith("http://localhost:5273/Identity/Account/ExternalLogin"));
+            await Page.GetByPlaceholder("Please enter your email.").ClickAsync();
+            await Page.GetByPlaceholder("Please enter your email.").FillAsync("chirp20@gmail.com");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
+            
+            var chirp20timeline = Page.GetByRole(AriaRole.Heading, new(){Name = "Chirp20's Timeline"});
+            bool ischirp20timelineVisible = await chirp20timeline.IsVisibleAsync();
+            Assert.IsTrue(ischirp20timelineVisible);
+
+        }
+    }
+
+
 }

@@ -66,7 +66,10 @@ public class Tests
             await Page.GetByLabel("Password", new() { Exact = true }).PressAsync("Tab");
             await Page.GetByLabel("Confirm Password").FillAsync("Password1!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
-            await Page.GetByRole(AriaRole.Link, new() { Name = "public timeline" }).ClickAsync();
+            var myTimeline = Page.GetByRole(AriaRole.Link, new(){Name = "my timeline"});
+            bool isMyTimelineVisible = await myTimeline.IsVisibleAsync();
+            Console.WriteLine("IsMyTimelineVisible: " + isMyTimelineVisible + (isMyTimelineVisible ? " PASS" : " FAIL"));
+            Assert.IsTrue(isMyTimelineVisible);
         }
     }
 
@@ -106,9 +109,17 @@ public class Tests
             await Page.GetByPlaceholder("password").ClickAsync();
             await Page.GetByPlaceholder("password").FillAsync("LetM31n!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Log in" }).ClickAsync();
+            var logout = Page.GetByRole(AriaRole.Link, new(){Name = "logout [Helge]"});
+            bool isLogOutlineVisible = await logout.IsVisibleAsync();
+            Console.WriteLine("isLogOutlineVisible: " + isLogOutlineVisible + (isLogOutlineVisible ? " PASS" : " FAIL"));
+            Assert.IsTrue(isLogOutlineVisible);
             await Page.GetByRole(AriaRole.Link, new() { Name = "logout [Helge]" }).ClickAsync();
             await Page.GetByRole(AriaRole.Button, new() { Name = "Click here to Logout" }).ClickAsync();
             await Page.GetByRole(AriaRole.Link, new() { Name = "public timeline" }).ClickAsync();
+            var myTimeline = Page.GetByRole(AriaRole.Link, new(){Name = "my timeline"});
+            bool isMyTimelineVisible = await myTimeline.IsVisibleAsync();
+            Console.WriteLine("isMyTimelineVisible: " + isMyTimelineVisible + (isMyTimelineVisible ? " FAIL" : " PASS"));
+            Assert.IsFalse(isMyTimelineVisible);
         }
     }
 
@@ -129,9 +140,20 @@ public class Tests
             await Page.GetByPlaceholder("email/username").PressAsync("Tab");
             await Page.GetByPlaceholder("password").FillAsync("LetM31n!");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Log in" }).ClickAsync();
+            var cheepBox = Page.Locator("div.cheepbox h3");
+            bool isCheepBoxVisible = await cheepBox.IsVisibleAsync();
+            Console.WriteLine("isCheepBoxVisible: " + isCheepBoxVisible + (isCheepBoxVisible ? " PASS" : " FAIL"));
+            Assert.IsTrue(isCheepBoxVisible);
+            var cheepText = await cheepBox.TextContentAsync();
+            Console.WriteLine("cheepText: " + cheepText + ("What's on your mind Helge?".Equals(cheepText) ? " PASS" : " FAIL"));
+            Assert.IsTrue("What's on your mind Helge?".Equals(cheepText));
             await Page.Locator("#cheepDTO_Text").ClickAsync();
             await Page.Locator("#cheepDTO_Text").FillAsync("test cheep");
             await Page.GetByRole(AriaRole.Button, new() { Name = "Share" }).ClickAsync();
+            var cheep = Page.GetByText("Helge test cheep").First;
+            var isCheepVisible = await cheep.IsVisibleAsync();
+            Console.WriteLine("isCheepVisible: " + isCheepVisible + (isCheepVisible ? " PASS" : " FAIL"));
+            Assert.IsTrue(isCheepVisible);
         }
 
     }

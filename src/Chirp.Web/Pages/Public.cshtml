@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
-
     int next = Model.page + 2;
     int previous = Model.page;
 }
@@ -32,11 +31,11 @@
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._service.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
+                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
                                 {
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model._service.isFollowing(Model.Username, cheep.Author))
+                                            @if (Model._authorService.isFollowing(Model.Username, cheep.Author))
                                             {
                                                 <span>UnFollow</span>
                                             }

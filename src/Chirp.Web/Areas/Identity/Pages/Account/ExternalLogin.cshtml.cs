@@ -32,7 +32,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         
-        private readonly ICheepRepository _service;
+        private readonly IAuthorRepository _service;
         public string Username { get; set; }
 
         public ExternalLoginModel(
@@ -41,7 +41,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             IUserStore<Author> userStore,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender,
-            ICheepRepository service)
+            IAuthorRepository service)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -98,7 +98,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+                Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
             }
             return RedirectToPage("./Login");
             

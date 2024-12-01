@@ -30,7 +30,8 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<Author> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ICheepRepository _service;
+        
+        private readonly IAuthorRepository _service;
         public string  Username { get; set; }
         
         public RegisterModel(
@@ -39,7 +40,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             SignInManager<Author> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICheepRepository service)
+            IAuthorRepository service)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -115,7 +116,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+                Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
             }
             return Page();
         }

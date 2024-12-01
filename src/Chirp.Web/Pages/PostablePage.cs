@@ -8,7 +8,8 @@ namespace Chirp.Razor.Pages;
 
 public class PostablePage : PageModel
 {
-    public ICheepRepository _service;
+    public ICheepRepository _cheepService;
+    public IAuthorRepository _authorService;
     public List<CheepDTO> Cheeps { get; set; }
     
     public String Username { get; set; }
@@ -17,9 +18,10 @@ public class PostablePage : PageModel
     public CheepDTO cheepDTO { get; set; }
     public int page = 0;
 
-    public PostablePage(ICheepRepository service)
+    public PostablePage(ICheepRepository cheepService, IAuthorRepository authorService)
     {
-        _service = service;
+        _cheepService = cheepService;
+        _authorService = authorService;
     }
     
     public ActionResult OnPost()
@@ -28,13 +30,13 @@ public class PostablePage : PageModel
         cheepDTO.Email = User.Identity.Name;
         cheepDTO.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
         
-        _service.CreateCheep(cheepDTO);
+        _cheepService.CreateCheep(cheepDTO);
         return RedirectToPage();
     }
 
     public ActionResult OnPostToggleFollow(string self, string follow)
     {
-        _service.ToggleFollow(self, follow);
+        _authorService.ToggleFollow(self, follow);
         return RedirectToPage();
     }
 }

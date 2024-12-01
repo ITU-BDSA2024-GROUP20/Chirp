@@ -7,11 +7,11 @@ namespace Chirp.Razor.Pages;
 
 public class _Layout_cshtml : PageModel
 {
-    private readonly ICheepRepository _service;
+    private readonly IAuthorRepository _service;
     
     public string UsernameLayout { get; set; }
     
-    public _Layout_cshtml(ICheepRepository service)
+    public _Layout_cshtml(IAuthorRepository service)
     {
         _service = service;
     }
@@ -20,7 +20,7 @@ public class _Layout_cshtml : PageModel
     {
         if (User.Identity.IsAuthenticated)
         {
-            UsernameLayout = _service.GetAuthorByEmail(User.Identity.Name).Name;
+            UsernameLayout = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
         }
 
         return Page();

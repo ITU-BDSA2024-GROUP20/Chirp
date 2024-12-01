@@ -8,15 +8,15 @@ namespace Chirp.Razor.Pages;
 
 public class UserProfileModel : PageModel
 {
-    public ICheepRepository _service;
-    public Author Author { get; set; }
+    public IAuthorRepository _service;
+    public AuthorDTO AuthorDTO { get; set; }
     public string Username { get; set; }
     public List<CheepDTO> Cheeps { get; set; }
     
     SignInManager<Author> _signInManager;
     public List<AuthorDTO> following { get; set; }
     
-    public UserProfileModel(ICheepRepository service, SignInManager<Author> signInManager)
+    public UserProfileModel(IAuthorRepository service, SignInManager<Author> signInManager)
     {
         _signInManager = signInManager;
         _service = service;
@@ -27,8 +27,8 @@ public class UserProfileModel : PageModel
     {
         if (User.Identity.IsAuthenticated)
         {
-            Author = _service.GetAuthorByEmail(User.Identity.Name);
-            Username = Author.Name;
+            AuthorDTO = _service.GetAuthorDtoByEmail(User.Identity.Name);
+            Username = AuthorDTO.Name;
             following = _service.GetFollowing(Username);
         }
         else
@@ -36,7 +36,7 @@ public class UserProfileModel : PageModel
             return LocalRedirect("/");
         }
         
-        List<CheepDTO> _Cheeps = _service.ReadCheep(0, Username, null);
+        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, Username, null);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         return Page();
@@ -44,12 +44,6 @@ public class UserProfileModel : PageModel
     
     public async Task<IActionResult> OnPostDeleteUser(string username)
     {
-        var info = await _signInManager.GetExternalLoginInfoAsync();
-        if (info != null)
-        {
-            await _signInManager.UserManager.RemoveLoginAsync(_service.GetAuthorByEmail(User.Identity.Name),
-                info.LoginProvider, info.ProviderKey);
-        }
         _service.DeleteAuthor(username); // Anon user
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main

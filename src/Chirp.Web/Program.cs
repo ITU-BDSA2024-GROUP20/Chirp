@@ -36,6 +36,7 @@ builder.Services.AddAuthentication(options =>
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 
 
 var app = builder.Build();

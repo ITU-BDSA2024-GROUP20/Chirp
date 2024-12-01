@@ -18,9 +18,9 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<Author> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
         public string Username { get; set; }
-        private readonly ICheepRepository _service;
+        private readonly IAuthorRepository _service;
 
-        public LogoutModel(SignInManager<Author> signInManager, ILogger<LogoutModel> logger, ICheepRepository service)
+        public LogoutModel(SignInManager<Author> signInManager, ILogger<LogoutModel> logger, IAuthorRepository service)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -31,7 +31,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+                Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
             }
             return Page();
         }

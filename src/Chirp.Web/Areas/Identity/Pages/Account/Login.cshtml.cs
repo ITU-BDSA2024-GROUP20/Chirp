@@ -23,10 +23,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<Author> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly ICheepRepository _service;
+        private readonly IAuthorRepository _service;
         public string Username { get; set; }
         
-        public LoginModel(SignInManager<Author> signInManager, ILogger<LoginModel> logger, ICheepRepository service)
+        public LoginModel(SignInManager<Author> signInManager, ILogger<LoginModel> logger, IAuthorRepository service)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -92,7 +92,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+                Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
             }
             return Page();
         }
@@ -125,10 +125,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 var username = Input.EmailUserName;
                 if (!Input.EmailUserName.Contains("@"))
                 {
-                    var user = _service.GetAuthorByName(Input.EmailUserName);
+                    var user = _service.GetAuthorDtoByName(Input.EmailUserName);
                     if (user != null)
                     {
-                        username = user.UserName; 
+                        username = user.Email; 
                     }
                 }
                 
@@ -138,7 +138,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect("/"+_service.GetAuthorByEmail(username).Name);
+                    return LocalRedirect("/"+_service.GetAuthorDtoByEmail(username).Name);
                 }
                 if (result.RequiresTwoFactor)
                 {

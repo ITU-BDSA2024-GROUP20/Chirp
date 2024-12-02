@@ -23,7 +23,7 @@ public class AuthorRepository : IAuthorRepository
                 orderby message.TimeStamp descending
                 select new { author.Name, message.Text, message.TimeStamp, author.Email }
             );
-        if (self != null && self == userName)
+        if (self != null && self.Equals(userName))
         {
             query = (from author in service.Authors
                 where author.Name == userName

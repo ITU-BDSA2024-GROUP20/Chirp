@@ -49,6 +49,13 @@
                                         <input type="hidden" name="self" value="@Model.Username"/>
                                         <input type="hidden" name="follow" value="@cheep.Author"/>
                                     </form>
+                                    <form method="post">
+                                        <button class="button" asp-page-handler="ToggleBlocking">
+                                            <span>Block</span>
+                                        </button>
+                                        <input type="hidden" name="self" value="@Model.Username"/>
+                                        <input type="hidden" name="follow" value="@cheep.Author"/>
+                                    </form>
                                 }
                             </div>
                         </strong>

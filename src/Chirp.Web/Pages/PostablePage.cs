@@ -39,4 +39,12 @@ public class PostablePage : PageModel
         _authorService.ToggleFollow(self, follow);
         return RedirectToPage();
     }
+    
+    
+    public ActionResult OnPostToggleBlocking(string self, string follow)
+    {
+        _authorService.ToggleBlocking(self, follow);
+        return RedirectToPage();
+    }
+    
 }

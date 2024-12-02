@@ -222,6 +222,10 @@ public class AuthorRepository : IAuthorRepository
         else
         {
             authorSelf.Blocking.Add(authorToFollow);
+            if (isFollowing(self, other))
+            {
+                ToggleFollow(self,other);
+            }
         }
         service.SaveChanges();
     }

@@ -15,6 +15,7 @@ public class UserProfileModel : PageModel
     
     SignInManager<Author> _signInManager;
     public List<AuthorDTO> following { get; set; }
+    public List<AuthorDTO> blocking { get; set; }
     
     public UserProfileModel(IAuthorRepository service, SignInManager<Author> signInManager)
     {
@@ -30,6 +31,7 @@ public class UserProfileModel : PageModel
             AuthorDTO = _service.GetAuthorDtoByEmail(User.Identity.Name);
             Username = AuthorDTO.Name;
             following = _service.GetFollowing(Username);
+            blocking = _service.GetBlocking(Username);
         }
         else
         {
@@ -52,6 +54,11 @@ public class UserProfileModel : PageModel
     public ActionResult OnPostToggleFollow(string self, string follow)
     {
         _service.ToggleFollow(self, follow);
+        return RedirectToPage();
+    }
+    public ActionResult OnPostToggleBlocking(string self, string follow)
+    {
+        _service.ToggleBlocking(self, follow);
         return RedirectToPage();
     }
 }

@@ -32,6 +32,8 @@ namespace Chirp.Infrastructure.Migrations
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
+                    AuthorId = table.Column<string>(type: "TEXT", nullable: true),
+                    AuthorId1 = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -50,6 +52,16 @@ namespace Chirp.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_AspNetUsers_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_AspNetUsers_AuthorId1",
+                        column: x => x.AuthorId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -159,30 +171,6 @@ namespace Chirp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuthorAuthor",
-                columns: table => new
-                {
-                    BlockingId = table.Column<string>(type: "TEXT", nullable: false),
-                    FollowingId = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AuthorAuthor", x => new { x.BlockingId, x.FollowingId });
-                    table.ForeignKey(
-                        name: "FK_AuthorAuthor_AspNetUsers_BlockingId",
-                        column: x => x.BlockingId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AuthorAuthor_AspNetUsers_FollowingId",
-                        column: x => x.FollowingId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cheeps",
                 columns: table => new
                 {
@@ -235,15 +223,20 @@ namespace Chirp.Infrastructure.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_AuthorId",
+                table: "AspNetUsers",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_AuthorId1",
+                table: "AspNetUsers",
+                column: "AuthorId1");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AuthorAuthor_FollowingId",
-                table: "AuthorAuthor",
-                column: "FollowingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cheeps_AuthorId",
@@ -268,9 +261,6 @@ namespace Chirp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "AuthorAuthor");
 
             migrationBuilder.DropTable(
                 name: "Cheeps");

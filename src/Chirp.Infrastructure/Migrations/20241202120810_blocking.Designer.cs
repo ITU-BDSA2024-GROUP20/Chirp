@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Infrastructure.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241202100453_blocking")]
+    [Migration("20241202120810_blocking")]
     partial class blocking
     {
         /// <inheritdoc />

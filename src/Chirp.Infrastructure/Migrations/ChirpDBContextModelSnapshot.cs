@@ -17,6 +17,21 @@ namespace Chirp.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0-rc.2.24474.1");
 
+            modelBuilder.Entity("AuthorAuthor", b =>
+                {
+                    b.Property<string>("BlockingId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FollowingId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BlockingId", "FollowingId");
+
+                    b.HasIndex("FollowingId");
+
+                    b.ToTable("AuthorAuthor");
+                });
+
             modelBuilder.Entity("Chirp.Infrastructure.Cheep", b =>
                 {
                     b.Property<int>("CheepId")
@@ -25,6 +40,7 @@ namespace Chirp.Infrastructure.Migrations
 
                     b.Property<string>("AuthorId")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
@@ -251,16 +267,27 @@ namespace Chirp.Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasDiscriminator().HasValue("Author");
+                });
+
+            modelBuilder.Entity("AuthorAuthor", b =>
+                {
+                    b.HasOne("Chirp.Infrastructure.Author", null)
+                        .WithMany()
+                        .HasForeignKey("BlockingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Chirp.Infrastructure.Author", null)
+                        .WithMany()
+                        .HasForeignKey("FollowingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Chirp.Infrastructure.Cheep", b =>
@@ -327,16 +354,7 @@ namespace Chirp.Infrastructure.Migrations
 
             modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
                 {
-                    b.HasOne("Chirp.Infrastructure.Author", null)
-                        .WithMany("Following")
-                        .HasForeignKey("AuthorId");
-                });
-
-            modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
-                {
                     b.Navigation("Cheeps");
-
-                    b.Navigation("Following");
                 });
 #pragma warning restore 612, 618
         }

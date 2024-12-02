@@ -24,7 +24,7 @@ public class Author : IdentityUser
     public required string Name { get; set; }
     public required ICollection<Cheep> Cheeps { get; set; }
     public required ICollection<Author> Following { get; set; }
-    //public required ICollection<Author> Blocking { get; set; }
+    public required ICollection<Author> Blocking { get; set; }
 }
 
 

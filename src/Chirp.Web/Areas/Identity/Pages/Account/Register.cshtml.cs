@@ -79,6 +79,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
             [Display(Name = "Username")]
             public string Username { get; set; }
             

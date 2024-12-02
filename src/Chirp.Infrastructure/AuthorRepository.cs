@@ -77,10 +77,7 @@ public class AuthorRepository : IAuthorRepository
         author.ConcurrencyStamp = "[DELETED]";
         author.NormalizedEmail = "[DELETED " + author.Id + "]";
         author.NormalizedUserName = "[DELETED " + author.Id + "]";
-        if (author.Following != null)
-        {
-            author.Following.Clear();
-        }
+        author.Following.Clear();
         service.SaveChanges();
     }
 
@@ -107,7 +104,7 @@ public class AuthorRepository : IAuthorRepository
         var query = (
             from author in service.Authors
             where author.Email == email
-            select author
+            select new {author.Name, author.UserName}
         );
         AuthorDTO authordto = new AuthorDTO();
         var result = query.ToList();
@@ -151,11 +148,7 @@ public class AuthorRepository : IAuthorRepository
             return;
         Author authorToFollow = GetAuthorByName(other);
         Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
-        if (authorSelf.Following.Contains(authorToFollow))
+        if (isFollowing(self, other))
         {
             authorSelf.Following.Remove(authorToFollow);
         }
@@ -169,10 +162,6 @@ public class AuthorRepository : IAuthorRepository
     public bool isFollowing(string self, string other)
     {
         Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
         Author authorToFollow = GetAuthorByName(other);
         return authorSelf.Following.Contains(authorToFollow);
     }
@@ -193,17 +182,59 @@ public class AuthorRepository : IAuthorRepository
             from follow in author.Following
             where author.Name == self
             orderby follow.Name
-            select new { follow.Name });
+            select new { follow.Name, follow.Email });
         var result = query.ToList();
         foreach (var follow in result)
         {
             var author = new AuthorDTO();
             author.Name = follow.Name;
+            author.Email = follow.Email;
             following.Add(author);
         }
         return following;
     }
-    
+
+    public void ToggleBlocking(string self, string other)
+    {
+        if (isSelf(self, other))
+            return;
+        Author authorToFollow = GetAuthorByName(other);
+        Author authorSelf = GetAuthorByName(self);
+        if (isBlocking(self , other))
+        {
+            authorSelf.Blocking.Remove(authorToFollow);
+        }
+        else
+        {
+            authorSelf.Blocking.Add(authorToFollow);
+        }
+        service.SaveChanges();
+    }
+
+    public bool isBlocking(string self, string other)
+    {
+        Author authorSelf = GetAuthorByName(self);
+        Author authorblocking = GetAuthorByName(other);
+        return authorSelf.Blocking.Contains(authorblocking);
+    }
+    public List<AuthorDTO> GetBlocking(string self)
+    {
+        List<AuthorDTO> Blocking = new List<AuthorDTO>();
+        var query = (from author in service.Authors
+            from block in author.Blocking
+            where author.Name == self
+            orderby block.Name
+            select new { block.Name, block.Email });
+        var result = query.ToList();
+        foreach (var block in result)
+        {
+            var author = new AuthorDTO();
+            author.Name = block.Name;
+            author.Email = block.Email;
+            Blocking.Add(author);
+        }
+        return Blocking;
+    }
     
     
 }

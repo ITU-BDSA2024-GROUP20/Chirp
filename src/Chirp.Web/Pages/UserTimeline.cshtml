@@ -32,12 +32,12 @@
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
+                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.email, cheep.Email) && cheep.Author != "[DELETED]")
                                 {
                                     <form method="post">
 
                                         <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model._authorService.isFollowing(Model.Username, cheep.Author))
+                                            @if (Model._authorService.isFollowing(Model.email, cheep.Email))
                                             {
                                                 <span>UnFollow</span>
                                             }
@@ -46,15 +46,15 @@
                                                 <span>Follow</span>
                                             }
                                         </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
+                                        <input type="hidden" name="self" value="@Model.email"/>
+                                        <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleBlocking">
                                             <span>Block</span>
                                         </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
+                                        <input type="hidden" name="self" value="@Model.email"/>
+                                        <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
                                 }
                             </div>

@@ -13,13 +13,15 @@ public class PublicModel : PostablePage
         
         if (User.Identity.IsAuthenticated)
         {
-            Username = _authorService.GetAuthorDtoByEmail(User.Identity.Name).Name;
+            var temp = _authorService.GetAuthorDtoByEmail(User.Identity.Name);
+            Username = temp.Name;
+            email = temp.Email;
         }
 
         List<CheepDTO> _Cheeps;
         if (User.Identity.IsAuthenticated)
         {
-            _Cheeps = _cheepService.ReadCheep( page*32 ,null, Username);
+            _Cheeps = _cheepService.ReadCheep( page*32 ,null, email);
         }
         else
         {

@@ -19,12 +19,23 @@ public class UserTimelineModel : PostablePage
     {
         if (User.Identity.IsAuthenticated)
         {
-            Username = _authorService.GetAuthorDtoByEmail(User.Identity.Name).Name;
+            var temp = _authorService.GetAuthorDtoByEmail(User.Identity.Name);
+            Username = temp.Name;
+            email = temp.Email;
         }
         if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]) > 0) 
             page =Int32.Parse( Request.Query["page"])-1;
+        List<CheepDTO> _Cheeps = _authorService.AuthorCheep(page * 32, author, null);
+        if (User.Identity.IsAuthenticated)
+        { 
+            _Cheeps = _authorService.AuthorCheep(page * 32, author, email);
+        }
+        else
+        {
+            _Cheeps = _authorService.AuthorCheep(page * 32, author, null);
+        }
         
-        List<CheepDTO> _Cheeps = _authorService.AuthorCheep(page * 32, author, Username);
+        
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         

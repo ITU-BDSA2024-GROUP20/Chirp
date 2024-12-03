@@ -30,23 +30,23 @@ public class UserProfileModel : PageModel
         {
             AuthorDTO = _service.GetAuthorDtoByEmail(User.Identity.Name);
             Username = AuthorDTO.Name;
-            following = _service.GetFollowing(Username);
-            blocking = _service.GetBlocking(Username);
+            following = _service.GetFollowing(AuthorDTO.Email);
+            blocking = _service.GetBlocking(AuthorDTO.Email);
         }
         else
         {
             return LocalRedirect("/");
         }
         
-        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, Username, null);
+        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, AuthorDTO.Email, null);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         return Page();
     }
     
-    public async Task<IActionResult> OnPostDeleteUser(string username)
+    public async Task<IActionResult> OnPostDeleteUser()
     {
-        _service.DeleteAuthor(username); // Anon user
+        _service.DeleteAuthor(AuthorDTO.Email); // Anon user
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main
     }

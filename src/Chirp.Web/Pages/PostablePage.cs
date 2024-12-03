@@ -13,6 +13,7 @@ public class PostablePage : PageModel
     public List<CheepDTO> Cheeps { get; set; }
     
     public String Username { get; set; }
+    public string email { get; set; }
     
     [BindProperty]
     public CheepDTO cheepDTO { get; set; }

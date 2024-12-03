@@ -58,7 +58,7 @@ public class CheepRepository : ICheepRepository
     
     
     
-    public List<CheepDTO> ReadCheep(int page, string? userName = null, string? self = null)
+    public List<CheepDTO> ReadCheep(int page, string? userName = null, string? selfEmail = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
         
@@ -67,12 +67,12 @@ public class CheepRepository : ICheepRepository
                 orderby message.TimeStamp descending 
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
             
-            if (self != null)
+            if (selfEmail != null)
             {
                 query = (from message in service.Cheeps
                     join author in service.Authors on message.AuthorId equals author.Id
                     where  !(from aut in service.Authors
-                            where aut.Name == self
+                            where aut.Email == selfEmail
                             from blocks in aut.Blocking
                             select  blocks.Id 
                         ).Contains(message.AuthorId)

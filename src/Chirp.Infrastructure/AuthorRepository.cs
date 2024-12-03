@@ -14,23 +14,28 @@ public class AuthorRepository : IAuthorRepository
         this.signInManager = signInManager;
     }
 
-    public List<CheepDTO> AuthorCheep(int page, string userName, string self)
+    public List<CheepDTO> AuthorCheep(int page, string user, string selfemail)
     {
+        if (!(user.Contains("@")))
+        {
+            user = GetAuthorDtoByName(user).Email;
+        }
+
         List<CheepDTO> cheeps = new List<CheepDTO>();
         var query = (from author in service.Authors
                 from message in author.Cheeps
-                where author.Name == userName
+                where author.Email == user
                 orderby message.TimeStamp descending
                 select new { author.Name, message.Text, message.TimeStamp, author.Email }
             );
-        if (self != null && self.Equals(userName))
+        if (selfemail != null && selfemail.Equals(user))
         {
             query = (from author in service.Authors
-                where author.Name == userName
+                where author.Email == selfemail
                 from authors in author.Following
                 from cheep in authors.Cheeps
                 where  !(from aut in service.Authors
-                        where aut.Name == userName
+                        where aut.Email == selfemail
                         from blocks in aut.Blocking
                         select  blocks.Id 
                     ).Contains(cheep.AuthorId)
@@ -60,14 +65,14 @@ public class AuthorRepository : IAuthorRepository
     /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
     /// However, their username, name, and email will be anonymised and who they followed.
     /// </summary>
-    public async void DeleteAuthor(string username)
+    public async void DeleteAuthor(string email)
     {
         var info = await signInManager.GetExternalLoginInfoAsync();
-        Author author = GetAuthorByName(username);
+        Author author = GetAuthorByEmail(email);
         if (info != null)
         {
-             signInManager.UserManager.RemoveLoginAsync(author,
-                info.LoginProvider, info.ProviderKey);
+             await signInManager.UserManager.RemoveLoginAsync(author,
+                 info.LoginProvider, info.ProviderKey);
         }
         author.Name = "[DELETED]";
         author.Email = "[DELETED]";
@@ -77,10 +82,7 @@ public class AuthorRepository : IAuthorRepository
         author.ConcurrencyStamp = "[DELETED]";
         author.NormalizedEmail = "[DELETED " + author.Id + "]";
         author.NormalizedUserName = "[DELETED " + author.Id + "]";
-        if (author.Following != null)
-        {
-            author.Following.Clear();
-        }
+        author.Following.Clear();
         service.SaveChanges();
     }
 
@@ -145,19 +147,15 @@ public class AuthorRepository : IAuthorRepository
         return query.First();
     }
 
-    public void ToggleFollow(string self, string other)
+    public void ToggleFollow(string selfEmail, string otherEmail)
     {
-        if (isSelf(self, other))
+        if (isSelf(selfEmail, otherEmail))
             return;
-        Author authorToFollow = GetAuthorByName(other);
-        Author authorself = GetAuthorByName(self);
+        Author authorToFollow = GetAuthorByEmail(otherEmail);
+        Author authorself = GetAuthorByEmail(selfEmail);
+        
 
-        if (authorself.Following == null)
-        {
-            authorself.Following = new List<Author>();
-        }
-
-        if (isFollowing(self, other))
+        if (isFollowing(selfEmail, otherEmail))
         {
             authorself.Following.Remove(authorToFollow);
         }
@@ -169,33 +167,33 @@ public class AuthorRepository : IAuthorRepository
         service.SaveChanges();
     }
 
-    public bool isFollowing(string self, string other)
+    public bool isFollowing(string selfEmail, string otherEmail)
     {
         var query = (from author in service.Authors
-                where author.Name == self
+                where author.Email == selfEmail
                 from follow in author.Following
-                where follow.Name == other
+                where follow.Email == otherEmail
                 select follow
             );
         var result = query.ToList();
         return result.Count > 0;
     }
 
-    public bool isSelf(string self, string other)
+    public bool isSelf(string selfEmail, string otherEmail)
     {
-        Author authorToFollow = GetAuthorByName(other);
-        Author authorSelf = GetAuthorByName(self);
+        Author authorToFollow = GetAuthorByEmail(otherEmail);
+        Author authorSelf = GetAuthorByEmail(selfEmail);
         if (authorToFollow.Equals(authorSelf))
             return true;
         return false;
     }
 
-    public List<AuthorDTO> GetFollowing(string self)
+    public List<AuthorDTO> GetFollowing(string selfEmail)
     {
         List<AuthorDTO> following = new List<AuthorDTO>();
         var query = (from author in service.Authors
             from follow in author.Following
-            where author.Name == self
+            where author.Email == selfEmail
             orderby follow.Name
             select new { follow.Name, follow.Email });
         var result = query.ToList();
@@ -209,44 +207,44 @@ public class AuthorRepository : IAuthorRepository
         return following;
     }
 
-    public void ToggleBlocking(string self, string other)
+    public void ToggleBlocking(string selfEmail, string otherEmail)
     {
-        if (isSelf(self, other))
+        if (isSelf(selfEmail, otherEmail))
             return;
-        Author authorToFollow = GetAuthorByName(other);
-        Author authorSelf = GetAuthorByName(self);
-        if (isBlocking(self , other))
+        Author authorToFollow = GetAuthorByEmail(otherEmail);
+        Author authorSelf = GetAuthorByEmail(selfEmail);
+        if (isBlocking(selfEmail , otherEmail))
         {
             authorSelf.Blocking.Remove(authorToFollow);
         }
         else
         {
             authorSelf.Blocking.Add(authorToFollow);
-            if (isFollowing(self, other))
+            if (isFollowing(selfEmail, otherEmail))
             {
-                ToggleFollow(self,other);
+                ToggleFollow(selfEmail,otherEmail);
             }
         }
         service.SaveChanges();
     }
 
-    public bool isBlocking(string self, string other)
+    public bool isBlocking(string selfEmail, string otherEmail)
     {
         var query = (from author in service.Authors
-                where author.Name == self
+                where author.Email == selfEmail
                 from block in author.Blocking
-                where block.Name == other
+                where block.Email == otherEmail
                 select block
             );
         var result = query.ToList();
         return result.Count > 0;
     }
-    public List<AuthorDTO> GetBlocking(string self)
+    public List<AuthorDTO> GetBlocking(string selfEmail)
     {
-        List<AuthorDTO> Blocking = new List<AuthorDTO>();
+        List<AuthorDTO> blocking = new List<AuthorDTO>();
         var query = (from author in service.Authors
             from block in author.Blocking
-            where author.Name == self
+            where author.Email == selfEmail
             orderby block.Name
             select new { block.Name, block.Email });
         var result = query.ToList();
@@ -255,9 +253,9 @@ public class AuthorRepository : IAuthorRepository
             var author = new AuthorDTO();
             author.Name = block.Name;
             author.Email = block.Email;
-            Blocking.Add(author);
+            blocking.Add(author);
         }
-        return Blocking;
+        return blocking;
     }
     
     

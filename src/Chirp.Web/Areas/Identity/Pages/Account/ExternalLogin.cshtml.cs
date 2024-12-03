@@ -34,6 +34,9 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         
         private readonly IAuthorRepository _service;
         public string Username { get; set; }
+        public bool UsernameTaken { get; set; }
+        public bool EmailTaken { get; set; }
+        
 
         public ExternalLoginModel(
             SignInManager<Author> signInManager,
@@ -84,13 +87,21 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [DataType(DataType.Text)]
+            [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
+            [RegularExpression(@"^[^@]*$", ErrorMessage = "The username cannot contain the '@' symbol.")]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+            
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
             [EmailAddress]
             public string Email { get; set; }
+            
+            public bool UsernameTakenIn { get; set; }
+            public bool EmailTakenIn { get; set; }
         }
         
 
@@ -142,6 +153,25 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             else if (info.Principal.Identity.Name != null &&   info.Principal.FindFirstValue(ClaimTypes.Email) != null)
             {
                 var user = CreateUser();
+                bool reload = false;
+                var existingUserByName = _service.GetAuthorDtoByName(info.Principal.Identity.Name);
+                if (existingUserByName.Name != null && existingUserByName.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The username is already taken.");
+                    UsernameTaken = true;
+                    reload = true;
+                }
+                var existingUserByEmail = _service.GetAuthorDtoByEmail(info.Principal.FindFirstValue(ClaimTypes.Email));
+                if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The Email is already taken.");
+                    EmailTaken = true;
+                    reload = true;
+                }
+                if (reload)
+                {
+                    return Page();
+                }
                 
                 user.Name = info.Principal.Identity.Name;
                 user.Cheeps = new List<Cheep>();
@@ -228,18 +258,62 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 ErrorMessage = "Error loading external login information during confirmation.";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
-
+            var usernameinput = info.Principal.Identity.Name;
+            var emailinput = info.Principal.FindFirstValue(ClaimTypes.Email);
             if (ModelState.IsValid)
             {
+                UsernameTaken = Input.UsernameTakenIn;
+                EmailTaken = Input.EmailTakenIn;
                 var user = CreateUser();
+                bool reload = false;
+                if (Input.Username != null)
+                {
+                    var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
+                    if (existingUserByName.Name != null && existingUserByName.Email != null)
+                    {
+                        ModelState.AddModelError(string.Empty, "The username is already taken.");
+                        reload = true;
+                    }
+                    else
+                    {
+                        usernameinput = Input.Username;
+                    }
+                    
+                }
+                else if (UsernameTaken)
+                {
+                    ModelState.AddModelError(string.Empty, "fill out username");
+                    reload = true;
+                }
+                if (Input.Email != null)
+                {
+                    var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email);
+                    if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
+                    {
+                        ModelState.AddModelError(string.Empty, "The Email is already taken.");
+                        reload = true;
+                    }
+                    else
+                    {
+                        emailinput = Input.Email;
+                    }
+                }else if (EmailTaken)
+                {
+                    ModelState.AddModelError(string.Empty, "fill out username");
+                    reload = true;
+                }
                 
-                user.Name = info.Principal.Identity.Name;
+                if (reload)
+                {
+                    return Page();
+                }
+                user.Name = usernameinput;
                 user.Cheeps = new List<Cheep>();
                 user.Following = new List<Author>();
                 user.Blocking = new List<Author>();
                 //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, emailinput, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, emailinput, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -270,7 +344,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
                         if (returnUrl == "/")
                         {
-                            returnUrl = "/"+user.Name;
+                            returnUrl = "/"+usernameinput;
                         }
                         return LocalRedirect(returnUrl);
                     }
@@ -284,7 +358,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             ProviderDisplayName = info.ProviderDisplayName;
             if (returnUrl == "/")
             {
-                returnUrl = "/"+info.Principal.Identity.Name;
+                returnUrl = "/"+usernameinput;
             }
             ReturnUrl = returnUrl;
             return Page();

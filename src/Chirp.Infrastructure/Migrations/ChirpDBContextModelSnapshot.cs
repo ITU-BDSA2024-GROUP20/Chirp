@@ -267,6 +267,9 @@ namespace Chirp.Infrastructure.Migrations
 
                     b.HasIndex("AuthorId1");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasDiscriminator().HasValue("Author");
                 });
 

@@ -20,12 +20,14 @@ public class Cheep
 
 public class Author : IdentityUser
 {
+    
     [StringLength(50)]
     public required string Name { get; set; }
 
     public required ICollection<Cheep> Cheeps { get; set; } = new List<Cheep>();
     public required ICollection<Author> Following { get; set; } = new List<Author>();
-    public required ICollection<Author> Blocking { get; set; } = new List<Author>(); }
+    public required ICollection<Author> Blocking { get; set; } = new List<Author>(); 
+}
 
 
 

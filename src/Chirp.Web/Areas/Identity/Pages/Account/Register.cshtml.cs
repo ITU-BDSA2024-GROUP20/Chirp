@@ -135,6 +135,21 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                bool reload = false;
+                var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
+                if (existingUserByName.Name != null && existingUserByName.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The username is already taken.");
+                    reload = true;
+                }
+                var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email);
+                if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The Email is already taken.");
+                    reload = true;
+                }
+                if (reload) return Page();
+                
                 var user = CreateUser();
                 user.Cheeps = new List<Cheep>();
                 user.Name = Input.Username;
@@ -143,6 +158,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
 
                 if (result.Succeeded)
                 {

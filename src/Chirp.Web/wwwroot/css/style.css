@@ -1,7 +1,13 @@
+html {
+    min-height: 100%;
+}
+
 body {
   background: #00A2F4;
+    background: linear-gradient(0deg, rgba(8,85,74,1) 0%, rgba(39,162,179,1) 50%, rgba(0,162,244,1) 80%);
   font-family: 'Consolas', monospace;
   font-size: 14px;
+    min-height: 100%;
 }
 
 a {
@@ -142,7 +148,6 @@ div.page ul.cheeps li {
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  height: 78px;
 }
 
 div.page ul.cheeps p {
@@ -157,7 +162,6 @@ div.page ul.cheeps li img {
 div.page ul.cheeps li small {
     font-size: 0.9em;
     color: #888;
-    vertical-align: bottom;
 }
 
 div.page div.cheepbox {

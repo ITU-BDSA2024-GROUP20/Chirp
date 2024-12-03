@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
-    var routeName = HttpContext.GetRouteValue("author");
+    string? routeName = (string?)HttpContext.GetRouteValue("author");
     int next = Model.page + 2;
     int previous = Model.page;
 }
@@ -11,17 +11,29 @@
 <div>
     @if (User.Identity is { IsAuthenticated: true })
     {
-    <div class="cheepbox">
-        <h3>What's on your mind @(Model.Username)?</h3>
-        <form method="post">
-            <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
-            <input type="submit" value="Share">
-        </form>
-    </div>
+        <div class="cheepbox">
+            <h3>What's on your mind @(Model.Username)?</h3>
+            <form method="post">
+                <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
+                <input type="submit" value="Share">
+            </form>
+        </div>
+        
+        @if(!Model.AuthorService.isSelf(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email) && routeName != "[DELETED]"){
+            <span style="float: right;">
+                <form method="post">
+                    <button class="button" asp-page-handler="ToggleBlocking">
+                        <span>Block</span>
+                    </button>
+                    <input type="hidden" name="self" value="@Model.Email"/>
+                    <input type="hidden" name="follow" value="@Model.AuthorService.GetAuthorDtoByName(routeName).Email"/>
+                </form>
+            </span>
+        }
     }
     
     <h2> @routeName's Timeline </h2>
-
+    
     @if (Model.Cheeps.Any())
     {
         <ul id="messagelist" class="cheeps">

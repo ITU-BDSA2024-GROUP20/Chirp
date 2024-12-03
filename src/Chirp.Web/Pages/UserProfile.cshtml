@@ -15,10 +15,11 @@
                     <button asp-page-handler="DeleteUser">
                         Forget me!
                     </button>
+                    <input type="hidden" name="email" value="@Model.Email"/>
                 </form>
             </span>
             <h2>User: @Model.Username</h2>
-            <h2>Email: [ @Model.AuthorDTO.Email ]</h2>
+            <h2>Email: [ @Model.Email ]</h2>
         </div>
         <div>
             @if (Model.following.Any())
@@ -34,7 +35,7 @@
                                     <button class="button" asp-page-handler="ToggleFollow" style="transform: translateY(25%);">
                                         UnFollow
                                     </button>
-                                    <input type="hidden" name="self" value="@Model.AuthorDTO.Email"/>
+                                    <input type="hidden" name="self" value="@Model.Email"/>
                                     <input type="hidden" name="follow" value="@author.Email"/>
                                 </form>
                             </span>
@@ -60,7 +61,7 @@
                                     <button class="button" asp-page-handler="ToggleBlocking" style="transform: translateY(25%);">
                                         UnBlock
                                     </button>
-                                    <input type="hidden" name="self" value="@Model.AuthorDTO.Email"/>
+                                    <input type="hidden" name="self" value="@Model.Email"/>
                                     <input type="hidden" name="follow" value="@author.Email"/>
                                 </form>
                                 

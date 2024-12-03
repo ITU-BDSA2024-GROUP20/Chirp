@@ -3,14 +3,16 @@ using Chirp.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace Chirp.Razor.Pages;
 
 public class UserProfileModel : PageModel
 {
     public IAuthorRepository _service;
-    public AuthorDTO AuthorDTO { get; set; }
+    
     public string Username { get; set; }
+    public string Email { get; set; }
     public List<CheepDTO> Cheeps { get; set; }
     
     SignInManager<Author> _signInManager;
@@ -28,25 +30,26 @@ public class UserProfileModel : PageModel
     {
         if (User.Identity.IsAuthenticated)
         {
-            AuthorDTO = _service.GetAuthorDtoByEmail(User.Identity.Name);
-            Username = AuthorDTO.Name;
-            following = _service.GetFollowing(AuthorDTO.Email);
-            blocking = _service.GetBlocking(AuthorDTO.Email);
+            var authorDto = _service.GetAuthorDtoByEmail(User.Identity.Name);
+            Username = authorDto.Name;
+            Email = authorDto.Email;
+            following = _service.GetFollowing(authorDto.Email);
+            blocking = _service.GetBlocking(authorDto.Email);
         }
         else
         {
             return LocalRedirect("/");
         }
-        
-        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, AuthorDTO.Email, null);
+        Console.WriteLine();
+        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, Email, null);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         return Page();
     }
     
-    public async Task<IActionResult> OnPostDeleteUser()
+    public async Task<IActionResult> OnPostDeleteUser(string email)
     {
-        _service.DeleteAuthor(AuthorDTO.Email); // Anon user
+        _service.DeleteAuthor(email); // Anon user
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main
     }

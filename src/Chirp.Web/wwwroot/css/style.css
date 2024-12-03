@@ -3,7 +3,6 @@ html {
 }
 
 body {
-  background: #00A2F4;
     background: linear-gradient(0deg, rgba(8,85,74,1) 0%, rgba(39,162,179,1) 50%, rgba(0,162,244,1) 80%);
   font-family: 'Consolas', monospace;
   font-size: 14px;
@@ -11,7 +10,8 @@ body {
 }
 
 a {
-  color: #066999;
+    color: #066999;
+    font-size: medium;
 }
 
 a:hover {

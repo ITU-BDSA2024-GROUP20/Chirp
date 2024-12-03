@@ -11,14 +11,18 @@ body {
 }
 
 a {
-  color: #26776F;
+  color: #066999;
 }
 
 a:hover {
-  color: #333;
+  color: #000325;
 }
 
 b {
+    color: white;
+}
+
+.text-info {
     color: white;
 }
 
@@ -54,9 +58,8 @@ input[type="submit"] {
 
 div.page {
   background: #00A2F4;
-  border: 1px solid #00A2F4;
   width: 700px;
-  margin: 30px auto;
+  margin: 10px auto;
 }
 
 div.page > h1 {

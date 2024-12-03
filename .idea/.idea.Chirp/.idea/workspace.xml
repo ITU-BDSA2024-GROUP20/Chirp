@@ -13,11 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7480791-5f70-49c4-b41f-92940a67d30b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Login.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Logout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Logout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Register.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" afterDir="false" />
     </list>
@@ -156,7 +151,7 @@
       <workItem from="1733214364318" duration="1235000" />
       <workItem from="1733216974769" duration="3593000" />
       <workItem from="1733227769954" duration="2127000" />
-      <workItem from="1733230086488" duration="1383000" />
+      <workItem from="1733230086488" duration="2093000" />
     </task>
     <servers />
   </component>

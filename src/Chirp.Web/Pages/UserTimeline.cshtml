@@ -23,7 +23,15 @@
             <span style="float: right;">
                 <form method="post">
                     <button class="button" asp-page-handler="ToggleBlocking">
-                        <span>Block</span>
+                        @if (Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
+                        {
+                            <span>Block</span>
+                        }
+                        else
+                        {
+                            <span>UnBlock</span>
+                        }
+                        
                     </button>
                     <input type="hidden" name="self" value="@Model.Email"/>
                     <input type="hidden" name="follow" value="@Model.AuthorService.GetAuthorDtoByName(routeName).Email"/>
@@ -41,7 +49,7 @@
             {
                 <li>
                     <p>
-                        <div>
+                        <div style="float: right">
                             @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
                             {
                                 <form method="post">

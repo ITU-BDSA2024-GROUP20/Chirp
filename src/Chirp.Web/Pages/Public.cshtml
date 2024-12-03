@@ -28,7 +28,7 @@
             {
                 <li>
                     <p>
-                        <div style="width: 100px; float: right">
+                        <div style="float: right">
                             @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
                             {
                                 <span style="float: right;">

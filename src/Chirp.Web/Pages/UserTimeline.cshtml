@@ -99,13 +99,22 @@
         }
         else
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
+            <a  class="button" style="text-decoration: none">
                 <button style="color: white; background-color: dimgrey">◀</button>
             </a>
         }
         <b>@(previous+1)</b>
-        <a href="?page=@next" class="button" style="text-decoration: none">
-            <button style="color: white;">▶</button>
-        </a>
+        @if (Model.Cheeps.Count() == 32 && Model.nextPageExits)
+        {
+            <a href="?page=@next" class="button" style="text-decoration: none;">
+                <button style="color: white;">▶</button>
+            </a>
+        }
+        else
+        {
+            <a class="button" style="text-decoration: none">
+                <button style="color: white; background-color: dimgrey">▶</button>
+            </a>
+        }
     </div>
 </div>

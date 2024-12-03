@@ -25,10 +25,19 @@ public class UserTimelineModel : PostablePage
         }
         if (!string.IsNullOrEmpty(Request.Query["page"]) && int.Parse( Request.Query["page"]!) > 0) 
             page =int.Parse( Request.Query["page"]!)-1;
-        var cheeps = AuthorService.AuthorCheep(page * 32, author, User.Identity is { IsAuthenticated: true } ? Email : null);
-
-
-        Cheeps = cheeps.TakeLast(32).ToList();
+        List<CheepDTO> cheeps;
+        if (User.Identity is { IsAuthenticated: true })
+        {
+            cheeps = AuthorService.AuthorCheep(page * 32, author, Email);
+            nextPageExits = AuthorService.AuthorCheep((page+1) * 32, author, Email).Count > 0;
+        }
+        else
+        {
+            cheeps = AuthorService.AuthorCheep(page * 32, author, null);
+            nextPageExits = AuthorService.AuthorCheep((page+1) * 32, author, null).Count > 0;
+        }
+        
+        Cheeps = cheeps;
         
         
         return Page();

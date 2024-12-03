@@ -31,16 +31,16 @@ public class PublicModel : PostablePage
         if (User.Identity is { IsAuthenticated: true })
         {
             cheeps = CheepService.ReadCheep( page*32 ,null, Email);
+            nextPageExits = CheepService.ReadCheep((page+1) * 32, null, Email).Count != 0;
         }
         else
         {
             cheeps = CheepService.ReadCheep( page*32 ,null, null);
+            nextPageExits = CheepService.ReadCheep((page+1) * 32, null, null).Count != 0;
         }
         
-        
-        
-        
-        Cheeps = cheeps.TakeLast(32).ToList();
+
+        Cheeps = cheeps;
         
         
         return Page();

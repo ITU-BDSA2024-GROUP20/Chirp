@@ -18,6 +18,7 @@ public class PostablePage : PageModel
     public CheepDTO CheepDto { get; set; } = null!;
 
     public int page = 0;
+    public bool nextPageExits;
 
     public PostablePage (ICheepRepository cheepService, IAuthorRepository authorService)
     {

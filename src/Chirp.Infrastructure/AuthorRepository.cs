@@ -5,24 +5,24 @@ using Core;
 
 public class AuthorRepository : IAuthorRepository
 {
-    private ChirpDBContext service;
-    private SignInManager<Author> signInManager;
+    private readonly ChirpDBContext _service;
+    private readonly SignInManager<Author> _signInManager;
 
     public AuthorRepository(ChirpDBContext service, SignInManager<Author> signInManager)
     {
-        this.service = service;
-        this.signInManager = signInManager;
+        this._service = service;
+        this._signInManager = signInManager;
     }
 
-    public List<CheepDTO> AuthorCheep(int page, string user, string selfemail)
+    public List<CheepDTO> AuthorCheep(int page, string? user, string? selfemail)
     {
-        if (!(user.Contains("@")))
+        if (user != null && !(user.Contains("@")))
         {
             user = GetAuthorDtoByName(user).Email;
         }
 
         List<CheepDTO> cheeps = new List<CheepDTO>();
-        var query = (from author in service.Authors
+        var query = (from author in _service.Authors
                 from message in author.Cheeps
                 where author.Email == user
                 orderby message.TimeStamp descending
@@ -30,11 +30,11 @@ public class AuthorRepository : IAuthorRepository
             );
         if (selfemail != null && selfemail.Equals(user))
         {
-            query = (from author in service.Authors
+            query = (from author in _service.Authors
                 where author.Email == selfemail
                 from authors in author.Following
                 from cheep in authors.Cheeps
-                where  !(from aut in service.Authors
+                where  !(from aut in _service.Authors
                         where aut.Email == selfemail
                         from blocks in aut.Blocking
                         select  blocks.Id 
@@ -65,13 +65,13 @@ public class AuthorRepository : IAuthorRepository
     /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
     /// However, their username, name, and email will be anonymised and who they followed.
     /// </summary>
-    public async void DeleteAuthor(string email)
+    public async void DeleteAuthor(string? email)
     {
-        var info = await signInManager.GetExternalLoginInfoAsync();
+        var info = await _signInManager.GetExternalLoginInfoAsync();
         Author author = GetAuthorByEmail(email);
         if (info != null)
         {
-             await signInManager.UserManager.RemoveLoginAsync(author,
+             await _signInManager.UserManager.RemoveLoginAsync(author,
                  info.LoginProvider, info.ProviderKey);
         }
         author.Name = "[DELETED]";
@@ -83,13 +83,13 @@ public class AuthorRepository : IAuthorRepository
         author.NormalizedEmail = "[DELETED " + author.Id + "]";
         author.NormalizedUserName = "[DELETED " + author.Id + "]";
         author.Following.Clear();
-        service.SaveChanges();
+        _service.SaveChanges();
     }
 
-    public AuthorDTO GetAuthorDtoByName(string name)
+    public AuthorDTO GetAuthorDtoByName(string? name)
     {
         var query = (
-            from author in service.Authors
+            from author in _service.Authors
             where author.Name == name
             select new {author.Name, author.UserName}
         );
@@ -104,10 +104,10 @@ public class AuthorRepository : IAuthorRepository
         return authordto;
     }
 
-    public AuthorDTO GetAuthorDtoByEmail(string email)
+    public AuthorDTO GetAuthorDtoByEmail(string? email)
     {
         var query = (
-            from author in service.Authors
+            from author in _service.Authors
             where author.Email == email
             select new {author.Name, author.UserName}
         );
@@ -130,24 +130,24 @@ public class AuthorRepository : IAuthorRepository
     private Author GetAuthorByName(string name)
     {
         var query = (
-            from author in service.Authors
+            from author in _service.Authors
             where author.Name == name
             select author
             );
         return query.First();
     }
 
-    private Author GetAuthorByEmail(string email)
+    private Author GetAuthorByEmail(string? email)
     {
         var query = (
-            from author in service.Authors
+            from author in _service.Authors
             where author.Email == email
             select author
         );
         return query.First();
     }
 
-    public void ToggleFollow(string selfEmail, string otherEmail)
+    public void ToggleFollow(string? selfEmail, string? otherEmail)
     {
         if (isSelf(selfEmail, otherEmail))
             return;
@@ -163,13 +163,13 @@ public class AuthorRepository : IAuthorRepository
         {
             authorself.Following.Add(authorToFollow);
         }
-        service.Authors.Update(authorself);
-        service.SaveChanges();
+        _service.Authors.Update(authorself);
+        _service.SaveChanges();
     }
 
-    public bool isFollowing(string selfEmail, string otherEmail)
+    public bool isFollowing(string? selfEmail, string? otherEmail)
     {
-        var query = (from author in service.Authors
+        var query = (from author in _service.Authors
                 where author.Email == selfEmail
                 from follow in author.Following
                 where follow.Email == otherEmail
@@ -179,7 +179,7 @@ public class AuthorRepository : IAuthorRepository
         return result.Count > 0;
     }
 
-    public bool isSelf(string selfEmail, string otherEmail)
+    public bool isSelf(string? selfEmail, string? otherEmail)
     {
         Author authorToFollow = GetAuthorByEmail(otherEmail);
         Author authorSelf = GetAuthorByEmail(selfEmail);
@@ -188,10 +188,10 @@ public class AuthorRepository : IAuthorRepository
         return false;
     }
 
-    public List<AuthorDTO> GetFollowing(string selfEmail)
+    public List<AuthorDTO> GetFollowing(string? selfEmail)
     {
         List<AuthorDTO> following = new List<AuthorDTO>();
-        var query = (from author in service.Authors
+        var query = (from author in _service.Authors
             from follow in author.Following
             where author.Email == selfEmail
             orderby follow.Name
@@ -207,7 +207,7 @@ public class AuthorRepository : IAuthorRepository
         return following;
     }
 
-    public void ToggleBlocking(string selfEmail, string otherEmail)
+    public void ToggleBlocking(string? selfEmail, string? otherEmail)
     {
         if (isSelf(selfEmail, otherEmail))
             return;
@@ -225,12 +225,12 @@ public class AuthorRepository : IAuthorRepository
                 ToggleFollow(selfEmail,otherEmail);
             }
         }
-        service.SaveChanges();
+        _service.SaveChanges();
     }
 
-    public bool isBlocking(string selfEmail, string otherEmail)
+    public bool isBlocking(string? selfEmail, string? otherEmail)
     {
-        var query = (from author in service.Authors
+        var query = (from author in _service.Authors
                 where author.Email == selfEmail
                 from block in author.Blocking
                 where block.Email == otherEmail
@@ -239,10 +239,10 @@ public class AuthorRepository : IAuthorRepository
         var result = query.ToList();
         return result.Count > 0;
     }
-    public List<AuthorDTO> GetBlocking(string selfEmail)
+    public List<AuthorDTO> GetBlocking(string? selfEmail)
     {
         List<AuthorDTO> blocking = new List<AuthorDTO>();
-        var query = (from author in service.Authors
+        var query = (from author in _service.Authors
             from block in author.Blocking
             where author.Email == selfEmail
             orderby block.Name

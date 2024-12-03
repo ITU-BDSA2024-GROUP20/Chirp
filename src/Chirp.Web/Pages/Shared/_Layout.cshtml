@@ -12,7 +12,7 @@
     <h1><img src="/images/cheeper.png" alt="Chirp!"/>Chirp!</h1>
     
     <div class=navigation>
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity is { IsAuthenticated: true })
         {
             <div>
                 <a href="/">PUBLIC TIMELINE</a> | 

@@ -11,29 +11,36 @@ public class PublicModel : PostablePage
     public ActionResult OnGet()
     {   
         
-        if (User.Identity.IsAuthenticated)
+        if (User.Identity is { IsAuthenticated: true })
         {
-            var temp = _authorService.GetAuthorDtoByEmail(User.Identity.Name);
-            Username = temp.Name;
-            email = temp.Email;
+            if (User.Identity.Name != null)
+            {
+                var temp = AuthorService.GetAuthorDtoByEmail(User.Identity.Name);
+                Username = temp.Name;
+                Email = temp.Email;
+            }
         }
-        if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]) > 0) 
-            page =Int32.Parse( Request.Query["page"])-1;
-        
-        List<CheepDTO> _Cheeps;
-        if (User.Identity.IsAuthenticated)
+
+        if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]! ) > 0)
         {
-            _Cheeps = _cheepService.ReadCheep( page*32 ,null, email);
+            page =Int32.Parse( Request.Query["page"]!)-1;
+        }
+        
+        
+        List<CheepDTO> cheeps;
+        if (User.Identity is { IsAuthenticated: true })
+        {
+            cheeps = CheepService.ReadCheep( page*32 ,null, Email);
         }
         else
         {
-            _Cheeps = _cheepService.ReadCheep( page*32 ,null, null);
+            cheeps = CheepService.ReadCheep( page*32 ,null, null);
         }
         
         
         
         
-        Cheeps = _Cheeps.TakeLast(32).ToList();
+        Cheeps = cheeps.TakeLast(32).ToList();
         
         
         return Page();

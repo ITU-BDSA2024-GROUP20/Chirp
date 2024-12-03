@@ -8,12 +8,12 @@
 }
 
 <div>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity is { IsAuthenticated: true })
     {
         <div class="cheepbox">
             <h3>What's on your mind @(Model.Username)?</h3>
             <form method="post">
-                <input required style="float: left" type="text" asp-for="cheepDTO.Text" maxlength="160">
+                <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
                 <input type="submit" value="Share">
             </form>
         </div>
@@ -29,12 +29,12 @@
                 <li>
                     <p>
                         <div style="width: 100px; float: right">
-                            @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.email, cheep.Email) && cheep.Author != "[DELETED]")
+                            @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
                             {
                                 <span style="float: right;">
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model._authorService.isFollowing(Model.email, cheep.Email))
+                                            @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
                                             {
                                                 <span>UnFollow</span>
                                             }
@@ -43,7 +43,7 @@
                                                 <span>Follow</span>
                                             }
                                         </button>
-                                        <input type="hidden" name="self" value="@Model.email"/>
+                                        <input type="hidden" name="self" value="@Model.Email"/>
                                         <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
                                 </span>
@@ -52,7 +52,7 @@
                                         <button class="button" asp-page-handler="ToggleBlocking">
                                             <span>Block</span>
                                         </button>
-                                        <input type="hidden" name="self" value="@Model.email"/>
+                                        <input type="hidden" name="self" value="@Model.Email"/>
                                         <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
                                 </span>

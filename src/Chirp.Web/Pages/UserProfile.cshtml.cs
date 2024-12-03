@@ -9,39 +9,40 @@ namespace Chirp.Razor.Pages;
 
 public class UserProfileModel : PageModel
 {
-    public IAuthorRepository _service;
-    
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public List<CheepDTO> Cheeps { get; set; }
-    
+
+    public IAuthorRepository Service;
+    public string? Username { get; set; }
+    public string? Email { get; set; }
+    public List<CheepDTO> Cheeps { get; set; } = null!;
+
     SignInManager<Author> _signInManager;
-    public List<AuthorDTO> following { get; set; }
-    public List<AuthorDTO> blocking { get; set; }
-    
+    public List<AuthorDTO> Following { get; set; } = null!;
+    public List<AuthorDTO> Blocking { get; set; } = null!;
+
     public UserProfileModel(IAuthorRepository service, SignInManager<Author> signInManager)
     {
         _signInManager = signInManager;
-        _service = service;
+        Service = service;
     }
 
 
     public IActionResult OnGet()
     {
-        if (User.Identity.IsAuthenticated)
+        if (User.Identity is { IsAuthenticated: true })
         {
-            var authorDto = _service.GetAuthorDtoByEmail(User.Identity.Name);
+            var authorDto = Service.GetAuthorDtoByEmail(User.Identity.Name);
             Username = authorDto.Name;
             Email = authorDto.Email;
-            following = _service.GetFollowing(authorDto.Email);
-            blocking = _service.GetBlocking(authorDto.Email);
+            Following = Service.GetFollowing(authorDto.Email);
+            Blocking = Service.GetBlocking(authorDto.Email);
+
         }
         else
         {
             return LocalRedirect("/");
         }
         Console.WriteLine();
-        List<CheepDTO> _Cheeps = _service.AuthorCheep(0, Email, null);
+        List<CheepDTO> _Cheeps = Service.AuthorCheep(0, Email, null);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         return Page();
@@ -49,19 +50,19 @@ public class UserProfileModel : PageModel
     
     public async Task<IActionResult> OnPostDeleteUser(string email)
     {
-        _service.DeleteAuthor(email); // Anon user
+        Service.DeleteAuthor(email); // Anon user
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main
     }
     
-    public ActionResult OnPostToggleFollow(string self, string follow)
+    public ActionResult OnPostToggleFollow(string? self, string? follow)
     {
-        _service.ToggleFollow(self, follow);
+        Service.ToggleFollow(self, follow);
         return RedirectToPage();
     }
-    public ActionResult OnPostToggleBlocking(string self, string follow)
+    public ActionResult OnPostToggleBlocking(string? self, string? follow)
     {
-        _service.ToggleBlocking(self, follow);
+        Service.ToggleBlocking(self, follow);
         return RedirectToPage();
     }
 }

@@ -6,7 +6,7 @@
 }
 
 <div>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity is { IsAuthenticated: true })
     {
         <h1>About Me!</h1>
         <div>
@@ -22,12 +22,12 @@
             <h2>Email: [ @Model.Email ]</h2>
         </div>
         <div>
-            @if (Model.following.Any())
+            @if (Model.Following.Any())
             {
                 <hr style="border-top: 3px solid #bbbbbb">
-                <h2>Following: @Model.following.Count</h2>
+                <h2>Following: @Model.Following.Count</h2>
                 <ul id="messagelist" class="cheeps">
-                    @foreach (var author in Model.following)
+                    @foreach (var author in Model.Following)
                     {
                         <li style="height: 60px">
                             <span style="float: right">
@@ -48,12 +48,12 @@
             }
         </div>
         <div>
-            @if (Model.blocking.Any())
+            @if (Model.Blocking.Any())
             {
                 <hr style="border-top: 3px solid #bbbbbb">
-                <h2>Blocking: @Model.blocking.Count</h2>
+                <h2>Blocking: @Model.Blocking.Count</h2>
                 <ul id="messagelist" class="cheeps">
-                    @foreach (var author in Model.blocking)
+                    @foreach (var author in Model.Blocking)
                     {
                         <li>
                             <span style="float: right">

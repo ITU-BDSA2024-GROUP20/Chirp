@@ -1,5 +1,5 @@
 body {
-  background: #eccaca;
+  background: #000325;
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 14px;
 }
@@ -41,14 +41,14 @@ input[type="submit"] {
 }
 
 div.page {
-  background: white;
-  border: 1px solid #cc6e6e;
+  background: #00A2F4;
+  border: 1px solid #00A2F4;
   width: 700px;
   margin: 30px auto;
 }
 
 div.page > h1 {
-  background: #cc6e6e;
+  background: #00A2F4;
   margin: 0;
   padding: 10px 14px;
   color: white;
@@ -135,7 +135,7 @@ div.page ul.cheeps li {
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  min-height: 48px;
+  min-height: 78px;
 }
 
 div.page ul.cheeps p {
@@ -155,8 +155,8 @@ div.page ul.cheeps li small {
 div.page div.cheepbox {
   margin: 10px 0;
   padding: 5px;
-  background: #F0FAF9;
-  border: 1px solid #e29494;
+  background: #000325;
+  border: 1px solid #00A2F4;
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -165,7 +165,7 @@ div.page div.cheepbox {
 div.page div.cheepbox h3 {
   margin: 0;
   font-size: 1em;
-  color: #7e2c2c;
+  color: #00A2F4;
 }
 
 div.page div.cheepbox p {
@@ -251,7 +251,7 @@ form * {
 }
 
 button {
-    background-color: #cc6e6e;
+    background-color: #00A2F4;
     border: none;
     color: #000000;
     padding: 8px 16px;
@@ -261,7 +261,7 @@ button {
 }
 
 button:hover {
-    background-color: #8b4949;
+    background-color: #066999;
 }
 
 ul.nav {
@@ -269,7 +269,7 @@ ul.nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #cc6e6e;
+    background-color: #00A2F4;
 }
 
 ul.nav li {
@@ -285,5 +285,5 @@ ul.nav li a {
 }
 
 ul.nav li a:hover {
-    background-color: #8b4949;
+    background-color: #066999;
 }

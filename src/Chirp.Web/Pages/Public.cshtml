@@ -28,11 +28,11 @@
             {
                 <li>
                     <p>
-                        <strong>
-                            <div>
-                                <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
-                                {
+                        <div>
+                            @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
+                            {
+                                <div>
+                                    <span style="float: right;">
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleFollow">
                                             @if (Model._authorService.isFollowing(Model.Username, cheep.Author))
@@ -47,14 +47,25 @@
                                         <input type="hidden" name="self" value="@Model.Username"/>
                                         <input type="hidden" name="follow" value="@cheep.Author"/>
                                     </form>
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
-                                    </form>
-                                }
+                                </span>
+                                </div>
+                                
+                                <div>
+                                    <span style="float: right;">
+                                        <form method="post">
+                                            <button class="button" asp-page-handler="ToggleBlocking">
+                                                <span>Block</span>
+                                            </button>
+                                            <input type="hidden" name="self" value="@Model.Username"/>
+                                            <input type="hidden" name="follow" value="@cheep.Author"/>
+                                        </form>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                        <strong>
+                            <div>
+                                <a href="/@cheep.Author">@cheep.Author</a>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">

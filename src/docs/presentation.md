@@ -1,11 +1,8 @@
 <style>
-redColor { color: Red }
-
-hh { color: black; background-color: yellow }
+    hh { color: black; background-color: yellow; font-weight: bolder; padding: 3px }
 </style>
 
 # Presentation
-<redColor>ffff</redColor>
 >## Quick tour
 > - Register through GitHub
 > - Cheep a Cheep
@@ -50,5 +47,4 @@ hh { color: black; background-color: yellow }
 > ## Testing
 >
 
-<hh>[DELETED]</hh>
 Simon: Fix page buttons to not be able to proceed past a page with less than 32 cheeps.

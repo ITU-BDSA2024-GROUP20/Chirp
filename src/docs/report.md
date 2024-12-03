@@ -4,8 +4,8 @@ redColor { color: Red }
 
 https://www.markdownguide.org/cheat-sheet/
 
-<img src="image1.jpg" alt="drawing" width="200"/>
-<img src="image1.jpg" alt="drawing" width="200" height="150"/>
+<img src="cheeper.png" alt="drawing" width="200"/>
+<img src="cheeper.png" alt="drawing" width="200" height="150"/>
 
 # Design and Architecture of Chirp!
 

@@ -45,9 +45,21 @@
 >> Blocking and Following exclusion.
 
 > ## Testing
-> ### Unit test
-> >
-> ### Playwrigth test
-> 
+>> ### Unit test
+>> 
+>> - TestCreateCheepWithAuthor
+>> - TestReadCheep
+>> - TestReadCheepWithAuthor
+>> - TestGetAuthorByName
+>> - TestGetAuthorByEmail
+>
+>> ### Playwrigth test
+>> 
+>> - TestRegister
+>> - TestLogin
+>> - TestLogout
+>> - TestCheeping
+>> - TestLoginOnNewAccount
+>> - TestFollow
+>> - TestUnfollow
 
-Simon: Fix page buttons to not be able to proceed past a page with less than 32 cheeps.

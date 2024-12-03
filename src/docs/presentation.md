@@ -45,6 +45,9 @@
 >> Blocking and Following exclusion.
 
 > ## Testing
->
+> ### Unit test
+> >
+> ### Playwrigth test
+> 
 
 Simon: Fix page buttons to not be able to proceed past a page with less than 32 cheeps.

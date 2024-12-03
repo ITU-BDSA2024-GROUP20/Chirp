@@ -89,7 +89,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             [DataType(DataType.Text)]
             [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
-            [RegularExpression(@"^[^@]*$", ErrorMessage = "The username cannot contain the '@' symbol.")]
+            [RegularExpression(@"^(?!.*(?:@|\[|\]|DELETED)).*$", ErrorMessage = "The username cannot contain the '@' symbol.")]
             [Display(Name = "Username")]
             public string Username { get; set; }
             

@@ -74,7 +74,7 @@ public class AuthorRepository : IAuthorRepository
              await _signInManager.UserManager.RemoveLoginAsync(author,
                  info.LoginProvider, info.ProviderKey);
         }
-        author.Name = "[DELETED]";
+        author.Name = "[DELETED"+GenerateRandNum()+"]";
         author.Email = "[DELETED]";
         author.UserName = "[DELETED]";
         author.PasswordHash = "[DELETED]";
@@ -85,6 +85,18 @@ public class AuthorRepository : IAuthorRepository
         author.Following.Clear();
         _service.SaveChanges();
     }
+    
+    private string GenerateRandNum()
+    {
+        Random random = new Random();
+        string r = "";
+        for (int i = 0; i < 9; i++)
+        {
+            r += random.Next(0, 9).ToString();
+        }
+        return r;
+    }
+    
 
     public AuthorDTO GetAuthorDtoByName(string? name)
     {

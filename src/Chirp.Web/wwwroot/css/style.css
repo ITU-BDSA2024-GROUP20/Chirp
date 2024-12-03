@@ -1,6 +1,6 @@
 body {
-  background: #000325;
-  font-family: 'Trebuchet MS', sans-serif;
+  background: #00A2F4;
+  font-family: 'Consolas', monospace;
   font-size: 14px;
 }
 
@@ -12,32 +12,38 @@ a:hover {
   color: #333;
 }
 
+b {
+    color: white;
+}
+
 input[type="email"],
 input[type="text"],
 input[type="tel"],
 input[type="password"] {
     background: white;
-    border: 1px solid #e6c0bf;
+    border: 1px solid #00A2F4;
     padding: 2px;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Consolas', monospace;
     font-size: 14px;
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    color: #571010;
+    color: #066999;
+    height: 16px;
 }
 
 input[type="submit"] {
-  background: #571010;
-  border: 1px solid #3b0707;
-  padding: 1px 3px;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  color: white;
+    background: #00A2F4;
+    border: 1px solid #066999;
+    padding: 1px 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    color: white;
+    height: 22px;
 }
 
 div.page {
@@ -53,7 +59,7 @@ div.page > h1 {
   padding: 10px 14px;
   color: white;
   letter-spacing: 1px;
-  text-shadow: 0 0 3px #772424;
+  text-shadow: 0 0 3px #066999;
   font-weight: normal;
   font-size: 80px;
 }
@@ -96,12 +102,13 @@ div.page div.navigation form button {
 
 div.page h2 {
   margin: 0 0 15px 0;
-  color: #571010;
+  color: #00A2F4;
   text-shadow: 0 1px 2px #ccc;
 }
 
 div.page div.body {
-  padding: 10px;
+    padding: 10px;
+    background: #000325;
 }
 
 div.page div.footer {
@@ -135,7 +142,7 @@ div.page ul.cheeps li {
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  min-height: 78px;
+  height: 78px;
 }
 
 div.page ul.cheeps p {
@@ -148,8 +155,9 @@ div.page ul.cheeps li img {
 }
 
 div.page ul.cheeps li small {
-  font-size: 0.9em;
-  color: #888;
+    font-size: 0.9em;
+    color: #888;
+    vertical-align: bottom;
 }
 
 div.page div.cheepbox {

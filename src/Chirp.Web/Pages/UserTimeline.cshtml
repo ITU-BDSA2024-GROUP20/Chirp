@@ -70,9 +70,10 @@
     }
     else
     {
-        <em>There are no cheeps so far.</em>
+        <b>There are no cheeps so far.</b>
     }
-    <div>
+    <br/>
+    <div style="margin-inline: auto; max-width: fit-content">
         @if (previous > 0)
         {
             <a href="?page=@previous" class="button" style="text-decoration: none">
@@ -85,7 +86,7 @@
                 <button style="color: white; background-color: dimgrey">◀</button>
             </a>
         }
-        @(previous+1)
+        <b>@(previous+1)</b>
         <a href="?page=@next" class="button" style="text-decoration: none">
             <button style="color: white;">▶</button>
         </a>

@@ -14,18 +14,18 @@ public static class DbInitializer
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))
         {
             var usermanager = serviceProvider.GetRequiredService<UserManager<Author>>();
-            var a1 = new Author() { Id = "60d91d2d-f00e-426c-a181-0bb425956222", Name = "Roger Histand", UserName = "Roger+Histand@hotmail.com", Email = "Roger+Histand@hotmail.com", Cheeps = new List<Cheep>() };
-            var a2 = new Author() { Id = "9c91cc97-8cec-41ef-a240-c1f6363eea01", Name = "Luanna Muro", UserName = "Luanna-Muro@ku.dk", Email = "Luanna-Muro@ku.dk", Cheeps = new List<Cheep>() };
-            var a3 = new Author() { Id = "370c36a7-fb66-439a-9d45-c502461a1100", Name = "Wendell Ballan", UserName = "Wendell-Ballan@gmail.com", Email = "Wendell-Ballan@gmail.com", Cheeps = new List<Cheep>() };
-            var a4 = new Author() { Id = "3c4250d7-da37-45b3-bb15-1381a5b84781", Name = "Nathan Sirmon", UserName = "Nathan+Sirmon@dtu.dk", Email = "Nathan+Sirmon@dtu.dk", Cheeps = new List<Cheep>() };
-            var a5 = new Author() { Id = "5ff4926d-b841-4cd2-acc5-9985b320cb9f", Name = "Quintin Sitts", UserName = "Quintin+Sitts@itu.dk", Email = "Quintin+Sitts@itu.dk", Cheeps = new List<Cheep>() };
-            var a6 = new Author() { Id = "9b04987b-d571-485c-b493-ecbc9f40f2d8", Name = "Mellie Yost", UserName = "Mellie+Yost@ku.dk", Email = "Mellie+Yost@ku.dk", Cheeps = new List<Cheep>() };
-            var a7 = new Author() { Id = "3ad8d75f-fd16-4555-ab38-5230f1694ba5", Name = "Malcolm Janski", UserName = "Malcolm-Janski@gmail.com", Email = "Malcolm-Janski@gmail.com", Cheeps = new List<Cheep>() };
-            var a8 = new Author() { Id = "f57710a5-71cc-4e8c-bc50-ba61ce6669c6", Name = "Octavio Wagganer", UserName = "Octavio.Wagganer@dtu.dk", Email = "Octavio.Wagganer@dtu.dk", Cheeps = new List<Cheep>() };
-            var a9 = new Author() { Id = "cea215b4-c51c-440e-8fd2-35969c8d825c", Name = "Johnnie Calixto", UserName = "Johnnie+Calixto@itu.dk", Email = "Johnnie+Calixto@itu.dk", Cheeps = new List<Cheep>() };
-            var a10 = new Author() { Id = "26665e10-778c-4623-a172-54b0e0adc72b", Name = "Jacqualine Gilcoine", UserName = "Jacqualine.Gilcoine@gmail.com", Email = "Jacqualine.Gilcoine@gmail.com", Cheeps = new List<Cheep>() };
-            var a11 = new Author() { Id = "bc14be86-0984-4ab0-8d0a-0f3b90bb5c2e", Name = "Helge", UserName = "ropf@itu.dk", Email = "ropf@itu.dk", Cheeps = new List<Cheep>()};
-            var a12 = new Author() { Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a", Name = "Adrian", UserName = "adho@itu.dk", Email = "adho@itu.dk", Cheeps = new List<Cheep>()};
+            var a1 = new Author() { Id = "60d91d2d-f00e-426c-a181-0bb425956222", Name = "Roger Histand", UserName = "Roger+Histand@hotmail.com", Email = "Roger+Histand@hotmail.com", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a2 = new Author() { Id = "9c91cc97-8cec-41ef-a240-c1f6363eea01", Name = "Luanna Muro", UserName = "Luanna-Muro@ku.dk", Email = "Luanna-Muro@ku.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a3 = new Author() { Id = "370c36a7-fb66-439a-9d45-c502461a1100", Name = "Wendell Ballan", UserName = "Wendell-Ballan@gmail.com", Email = "Wendell-Ballan@gmail.com", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a4 = new Author() { Id = "3c4250d7-da37-45b3-bb15-1381a5b84781", Name = "Nathan Sirmon", UserName = "Nathan+Sirmon@dtu.dk", Email = "Nathan+Sirmon@dtu.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a5 = new Author() { Id = "5ff4926d-b841-4cd2-acc5-9985b320cb9f", Name = "Quintin Sitts", UserName = "Quintin+Sitts@itu.dk", Email = "Quintin+Sitts@itu.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a6 = new Author() { Id = "9b04987b-d571-485c-b493-ecbc9f40f2d8", Name = "Mellie Yost", UserName = "Mellie+Yost@ku.dk", Email = "Mellie+Yost@ku.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a7 = new Author() { Id = "3ad8d75f-fd16-4555-ab38-5230f1694ba5", Name = "Malcolm Janski", UserName = "Malcolm-Janski@gmail.com", Email = "Malcolm-Janski@gmail.com", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a8 = new Author() { Id = "f57710a5-71cc-4e8c-bc50-ba61ce6669c6", Name = "Octavio Wagganer", UserName = "Octavio.Wagganer@dtu.dk", Email = "Octavio.Wagganer@dtu.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a9 = new Author() { Id = "cea215b4-c51c-440e-8fd2-35969c8d825c", Name = "Johnnie Calixto", UserName = "Johnnie+Calixto@itu.dk", Email = "Johnnie+Calixto@itu.dk", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a10 = new Author() { Id = "26665e10-778c-4623-a172-54b0e0adc72b", Name = "Jacqualine Gilcoine", UserName = "Jacqualine.Gilcoine@gmail.com", Email = "Jacqualine.Gilcoine@gmail.com", Cheeps = new List<Cheep>() , Following = new List<Author>(), Blocking = new List<Author>()};
+            var a11 = new Author() { Id = "bc14be86-0984-4ab0-8d0a-0f3b90bb5c2e", Name = "Helge", UserName = "ropf@itu.dk", Email = "ropf@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocking = new List<Author>()};
+            var a12 = new Author() { Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a", Name = "Adrian", UserName = "adho@itu.dk", Email = "adho@itu.dk", Cheeps = new List<Cheep>(), Following = new List<Author>(), Blocking = new List<Author>()};
 
             usermanager.CreateAsync(a1, "Password1!");
             usermanager.CreateAsync(a2, "Password1!");

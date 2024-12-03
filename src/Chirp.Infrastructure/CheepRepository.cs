@@ -32,7 +32,7 @@ public class CheepRepository : ICheepRepository
                 from aut in service.Authors
                 where aut.Email == newCheep.Email
                 select aut);
-            var author = query.FirstOrDefault();
+            var author = query.First();
             
             if (author.Cheeps == null)
                 author.Cheeps = new List<Cheep>();
@@ -66,6 +66,19 @@ public class CheepRepository : ICheepRepository
                 join author in service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            
+            if (self != null)
+            {
+                query = (from message in service.Cheeps
+                    join author in service.Authors on message.AuthorId equals author.Id
+                    where  !(from aut in service.Authors
+                            where aut.Name == self
+                            from blocks in aut.Blocking
+                            select  blocks.Id 
+                        ).Contains(message.AuthorId)
+                    orderby message.TimeStamp descending 
+                    select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            }
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {

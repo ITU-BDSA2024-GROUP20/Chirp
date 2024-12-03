@@ -47,6 +47,33 @@
                 </ul>
             }
         </div>
+        <div>
+            @if (Model.blocking.Any())
+            {
+                <hr style="border-top: 3px solid #bbbbbb">
+                <h2>Blocking: @Model.blocking.Count</h2>
+                <ul id="messagelist" class="cheeps">
+                    @foreach (var author in Model.blocking)
+                    {
+                        <li>
+                            <span style="float: right">
+                                <form method="post">
+                                    <button class="button" asp-page-handler="ToggleBlocking" style="transform: translateY(25%);">
+                                        UnBlock
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Username"/>
+                                    <input type="hidden" name="follow" value="@author.Name"/>
+                                </form>
+                                
+                            </span>
+                            <h3>
+                                <a href="/@author.Name">@author.Name</a>
+                            </h3>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
         @if (Model.Cheeps.Any())
         {
             <hr style="border-top: 3px solid #bbbbbb">

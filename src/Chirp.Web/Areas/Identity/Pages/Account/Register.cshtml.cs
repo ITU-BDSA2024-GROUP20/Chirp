@@ -79,6 +79,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
             [Display(Name = "Username")]
             public string Username { get; set; }
             
@@ -137,6 +138,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 user.Cheeps = new List<Cheep>();
                 user.Name = Input.Username;
                 user.Following = new List<Author>();
+                user.Blocking = new List<Author>();
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

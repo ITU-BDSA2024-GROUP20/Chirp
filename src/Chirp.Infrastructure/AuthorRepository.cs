@@ -29,9 +29,9 @@ public class AuthorRepository : IAuthorRepository
                 where author.Name == userName
                 from authors in author.Following
                 from cheep in authors.Cheeps
-                where  (from aut in service.Authors
+                where  !(from aut in service.Authors
                         where aut.Name == userName
-                        from blocks in aut.Following
+                        from blocks in aut.Blocking
                         select  blocks.Id 
                     ).Contains(cheep.AuthorId)
                 orderby cheep.TimeStamp descending
@@ -107,7 +107,7 @@ public class AuthorRepository : IAuthorRepository
         var query = (
             from author in service.Authors
             where author.Email == email
-            select author
+            select new {author.Name, author.UserName}
         );
         AuthorDTO authordto = new AuthorDTO();
         var result = query.ToList();
@@ -150,31 +150,35 @@ public class AuthorRepository : IAuthorRepository
         if (isSelf(self, other))
             return;
         Author authorToFollow = GetAuthorByName(other);
-        Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
+        Author authorself = GetAuthorByName(self);
+
+        if (authorself.Following == null)
         {
-            authorSelf.Following = new List<Author>();
+            authorself.Following = new List<Author>();
         }
-        if (authorSelf.Following.Contains(authorToFollow))
+
+        if (isFollowing(self, other))
         {
-            authorSelf.Following.Remove(authorToFollow);
+            authorself.Following.Remove(authorToFollow);
         }
         else
         {
-            authorSelf.Following.Add(authorToFollow);
+            authorself.Following.Add(authorToFollow);
         }
+        service.Authors.Update(authorself);
         service.SaveChanges();
     }
 
     public bool isFollowing(string self, string other)
     {
-        Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
-        Author authorToFollow = GetAuthorByName(other);
-        return authorSelf.Following.Contains(authorToFollow);
+        var query = (from author in service.Authors
+                where author.Name == self
+                from follow in author.Following
+                where follow.Name == other
+                select follow
+            );
+        var result = query.ToList();
+        return result.Count > 0;
     }
 
     public bool isSelf(string self, string other)
@@ -193,17 +197,68 @@ public class AuthorRepository : IAuthorRepository
             from follow in author.Following
             where author.Name == self
             orderby follow.Name
-            select new { follow.Name });
+            select new { follow.Name, follow.Email });
         var result = query.ToList();
         foreach (var follow in result)
         {
             var author = new AuthorDTO();
             author.Name = follow.Name;
+            author.Email = follow.Email;
             following.Add(author);
         }
         return following;
     }
-    
+
+    public void ToggleBlocking(string self, string other)
+    {
+        if (isSelf(self, other))
+            return;
+        Author authorToFollow = GetAuthorByName(other);
+        Author authorSelf = GetAuthorByName(self);
+        if (isBlocking(self , other))
+        {
+            authorSelf.Blocking.Remove(authorToFollow);
+        }
+        else
+        {
+            authorSelf.Blocking.Add(authorToFollow);
+            if (isFollowing(self, other))
+            {
+                ToggleFollow(self,other);
+            }
+        }
+        service.SaveChanges();
+    }
+
+    public bool isBlocking(string self, string other)
+    {
+        var query = (from author in service.Authors
+                where author.Name == self
+                from block in author.Blocking
+                where block.Name == other
+                select block
+            );
+        var result = query.ToList();
+        return result.Count > 0;
+    }
+    public List<AuthorDTO> GetBlocking(string self)
+    {
+        List<AuthorDTO> Blocking = new List<AuthorDTO>();
+        var query = (from author in service.Authors
+            from block in author.Blocking
+            where author.Name == self
+            orderby block.Name
+            select new { block.Name, block.Email });
+        var result = query.ToList();
+        foreach (var block in result)
+        {
+            var author = new AuthorDTO();
+            author.Name = block.Name;
+            author.Email = block.Email;
+            Blocking.Add(author);
+        }
+        return Blocking;
+    }
     
     
 }

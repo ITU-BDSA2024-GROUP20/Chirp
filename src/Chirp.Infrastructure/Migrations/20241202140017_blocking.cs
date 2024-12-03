@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Chirp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Follow : Migration
+    public partial class blocking : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,8 +31,9 @@ namespace Chirp.Infrastructure.Migrations
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
                     AuthorId = table.Column<string>(type: "TEXT", nullable: true),
+                    AuthorId1 = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -54,6 +55,11 @@ namespace Chirp.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUsers_AspNetUsers_AuthorId",
                         column: x => x.AuthorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_AspNetUsers_AuthorId1",
+                        column: x => x.AuthorId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -171,7 +177,7 @@ namespace Chirp.Infrastructure.Migrations
                     CheepId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Text = table.Column<string>(type: "TEXT", maxLength: 160, nullable: false),
-                    AuthorId = table.Column<string>(type: "TEXT", nullable: false),
+                    AuthorId = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -220,6 +226,11 @@ namespace Chirp.Infrastructure.Migrations
                 name: "IX_AspNetUsers_AuthorId",
                 table: "AspNetUsers",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_AuthorId1",
+                table: "AspNetUsers",
+                column: "AuthorId1");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

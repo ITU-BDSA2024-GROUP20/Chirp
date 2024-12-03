@@ -16,10 +16,14 @@ public class DBInitializer2
             var a1 = new Author()
             {
                 Id = "611e3fa1-be3b-413d-b7d7-333738c17a3a",Name = "Helge",UserName = "ropf@itu.dk", Email = "ropf@itu.dk", Cheeps = new List<Cheep>()
+                , Following = new List<Author>()
+                , Blocking = new List<Author>()
             };
             var a2 = new Author()
             {
                 Id = "bc14be86-0984-4ab0-8d0a-0f3b90bb5c2e", Name = "Adrian" ,UserName = "adho@itu.dk", Email = "adho@itu.dk", Cheeps = new List<Cheep>()
+                , Following = new List<Author>()
+                , Blocking = new List<Author>()
             };
             usermanager.CreateAsync(a1, "LetM31n!");
             usermanager.CreateAsync(a2, "M32Want_Access");

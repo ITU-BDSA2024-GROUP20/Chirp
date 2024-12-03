@@ -41,41 +41,35 @@
             {
                 <li>
                     <p>
+                        <div>
+                            @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
+                            {
+                                <form method="post">
+
+                                    <button class="button" asp-page-handler="ToggleFollow">
+                                        @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
+                                        {
+                                            <span>UnFollow</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Follow</span>
+                                        }
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Email"/>
+                                    <input type="hidden" name="follow" value="@cheep.Email"/>
+                                </form>
+                            }
+                        </div>
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
-                                {
-                                    <form method="post">
-
-                                        <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
-                                            {
-                                                <span>UnFollow</span>
-                                            }
-                                            else
-                                            {
-                                                <span>Follow</span>
-                                            }
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Email"/>
-                                        <input type="hidden" name="follow" value="@cheep.Email"/>
-                                    </form>
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Email"/>
-                                        <input type="hidden" name="follow" value="@cheep.Email"/>
-                                    </form>
-                                }
+                                <small>&mdash; @cheep.Timestamp</small>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text
                         </div>
-                        <small>&mdash; @cheep.Timestamp</small>
-                    </p>
                 </li>
             }
         </ul>

@@ -50,7 +50,10 @@
                 <li>
                     <p>
                         <div style="float: right">
-                            @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
+                            @if (User.Identity is { IsAuthenticated: true }
+                                 && !Model.AuthorService.isSelf(Model.Email, cheep.Email)
+                                 && cheep.Author != "[DELETED]"
+                                 && !Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
                             {
                                 <form method="post">
 

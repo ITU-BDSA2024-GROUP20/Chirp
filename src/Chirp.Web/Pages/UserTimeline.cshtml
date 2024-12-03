@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
-    var routeName = HttpContext.GetRouteValue("author");
+    string? routeName = (string?)HttpContext.GetRouteValue("author");
     int next = Model.page + 2;
     int previous = Model.page;
 }
@@ -11,17 +11,37 @@
 <div>
     @if (User.Identity is { IsAuthenticated: true })
     {
-    <div class="cheepbox">
-        <h3>What's on your mind @(Model.Username)?</h3>
-        <form method="post">
-            <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
-            <input type="submit" value="Share">
-        </form>
-    </div>
+        <div class="cheepbox">
+            <h3>What's on your mind @(Model.Username)?</h3>
+            <form method="post">
+                <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
+                <input type="submit" value="Share">
+            </form>
+        </div>
+        
+        @if(!Model.AuthorService.isSelf(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email) && routeName != "[DELETED]"){
+            <span style="float: right;">
+                <form method="post">
+                    <button class="button" asp-page-handler="ToggleBlocking">
+                        @if (Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
+                        {
+                            <span>UnBlock</span>
+                        }
+                        else
+                        {
+                            <span>Block</span>
+                        }
+                        
+                    </button>
+                    <input type="hidden" name="self" value="@Model.Email"/>
+                    <input type="hidden" name="follow" value="@Model.AuthorService.GetAuthorDtoByName(routeName).Email"/>
+                </form>
+            </span>
+        }
     }
     
     <h2> @routeName's Timeline </h2>
-
+    
     @if (Model.Cheeps.Any())
     {
         <ul id="messagelist" class="cheeps">
@@ -29,41 +49,38 @@
             {
                 <li>
                     <p>
+                        <div style="float: right">
+                            @if (User.Identity is { IsAuthenticated: true }
+                                 && !Model.AuthorService.isSelf(Model.Email, cheep.Email)
+                                 && cheep.Author != "[DELETED]"
+                                 && !Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
+                            {
+                                <form method="post">
+
+                                    <button class="button" asp-page-handler="ToggleFollow">
+                                        @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
+                                        {
+                                            <span>UnFollow</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Follow</span>
+                                        }
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Email"/>
+                                    <input type="hidden" name="follow" value="@cheep.Email"/>
+                                </form>
+                            }
+                        </div>
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
-                                {
-                                    <form method="post">
-
-                                        <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
-                                            {
-                                                <span>UnFollow</span>
-                                            }
-                                            else
-                                            {
-                                                <span>Follow</span>
-                                            }
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Email"/>
-                                        <input type="hidden" name="follow" value="@cheep.Email"/>
-                                    </form>
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Email"/>
-                                        <input type="hidden" name="follow" value="@cheep.Email"/>
-                                    </form>
-                                }
+                                <small>&mdash; @cheep.Timestamp</small>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text
                         </div>
-                        <small>&mdash; @cheep.Timestamp</small>
-                    </p>
                 </li>
             }
         </ul>

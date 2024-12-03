@@ -1,18 +1,28 @@
+html {
+    min-height: 100%;
+}
+
 body {
   background: #00A2F4;
+    background: linear-gradient(0deg, rgba(8,85,74,1) 0%, rgba(39,162,179,1) 50%, rgba(0,162,244,1) 80%);
   font-family: 'Consolas', monospace;
   font-size: 14px;
+    min-height: 100%;
 }
 
 a {
-  color: #26776F;
+  color: #066999;
 }
 
 a:hover {
-  color: #333;
+  color: #000325;
 }
 
 b {
+    color: white;
+}
+
+.text-info {
     color: white;
 }
 
@@ -48,9 +58,8 @@ input[type="submit"] {
 
 div.page {
   background: #00A2F4;
-  border: 1px solid #00A2F4;
   width: 700px;
-  margin: 30px auto;
+  margin: 10px auto;
 }
 
 div.page > h1 {
@@ -100,10 +109,27 @@ div.page div.navigation form button {
     letter-spacing: unset;
 }
 
+.siteTitle {
+    color: #00A2F4;
+    text-shadow: 0 1px 2px #066999;
+    font-size: 60px;
+    margin-top: 30px;
+}
+
+label {
+    color: white;
+    font-size: 14px;
+}
+
+.text-danger {
+    color: #ff0000;
+    font-size: 14px;
+}
+
 div.page h2 {
   margin: 0 0 15px 0;
   color: #00A2F4;
-  text-shadow: 0 1px 2px #ccc;
+  text-shadow: 0 1px 2px #066999;
 }
 
 div.page div.body {
@@ -142,7 +168,6 @@ div.page ul.cheeps li {
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  height: 78px;
 }
 
 div.page ul.cheeps p {
@@ -157,7 +182,6 @@ div.page ul.cheeps li img {
 div.page ul.cheeps li small {
     font-size: 0.9em;
     color: #888;
-    vertical-align: bottom;
 }
 
 div.page div.cheepbox {

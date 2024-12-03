@@ -28,7 +28,7 @@
             {
                 <li>
                     <p>
-                        <div style="width: 100px; float: right">
+                        <div style="float: right">
                             @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
                             {
                                 <span style="float: right;">
@@ -47,26 +47,19 @@
                                         <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
                                 </span>
-                                <span style="float: right;">
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Email"/>
-                                        <input type="hidden" name="follow" value="@cheep.Email"/>
-                                    </form>
-                                </span>
                             }
                         </div>
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
+                                <small>
+                                    - @cheep.Timestamp
+                                </small>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text
                         </div>
-                        <small>&mdash; @cheep.Timestamp</small>
                     </p>
                 </li>
             }

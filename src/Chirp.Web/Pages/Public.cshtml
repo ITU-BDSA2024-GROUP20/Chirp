@@ -28,11 +28,10 @@
             {
                 <li>
                     <p>
-                        <strong>
-                            <div>
-                                <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.email, cheep.Email) && cheep.Author != "[DELETED]")
-                                {
+                        <div style="width: 100px; float: right">
+                            @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.email, cheep.Email) && cheep.Author != "[DELETED]")
+                            {
+                                <span style="float: right;">
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleFollow">
                                             @if (Model._authorService.isFollowing(Model.email, cheep.Email))
@@ -47,6 +46,8 @@
                                         <input type="hidden" name="self" value="@Model.email"/>
                                         <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
+                                </span>
+                                <span style="float: right;">
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleBlocking">
                                             <span>Block</span>
@@ -54,7 +55,12 @@
                                         <input type="hidden" name="self" value="@Model.email"/>
                                         <input type="hidden" name="follow" value="@cheep.Email"/>
                                     </form>
-                                }
+                                </span>
+                            }
+                        </div>
+                        <strong>
+                            <div>
+                                <a href="/@cheep.Author">@cheep.Author</a>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
@@ -68,23 +74,23 @@
     }
     else
     {
-        <em>There are no cheeps so far.</em>
+        <b>There are no cheeps so far.</b>
     }
-    <div>
+    <div style="margin-inline: auto; max-width: fit-content">
         @if (previous > 0)
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
+            <a href="?page=@previous" class="button" style="text-decoration: none;">
                 <button style="color: white;">◀</button>
             </a>
         }
         else
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
+            <a class="button" style="text-decoration: none;">
                 <button style="color: white; background-color: dimgrey">◀</button>
             </a>
         }
-        @(previous+1)
-        <a href="?page=@next" class="button" style="text-decoration: none">
+        <b>@(previous+1)</b>
+        <a href="?page=@next" class="button" style="text-decoration: none;">
             <button style="color: white;">▶</button>
         </a>
     </div>

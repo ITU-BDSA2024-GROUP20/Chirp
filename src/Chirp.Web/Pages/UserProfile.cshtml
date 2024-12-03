@@ -28,7 +28,7 @@
                 <ul id="messagelist" class="cheeps">
                     @foreach (var author in Model.following)
                     {
-                        <li>
+                        <li style="height: 60px">
                             <span style="float: right">
                                 <form method="post">
                                     <button class="button" asp-page-handler="ToggleFollow" style="transform: translateY(25%);">

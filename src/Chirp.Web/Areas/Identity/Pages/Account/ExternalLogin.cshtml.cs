@@ -279,13 +279,15 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
                 if (existingUserByName.Name != null && existingUserByName.Email != null) 
                 { 
-                    ModelState.AddModelError(string.Empty, "The username "+Input.Username+" is already taken."); 
+                    ModelState.AddModelError(string.Empty, "The username "+Input.Username+" is already taken.");
+                    Console.WriteLine("here from some reason");
                     UsernameTaken = true;
                     reload = true;
                 }
                 else if(Input.Username != null)
                 { 
                     usernameinput = Input.Username;
+                    Console.WriteLine("username set here");
                 }
                     
                 if (UsernameTaken && Input.Username == null)
@@ -298,11 +300,13 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 { 
                     ModelState.AddModelError(string.Empty, "The Email "+Input.Email+" is already taken.");
                     EmailTaken = true;
+                    Console.WriteLine("here from some reason");
                     reload = true;
                 }
-                else if(Input.Username != null)
+                else if(Input.Email != null)
                 { 
                     emailinput = Input.Email;
+                    Console.WriteLine("Email set here");
                 }
                 if (EmailTaken && Input.Email == null)
                 {

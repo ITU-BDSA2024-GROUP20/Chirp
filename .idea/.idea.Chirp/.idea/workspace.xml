@@ -13,10 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7480791-5f70-49c4-b41f-92940a67d30b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Logout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Areas/Identity/Pages/Account/Logout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserProfile.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/UserTimeline.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,6 +155,7 @@
       <workItem from="1733249061971" duration="35000" />
       <workItem from="1733249262742" duration="2774000" />
       <workItem from="1733273119265" duration="631000" />
+      <workItem from="1733304950971" duration="855000" />
     </task>
     <servers />
   </component>

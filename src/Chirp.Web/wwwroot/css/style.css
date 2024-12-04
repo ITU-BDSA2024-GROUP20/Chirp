@@ -32,6 +32,23 @@ b {
     color: white;
 }
 
+.logoBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logoBox div img {
+    width: 120px;
+}
+
+.logoBox div h1 {
+    font-size: 80px;
+    color: white;
+    margin: 0;
+    text-shadow: 1px 1px 5px #066999;
+}
+
 input[type="email"],
 input[type="text"],
 input[type="tel"],
@@ -81,7 +98,7 @@ div.page > h1 {
 }
 
 div.page h1 img {
-  height: 1em;
+  height: 10px;
 }
 
 div.page div.navigation {

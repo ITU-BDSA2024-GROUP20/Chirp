@@ -18,9 +18,9 @@
                 <input type="submit" value="Share">
             </form>
         </div>
-        
+        <br/>
         @if(!Model.AuthorService.isSelf(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email) && routeName != "[DELETED]"){
-            <span style="float: right;">
+            <span style="float: right; transform: translateY(-15%) translateX(-10px);">
                 <form method="post">
                     <button class="button" asp-page-handler="ToggleBlocking">
                         @if (Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
@@ -41,6 +41,7 @@
     }
     
     <h3> @routeName's Timeline </h3>
+    <br/>
     
     @if (Model.Cheeps.Any())
     {

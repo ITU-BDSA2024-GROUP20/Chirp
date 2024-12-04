@@ -9,31 +9,40 @@
 </head>
 <body>
 <div class=page>
-    <h1><img src="/images/cheeper.png" alt="Chirp!"/>Chirp!</h1>
-    
+    <div class="logoBox">
+        <div>
+            <img src="/images/cheeper.png" alt="Chirp!"/>
+        </div>
+        <div>
+            <h1>
+                Chirp!
+            </h1>
+        </div>
+    </div>
+
     <div class=navigation>
         @if (User.Identity is { IsAuthenticated: true })
         {
             <div>
-                <a href="/">PUBLIC TIMELINE</a> | 
-                <a href="/@(Model.Username)">MY TIMELINE</a> | 
+                <a href="/">PUBLIC TIMELINE</a> |
+                <a href="/@(Model.Username)">MY TIMELINE</a> |
                 <a href="/AboutMe">ABOUT ME</a>
 
                 <span style="float:right">
-                    <a style="text-align: right" href="/Identity/Account/Logout" >LOGOUT [@(Model.Username)]</a>
+                    <a style="text-align: right" href="/Identity/Account/Logout">LOGOUT [@(Model.Username)]</a>
                 </span>
             </div>
         }
         else
         {
             <div>
-                <a href="/">PUBLIC TIMELINE</a> | 
-                <a href="/Identity/Account/Register" >REGISTER</a> | 
-                <a href="/Identity/Account/Login" >LOGIN</a> 
+                <a href="/">PUBLIC TIMELINE</a> |
+                <a href="/Identity/Account/Register">REGISTER</a> |
+                <a href="/Identity/Account/Login">LOGIN</a>
             </div>
         }
     </div>
-    
+
     <div class=body>
         @RenderBody()
     </div>

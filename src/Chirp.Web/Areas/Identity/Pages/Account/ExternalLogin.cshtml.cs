@@ -283,7 +283,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     UsernameTaken = true;
                     reload = true;
                 }
-                else 
+                else if(Input.Username != null)
                 { 
                     usernameinput = Input.Username;
                 }
@@ -300,7 +300,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     EmailTaken = true;
                     reload = true;
                 }
-                else 
+                else if(Input.Username != null)
                 { 
                     emailinput = Input.Email;
                 }
@@ -309,6 +309,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, "please fill out email");
                     reload = true;
                 }
+                
                 if (reload)
                 {
                     return Page();

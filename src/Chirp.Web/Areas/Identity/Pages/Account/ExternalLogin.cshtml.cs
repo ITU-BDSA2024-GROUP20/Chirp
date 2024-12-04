@@ -233,6 +233,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             }
             else
             {
+                if (info.Principal.FindFirstValue(ClaimTypes.Email) == null)
+                {
+                    EmailTaken = true;
+                }
                 // If the user does not have an account, then ask the user to create an account.
                 ReturnUrl = returnUrl;
                 ProviderDisplayName = info.ProviderDisplayName;

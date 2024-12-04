@@ -3,23 +3,29 @@ html {
 }
 
 body {
-    background: linear-gradient(0deg, rgba(8,85,74,1) 0%, rgba(39,162,179,1) 50%, rgba(0,162,244,1) 80%);
+    background: linear-gradient(0deg, rgba(3,0,51,1) 0%, rgba(13,0,116,1) 20%, rgba(0,162,244,1) 85%);
   font-family: 'Consolas', monospace;
   font-size: 14px;
     min-height: 100%;
+    margin-bottom: 0;
 }
 
 a {
-    color: #066999;
+    color: #007af4;
     font-size: medium;
 }
 
 a:hover {
-  color: #000325;
+  color: #4900f4;
 }
 
 b {
     color: white;
+}
+
+.paragraph {
+    color: white;
+    margin: 5px 5px 10px;
 }
 
 .text-info {
@@ -57,9 +63,10 @@ input[type="submit"] {
 }
 
 div.page {
-  background: #00A2F4;
+  background: transparent;
   width: 700px;
-  margin: 10px auto;
+  margin-inline: auto;
+    margin-top: 10px;
 }
 
 div.page > h1 {
@@ -78,18 +85,22 @@ div.page h1 img {
 }
 
 div.page div.navigation {
-  background: #DEE9E8;
-  padding: 4px 10px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #eee;
-  color: #888;
+  background: white;
+    padding: 5px 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   font-size: 12px;
   letter-spacing: 0.5px;
 }
 
 div.page div.navigation a {
-  color: #444;
+  color: #000325;
   font-weight: bold;
+}
+
+div.page div.navigation a:hover {
+    color: #400054;
+    font-weight: bold;
 }
 
 div.page div.navigation form {
@@ -97,6 +108,7 @@ div.page div.navigation form {
 }
 
 div.page div.navigation form button {
+    margin: unset;
     padding: unset;
     background: unset;
     color: #444;
@@ -112,8 +124,7 @@ div.page div.navigation form button {
 .siteTitle {
     color: #00A2F4;
     text-shadow: 0 1px 2px #066999;
-    font-size: 60px;
-    margin-top: 30px;
+    font-size: 42px;
 }
 
 label {
@@ -127,21 +138,40 @@ label {
 }
 
 div.page h2 {
-  margin: 0 0 15px 0;
+  margin: 0 0 0 5px;
   color: #00A2F4;
   text-shadow: 0 1px 2px #066999;
+    font-size: 42px;
+}
+
+div.page h3 {
+    margin: 0 0 0 5px;
+    color: #00A2F4;
+    text-shadow: 0 1px 2px #066999;
+    font-size: 21px;
+}
+
+.descriptor {
+    color: white;
 }
 
 div.page div.body {
     padding: 10px;
     background: #000325;
+    border: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: -5px;
 }
 
 div.page div.footer {
   background: #eee;
   color: #888;
   padding: 5px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   font-size: 12px;
+    margin-top: -5px;
 }
 
 div.page div.followstatus {
@@ -162,7 +192,7 @@ div.page ul.cheeps {
 
 div.page ul.cheeps li {
   margin: 10px 0;
-  padding: 5px;
+  padding: 10px;
   background: #F0FAF9;
   border: 1px solid #DBF3F1;
   border-radius: 2px;
@@ -285,7 +315,10 @@ form * {
 button {
     background-color: #00A2F4;
     border: none;
-    color: #000000;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
@@ -293,7 +326,7 @@ button {
 }
 
 button:hover {
-    background-color: #066999;
+    background-color: #0069e1;
 }
 
 ul.nav {

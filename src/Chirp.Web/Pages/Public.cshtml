@@ -19,7 +19,7 @@
         </div>
     }
     
-    <h2> Public Timeline </h2>
+    <h3> Public Timeline </h3>
     
     @if (Model.Cheeps.Any())
     {
@@ -67,7 +67,9 @@
     }
     else
     {
-        <b>There are no cheeps so far.</b>
+        <div class="paragraph">
+            <b>There are no cheeps so far.</b>
+        </div>
     }
     <div style="float: left">
         <a href="#top" class="button">
@@ -84,7 +86,7 @@
         else
         {
             <a class="button" style="text-decoration: none;">
-                <button style="color: white; background-color: dimgrey">◀</button>
+                <button style="color: white; background-color: #a4d4ec">◀</button>
             </a>
         }
         <b>@(previous+1)</b>
@@ -97,7 +99,7 @@
         else
         {
             <a class="button" style="text-decoration: none">
-                <button style="color: white; background-color: dimgrey">▶</button>
+                <button style="color: white; background-color: #a4d4ec">▶</button>
             </a>
         }
         

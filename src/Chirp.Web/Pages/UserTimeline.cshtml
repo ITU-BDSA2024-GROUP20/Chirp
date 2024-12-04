@@ -18,7 +18,10 @@
                 <input type="submit" value="Share">
             </form>
         </div>
-        <br/>
+    }
+    <br/>
+    @if (User.Identity is { IsAuthenticated: true })
+    {
         @if(!Model.AuthorService.isSelf(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email) && routeName != "[DELETED]"){
             <span style="float: right; transform: translateY(-15%) translateX(-10px);">
                 <form method="post">

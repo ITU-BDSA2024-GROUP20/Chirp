@@ -176,6 +176,10 @@ public class AuthorRepository : IAuthorRepository
         else
         {
             authorself.Following.Add(authorToFollow);
+            if (isBlocking(selfEmail, otherEmail))
+            {
+                ToggleBlocking(selfEmail,otherEmail);
+            }
         }
         _service.Authors.Update(authorself);
         _service.SaveChanges();

@@ -157,14 +157,14 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 var existingUserByName = _service.GetAuthorDtoByName(info.Principal.Identity.Name);
                 if (existingUserByName.Name != null && existingUserByName.Email != null)
                 {
-                    ModelState.AddModelError(string.Empty, "The username is already taken.");
+                    ModelState.AddModelError(string.Empty, "The username "+info.Principal.Identity.Name+" is already taken.");
                     UsernameTaken = true;
                     reload = true;
                 }
                 var existingUserByEmail = _service.GetAuthorDtoByEmail(info.Principal.FindFirstValue(ClaimTypes.Email));
                 if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
                 {
-                    ModelState.AddModelError(string.Empty, "The Email is already taken.");
+                    ModelState.AddModelError(string.Empty, "The Email"+info.Principal.FindFirstValue(ClaimTypes.Email)+" is already taken.");
                     EmailTaken = true;
                     reload = true;
                 }
@@ -237,6 +237,12 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 {
                     EmailTaken = true;
                 }
+                var existingUserByName = _service.GetAuthorDtoByName(info.Principal.Identity.Name);
+                if (existingUserByName.Name != null && existingUserByName.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The username"+info.Principal.Identity.Name+" is already taken.");
+                    UsernameTaken = true;
+                }
                 // If the user does not have an account, then ask the user to create an account.
                 ReturnUrl = returnUrl;
                 ProviderDisplayName = info.ProviderDisplayName;
@@ -270,43 +276,39 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 EmailTaken = Input.EmailTakenIn;
                 var user = CreateUser();
                 bool reload = false;
-                if (Input.Username != null)
-                {
-                    var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
-                    if (existingUserByName.Name != null && existingUserByName.Email != null)
-                    {
-                        ModelState.AddModelError(string.Empty, "The username is already taken.");
-                        reload = true;
-                    }
-                    else
-                    {
-                        usernameinput = Input.Username;
-                    }
+                var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
+                if (existingUserByName.Name != null && existingUserByName.Email != null) 
+                { 
+                    ModelState.AddModelError(string.Empty, "The username "+Input.Username+" is already taken."); 
+                    UsernameTaken = true;
+                    reload = true;
+                }
+                else 
+                { 
+                    usernameinput = Input.Username;
+                }
                     
-                }
-                else if (UsernameTaken)
+                if (UsernameTaken && Input.Username == null)
                 {
-                    ModelState.AddModelError(string.Empty, "fill out username");
+                    ModelState.AddModelError(string.Empty, "please fill out username");
                     reload = true;
                 }
-                if (Input.Email != null)
-                {
-                    var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email);
-                    if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
-                    {
-                        ModelState.AddModelError(string.Empty, "The Email is already taken.");
-                        reload = true;
-                    }
-                    else
-                    {
-                        emailinput = Input.Email;
-                    }
-                }else if (EmailTaken)
-                {
-                    ModelState.AddModelError(string.Empty, "fill out username");
+                var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email); 
+                if (existingUserByEmail.Name != null && existingUserByEmail.Email != null) 
+                { 
+                    ModelState.AddModelError(string.Empty, "The Email "+Input.Email+" is already taken.");
+                    EmailTaken = true;
                     reload = true;
                 }
-                
+                else 
+                { 
+                    emailinput = Input.Email;
+                }
+                if (EmailTaken && Input.Email == null)
+                {
+                    ModelState.AddModelError(string.Empty, "please fill out email");
+                    reload = true;
+                }
                 if (reload)
                 {
                     return Page();

@@ -6,6 +6,7 @@
     string? routeName = (string?)HttpContext.GetRouteValue("author");
     int next = Model.page + 2;
     int previous = Model.page;
+    var other = Model.AuthorService.GetAuthorDtoByName(routeName);
 }
 
 <div>
@@ -22,11 +23,30 @@
     <br/>
     @if (User.Identity is { IsAuthenticated: true })
     {
-        @if(!Model.AuthorService.isSelf(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email) && routeName != "[DELETED]"){
-            <span style="float: right; transform: translateY(-15%) translateX(-10px);">
+        @if(!Model.AuthorService.isSelf(Model.Email, other.Email) && routeName != "[DELETED]"){
+            <span style="
+            float: right;
+            transform: translateY(-15%) translateX(-10px);
+            display: flex;
+            flex-direction: row;
+            align-items: center;">
+                <form method="post">
+                    <button class="button" asp-page-handler="ToggleFollow" style="margin-right: 10px">
+                        @if (Model.AuthorService.isFollowing(Model.Email, other.Email))
+                        {
+                            <span>UnFollow</span>
+                        }
+                        else
+                        {
+                            <span>Follow</span>
+                        }
+                    </button>
+                    <input type="hidden" name="self" value="@Model.Email"/>
+                    <input type="hidden" name="follow" value="@other.Email"/>
+                </form>
                 <form method="post">
                     <button class="button" asp-page-handler="ToggleBlocking">
-                        @if (Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
+                        @if (Model.AuthorService.isBlocking(Model.Email, other.Email))
                         {
                             <span>UnBlock</span>
                         }
@@ -34,10 +54,10 @@
                         {
                             <span>Block</span>
                         }
-                        
+
                     </button>
                     <input type="hidden" name="self" value="@Model.Email"/>
-                    <input type="hidden" name="follow" value="@Model.AuthorService.GetAuthorDtoByName(routeName).Email"/>
+                    <input type="hidden" name="follow" value="@other.Email"/>
                 </form>
             </span>
         }
@@ -56,11 +76,11 @@
                         <div style="float: right">
                             @if (User.Identity is { IsAuthenticated: true }
                                  && !Model.AuthorService.isSelf(Model.Email, cheep.Email)
+                                 && Model.AuthorService.isSelf(Model.Email, other.Email)
                                  && cheep.Author != "[DELETED]"
                                  && !Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
                             {
                                 <form method="post">
-
                                     <button class="button" asp-page-handler="ToggleFollow">
                                         @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
                                         {

@@ -1,19 +1,17 @@
-using System.Net.Mime;
-using Microsoft.EntityFrameworkCore;
 using Chirp.Core;
-using Microsoft.AspNetCore.Components.Authorization;
+
 
 namespace Chirp.Infrastructure;
 
 public class CheepRepository : ICheepRepository
 {
-    private ChirpDBContext service;
+    private readonly ChirpDBContext _service;
     public CheepRepository(ChirpDBContext service)
     {
-        this.service = service;
+        this._service = service;
     }
 
-    public bool validdateString(string str)
+    public static bool ValiddateString(string? str)
     {
         if (str == null)
             return false;
@@ -26,76 +24,56 @@ public class CheepRepository : ICheepRepository
     
     public void CreateCheep(CheepDTO newCheep)
     {
-        if (validdateString(newCheep.Text))
+        if (ValiddateString(newCheep.Text))
         {
-            Author author = GetAuthorByEmail(newCheep.Email);
-            if (author.Cheeps == null)
-                author.Cheeps = new List<Cheep>();
-            Console.WriteLine(author.Cheeps.Count());
-
+            var query = (
+                from aut in _service.Authors
+                where aut.Email == newCheep.Email
+                select aut);
+            var author = query.First();
+            
+           
             Cheep cheep = new Cheep
             {
-                CheepId = service.Cheeps.Count() + 1,
+                CheepId = _service.Cheeps.Count() + 1,
                 AuthorId = author.Id,
                 Author = author,
                 Text = newCheep.Text,
-                TimeStamp = DateTime.Parse(newCheep.Timestamp)
+                TimeStamp = DateTime.Parse(newCheep.Timestamp!)
             };
 
             author.Cheeps.Add(cheep);
 
-            service.Cheeps.Add(cheep);
-            service.Authors.Update(author);
-            service.SaveChanges();
+            _service.Cheeps.Add(cheep);
+            _service.Authors.Update(author);
+            _service.SaveChanges();
         }
     }
     
     
     
     
-    public List<CheepDTO> ReadCheep(int page, string? userName = null, string? self = null)
+    public List<CheepDTO> ReadCheep(int page, string? userName = null, string? selfEmail = null)
     {
         List<CheepDTO> cheeps = new List<CheepDTO>();
-        if (userName != null)
-        {
-            var query = (from author in service.Authors
-                    from message in author.Cheeps
-                    where author.Name == userName
-                    orderby message.TimeStamp descending
-                    select new { author.Name, message.Text, message.TimeStamp, author.Email }
-                );
-            if (self != null && self == userName)
-            {
-                query = (from author in service.Authors
-                        where author.Name == userName
-                        from authors in author.Following
-                        from cheep in authors.Cheeps
-                        orderby cheep.TimeStamp descending
-                        select new { authors.Name, cheep.Text, cheep.TimeStamp, authors.Email }
-                    ).Union(query).OrderByDescending(x => x.TimeStamp);
-
-            }
-            
-            var result = query.Skip(page).Take(32).ToList();
         
-            foreach (var message in result)
-            {
-                CheepDTO ch = new CheepDTO
-                {
-                    Author = message.Name,
-                    Text = message.Text,
-                    Timestamp = message.TimeStamp.ToString(),
-                    Email = message.Email
-                };
-                cheeps.Add(ch);
-            }
-        }
-        else
-        {
-            var query = (from message in service.Cheeps
-                join author in service.Authors on message.AuthorId equals author.Id
+            var query = (from message in _service.Cheeps
+                join author in _service.Authors on message.AuthorId equals author.Id
                 orderby message.TimeStamp descending 
                 select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            
+            if (selfEmail != null)
+            {
+                query = (from message in _service.Cheeps
+                    join author in _service.Authors on message.AuthorId equals author.Id
+                    where  !(from aut in _service.Authors
+                            where aut.Email == selfEmail
+                            from blocks in aut.Blocking
+                            select  blocks.Id 
+                        ).Contains(message.AuthorId)
+                    orderby message.TimeStamp descending 
+                    select new { author.Name, message.Text, message.TimeStamp, author.Email });
+            }
             var result =  query.Skip(page).Take(32).ToList();
             foreach (var message in result)
             {
@@ -108,115 +86,9 @@ public class CheepRepository : ICheepRepository
                 };
                 cheeps.Add(ch);
             }
-        }
 
         return cheeps;
     }
-
-    /// <summary>
-    /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
-    /// However, their username, name, and email will be anonymised and who they followed.
-    /// </summary>
-    public void DeleteAuthor(string username)
-    {
-        Author author = GetAuthorByName(username);
-        author.Name = "[DELETED]";
-        author.Email = "[DELETED]";
-        author.UserName = "[DELETED]";
-        author.PasswordHash = "[DELETED]";
-        author.SecurityStamp = "[DELETED]";
-        author.ConcurrencyStamp = "[DELETED]";
-        author.NormalizedEmail = "[DELETED " + author.Id + "]";
-        author.NormalizedUserName = "[DELETED " + author.Id + "]";
-        if (author.Following != null)
-        {
-            author.Following.Clear();
-        }
-        service.SaveChanges();
-    }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="name">string with username of user</param>
-    /// <returns><c>Author</c> of the first name that matches the name</returns>
-    public Author GetAuthorByName(string name)
-    {
-        var query = (
-            from author in service.Authors
-            where author.Name == name
-            select author
-            );
-        return query.FirstOrDefault();
-    }
-
-    public Author GetAuthorByEmail(string email)
-    {
-        var query = (
-            from author in service.Authors
-            where author.Email == email
-            select author
-        );
-        return query.FirstOrDefault();
-    }
-
-    public void ToggleFollow(string self, string other)
-    {
-        if (isSelf(self, other))
-            return;
-        Author authorToFollow = GetAuthorByName(other);
-        Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
-        if (authorSelf.Following.Contains(authorToFollow))
-        {
-            authorSelf.Following.Remove(authorToFollow);
-        }
-        else
-        {
-            authorSelf.Following.Add(authorToFollow);
-        }
-        service.SaveChanges();
-    }
-
-    public bool isFollowing(string self, string other)
-    {
-        Author authorSelf = GetAuthorByName(self);
-        if (authorSelf.Following == null)
-        {
-            authorSelf.Following = new List<Author>();
-        }
-        Author authorToFollow = GetAuthorByName(other);
-        return authorSelf.Following.Contains(authorToFollow);
-    }
-
-    public bool isSelf(string self, string other)
-    {
-        Author authorToFollow = GetAuthorByName(other);
-        Author authorSelf = GetAuthorByName(self);
-        if (authorToFollow.Equals(authorSelf))
-            return true;
-        return false;
-    }
-
-    public List<AuthorDTO> GetFollowing(string self)
-    {
-        List<AuthorDTO> following = new List<AuthorDTO>();
-        var query = (from author in service.Authors
-            from follow in author.Following
-            where author.Name == self
-            orderby follow.Name
-            select new { follow.Name });
-        var result = query.ToList();
-        foreach (var follow in result)
-        {
-            var author = new AuthorDTO();
-            author.Name = follow.Name;
-            following.Add(author);
-        }
-        return following;
-    }
 }
 

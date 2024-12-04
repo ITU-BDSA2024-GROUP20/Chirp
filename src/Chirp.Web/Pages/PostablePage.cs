@@ -2,39 +2,52 @@ using Chirp.Core;
 using Chirp.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.Scripting.Hosting;
 
 namespace Chirp.Razor.Pages;
 
 public class PostablePage : PageModel
 {
-    public ICheepRepository _service;
-    public List<CheepDTO> Cheeps { get; set; }
-    
-    public String Username { get; set; }
+    public ICheepRepository CheepService;
+    public IAuthorRepository AuthorService;
+    public List<CheepDTO> Cheeps { get; set; } = null!;
+
+    public string? Username { get; set; }
+    public string? Email { get; set; }
     
     [BindProperty]
-    public CheepDTO cheepDTO { get; set; }
-    public int page = 0;
+    public CheepDTO CheepDto { get; set; } = null!;
 
-    public PostablePage(ICheepRepository service)
+    public int page = 0;
+    public bool nextPageExits;
+
+    public PostablePage (ICheepRepository cheepService, IAuthorRepository authorService)
     {
-        _service = service;
+        CheepService = cheepService;
+        AuthorService = authorService;
     }
     
     public ActionResult OnPost()
     {
-        cheepDTO.Author = Username;
-        cheepDTO.Email = User.Identity.Name;
-        cheepDTO.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
+        Console.WriteLine(CheepDto.Text);
+        CheepDto.Author = Username;
+        if (User.Identity != null) CheepDto.Email = User.Identity.Name;
+        CheepDto.Timestamp = DateTime.UtcNow.AddHours(1).ToString();
         
-        _service.CreateCheep(cheepDTO);
+        CheepService.CreateCheep(CheepDto);
         return RedirectToPage();
     }
 
-    public ActionResult OnPostToggleFollow(string self, string follow)
+    public ActionResult OnPostToggleFollow(string? self, string? follow, int page)
     {
-        _service.ToggleFollow(self, follow);
+        AuthorService.ToggleFollow(self, follow);
+        return Redirect($"?page={page + 1}");
+    }
+    
+    
+    public ActionResult OnPostToggleBlocking(string? self, string? follow)
+    {
+        AuthorService.ToggleBlocking(self, follow);
         return RedirectToPage();
     }
+    
 }

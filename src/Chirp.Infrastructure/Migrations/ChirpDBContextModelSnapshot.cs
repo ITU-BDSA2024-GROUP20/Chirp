@@ -25,6 +25,7 @@ namespace Chirp.Infrastructure.Migrations
 
                     b.Property<string>("AuthorId")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
@@ -254,11 +255,20 @@ namespace Chirp.Infrastructure.Migrations
                     b.Property<string>("AuthorId")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("AuthorId1")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("AuthorId1");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue("Author");
                 });
@@ -328,12 +338,18 @@ namespace Chirp.Infrastructure.Migrations
             modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
                 {
                     b.HasOne("Chirp.Infrastructure.Author", null)
-                        .WithMany("Following")
+                        .WithMany("Blocking")
                         .HasForeignKey("AuthorId");
+
+                    b.HasOne("Chirp.Infrastructure.Author", null)
+                        .WithMany("Following")
+                        .HasForeignKey("AuthorId1");
                 });
 
             modelBuilder.Entity("Chirp.Infrastructure.Author", b =>
                 {
+                    b.Navigation("Blocking");
+
                     b.Navigation("Cheeps");
 
                     b.Navigation("Following");

@@ -10,25 +10,34 @@ namespace Chirp.Razor.Pages;
 
 public class UserTimelineModel : PostablePage
 {
-    SignInManager<Author> _signInManager;
-    UserManager<Author> _userManager;
-    public UserTimelineModel(ICheepRepository service, SignInManager<Author> signInManager, UserManager<Author> userManager) : base(service)
+    
+    public UserTimelineModel(ICheepRepository cheepService, IAuthorRepository authorService) : base(cheepService, authorService)
     {
-        _signInManager = signInManager;
-        _userManager = userManager;
     }
 
-    public ActionResult OnGet(string author)
+    public ActionResult OnGet(string? author)
     {
-        if (User.Identity.IsAuthenticated)
+        if (User.Identity is { IsAuthenticated: true })
         {
-            Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+            var temp = AuthorService.GetAuthorDtoByEmail(User.Identity.Name);
+            Username = temp.Name;
+            Email = temp.Email;
         }
-        if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]) > 0) 
-            page =Int32.Parse( Request.Query["page"])-1;
+        if (!string.IsNullOrEmpty(Request.Query["page"]) && int.Parse( Request.Query["page"]!) > 0) 
+            page =int.Parse( Request.Query["page"]!)-1;
+        List<CheepDTO> cheeps;
+        if (User.Identity is { IsAuthenticated: true })
+        {
+            cheeps = AuthorService.AuthorCheep(page * 32, author, Email);
+            nextPageExits = AuthorService.AuthorCheep((page+1) * 32, author, Email).Count > 0;
+        }
+        else
+        {
+            cheeps = AuthorService.AuthorCheep(page * 32, author, null);
+            nextPageExits = AuthorService.AuthorCheep((page+1) * 32, author, null).Count > 0;
+        }
         
-        List<CheepDTO> _Cheeps = _service.ReadCheep(page * 32, author, Username);
-        Cheeps = _Cheeps.TakeLast(32).ToList();
+        Cheeps = cheeps;
         
         
         return Page();

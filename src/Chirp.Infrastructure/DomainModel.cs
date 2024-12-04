@@ -6,22 +6,27 @@ namespace Chirp.Infrastructure;
 
 public class Cheep
 {
-    public int CheepId { get; set; }
+    public required int CheepId { get; set; }
     
     [Required]
     [StringLength(160)]
-    public string Text { get; set; }
-    public string AuthorId { get; set; }
-    public Author Author { get; set; }
-    public DateTime TimeStamp { get; set; }
+    public required string? Text { get; set; }
+    [StringLength(128)]
+    public required string AuthorId { get; set; }
+    public required Author Author { get; set; }
+    public required DateTime TimeStamp { get; set; }
 }
 
 
 public class Author : IdentityUser
 {
-    public string Name { get; set; }
-    public ICollection<Cheep> Cheeps { get; set; }
-    public ICollection<Author> Following { get; set; }
+    
+    [StringLength(50)]
+    public required string Name { get; set; }
+
+    public required ICollection<Cheep> Cheeps { get; set; } = new List<Cheep>();
+    public required ICollection<Author> Following { get; set; } = new List<Author>();
+    public required ICollection<Author> Blocking { get; set; } = new List<Author>(); 
 }
 
 

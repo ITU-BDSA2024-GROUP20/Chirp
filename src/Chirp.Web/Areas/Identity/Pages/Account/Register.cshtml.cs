@@ -30,7 +30,8 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<Author> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ICheepRepository _service;
+        
+        private readonly IAuthorRepository _service;
         public string  Username { get; set; }
         
         public RegisterModel(
@@ -39,7 +40,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             SignInManager<Author> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICheepRepository service)
+            IAuthorRepository service)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -75,9 +76,11 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            
+                
             [Required]
             [DataType(DataType.Text)]
+            [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
+            [RegularExpression(@"^(?!.*(?:@|\[|\]|DELETED)).*$", ErrorMessage = "The username cannot contain '@,[,],DELETED' symbol.")]
             [Display(Name = "Username")]
             public string Username { get; set; }
             
@@ -95,7 +98,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} must be between {2} and {1} characters.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -106,7 +109,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Passwords do not match.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -115,7 +118,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Username = _service.GetAuthorByEmail(User.Identity.Name).Name;
+                Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
             }
             return Page();
         }
@@ -132,13 +135,30 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                bool reload = false;
+                var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
+                if (existingUserByName.Name != null && existingUserByName.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The username is already taken.");
+                    reload = true;
+                }
+                var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email);
+                if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The Email is already taken.");
+                    reload = true;
+                }
+                if (reload) return Page();
+                
                 var user = CreateUser();
                 user.Cheeps = new List<Cheep>();
                 user.Name = Input.Username;
                 user.Following = new List<Author>();
+                user.Blocking = new List<Author>();
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
 
                 if (result.Succeeded)
                 {

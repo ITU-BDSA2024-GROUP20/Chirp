@@ -30,20 +30,23 @@
             display: flex;
             flex-direction: row;
             align-items: center;">
-                <form method="post">
-                    <button class="button" asp-page-handler="ToggleFollow" style="margin-right: 10px">
-                        @if (Model.AuthorService.isFollowing(Model.Email, other.Email))
-                        {
-                            <span>UnFollow</span>
-                        }
-                        else
-                        {
-                            <span>Follow</span>
-                        }
-                    </button>
-                    <input type="hidden" name="self" value="@Model.Email"/>
-                    <input type="hidden" name="follow" value="@other.Email"/>
-                </form>
+                @if (!Model.AuthorService.isBlocking(Model.Email, other.Email))
+                {
+                    <form method="post">
+                        <button class="button" asp-page-handler="ToggleFollow" style="margin-right: 10px">
+                            @if (Model.AuthorService.isFollowing(Model.Email, other.Email))
+                            {
+                                <span>UnFollow</span>
+                            }
+                            else
+                            {
+                                <span>Follow</span>
+                            }
+                        </button>
+                        <input type="hidden" name="self" value="@Model.Email"/>
+                        <input type="hidden" name="follow" value="@other.Email"/>
+                    </form>
+                }
                 <form method="post">
                     <button class="button" asp-page-handler="ToggleBlocking">
                         @if (Model.AuthorService.isBlocking(Model.Email, other.Email))

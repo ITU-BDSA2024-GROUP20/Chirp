@@ -74,8 +74,10 @@ public class AuthorRepository : IAuthorRepository
              await _signInManager.UserManager.RemoveLoginAsync(author,
                  info.LoginProvider, info.ProviderKey);
         }
-        author.Name = "[DELETED"+GenerateRandNum()+"]";
-        author.Email = "[DELETED]";
+
+        var temp = GenerateRandNum();
+        author.Name = "[DELETED"+temp+"]";
+        author.Email = "[DELETED"+temp+"]";
         author.UserName = "[DELETED]";
         author.PasswordHash = "[DELETED]";
         author.SecurityStamp = "[DELETED]";

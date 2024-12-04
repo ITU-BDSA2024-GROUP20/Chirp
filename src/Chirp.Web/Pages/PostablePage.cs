@@ -37,10 +37,10 @@ public class PostablePage : PageModel
         return RedirectToPage();
     }
 
-    public ActionResult OnPostToggleFollow(string? self, string? follow)
+    public ActionResult OnPostToggleFollow(string? self, string? follow, int page)
     {
         AuthorService.ToggleFollow(self, follow);
-        return RedirectToPage();
+        return Redirect($"?page={page + 1}");
     }
     
     

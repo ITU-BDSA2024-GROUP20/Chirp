@@ -280,6 +280,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 if (existingUserByName.Name != null && existingUserByName.Email != null) 
                 { 
                     ModelState.AddModelError(string.Empty, "The username "+Input.Username+" is already taken."); 
+                    UsernameTaken = true;
                     reload = true;
                 }
                 else 
@@ -290,7 +291,6 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 if (UsernameTaken && Input.Username == null)
                 {
                     ModelState.AddModelError(string.Empty, "please fill out username");
-                    UsernameTaken = true;
                     reload = true;
                 }
                 var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email); 

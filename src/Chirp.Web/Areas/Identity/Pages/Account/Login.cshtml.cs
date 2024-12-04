@@ -126,6 +126,11 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 if (!Input.EmailUserName.Contains("@"))
                 {
                     var user = _service.GetAuthorDtoByName(Input.EmailUserName);
+                    if (user.Name == null && user.Email == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "username does not exist");
+                        return Page();
+                    }
                     if (user != null)
                     {
                         username = user.Email; 

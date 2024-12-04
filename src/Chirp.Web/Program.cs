@@ -1,11 +1,7 @@
-using Chirp.Core;
 using Chirp.Web;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Infrastructure;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);   
 
@@ -27,8 +23,8 @@ builder.Services.AddAuthentication(options =>
     //.AddCookie()
     .AddGitHub(o =>
     {
-        o.ClientId = builder.Configuration["authentication_github_clientId"];
-        o.ClientSecret = builder.Configuration["authentication_github_clientSecret"];
+        o.ClientId = builder.Configuration["authentication_github_clientId"]!;
+        o.ClientSecret = builder.Configuration["authentication_github_clientSecret"]!;
         o.CallbackPath = "/signin-github";
         
     });
@@ -49,7 +45,7 @@ using (var scope = app.Services.CreateScope())
     using var context = scope.ServiceProvider.GetService<ChirpDBContext>();
 
     // Execute the migration from code.
-    context.Database.EnsureCreated();
+    context!.Database.EnsureCreated();
     DbInitializer.SeedDatabase(context, scope.ServiceProvider);
     
     Console.WriteLine("seeding done");

@@ -17,6 +17,11 @@ public class ChirpDBContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
+        builder.Entity<Author>(entity =>
+        {
+            entity.HasIndex(a => a.Name).IsUnique();
+        });
+        
         // Configure the many-to-many relationship for Following
         builder.Entity("Chirp.Infrastructure.Author", b =>
         {
@@ -32,7 +37,7 @@ public class ChirpDBContext : IdentityDbContext
                 .WithMany("Blocking")
                 .HasForeignKey("AuthorId");
         });
-        
+
     }
     
 }

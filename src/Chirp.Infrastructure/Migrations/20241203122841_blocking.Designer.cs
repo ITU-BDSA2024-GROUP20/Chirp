@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Infrastructure.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241202140017_blocking")]
+    [Migration("20241203122841_blocking")]
     partial class blocking
     {
         /// <inheritdoc />
@@ -269,6 +269,9 @@ namespace Chirp.Infrastructure.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("AuthorId1");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue("Author");
                 });

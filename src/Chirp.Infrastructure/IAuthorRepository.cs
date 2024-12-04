@@ -3,15 +3,15 @@ using Core;
 
 public interface IAuthorRepository
 {
-    public List<CheepDTO> AuthorCheep(int page, string userName, string self);
-    public void DeleteAuthor(string username);
-    public AuthorDTO GetAuthorDtoByName(string name);
-    public AuthorDTO GetAuthorDtoByEmail(string email);
-    public void ToggleFollow(string self, string other);
-    public bool isFollowing(string self, string other);
-    public bool isSelf(string self, string other);
-    public List<AuthorDTO> GetFollowing(string self);
-    public void ToggleBlocking(string self, string other);
-    public bool isBlocking(string self, string other);
-    public List<AuthorDTO> GetBlocking(string self);
+    public List<CheepDTO> AuthorCheep(int page, string? userName, string? selfemail);
+    public void DeleteAuthor(string? email);
+    public AuthorDTO GetAuthorDtoByName(string? name);
+    public AuthorDTO GetAuthorDtoByEmail(string? email);
+    public void ToggleFollow(string? selfemail, string? otheremail);
+    public bool isFollowing(string? selfemail, string? otheremail);
+    public bool isSelf(string? selfemail, string? otheremail);
+    public List<AuthorDTO> GetFollowing(string? selfemail);
+    public void ToggleBlocking(string? selfemail, string? otheremail);
+    public bool isBlocking(string? selfemail, string? otheremail);
+    public List<AuthorDTO> GetBlocking(string? selfemail);
 }

@@ -3,25 +3,72 @@
 @{
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
-    var routeName = HttpContext.GetRouteValue("author");
+    string? routeName = (string?)HttpContext.GetRouteValue("author");
     int next = Model.page + 2;
     int previous = Model.page;
+    var other = Model.AuthorService.GetAuthorDtoByName(routeName);
 }
 
 <div>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity is { IsAuthenticated: true })
     {
-    <div class="cheepbox">
-        <h3>What's on your mind @(Model.Username)?</h3>
-        <form method="post">
-            <input required style="float: left" type="text" asp-for="cheepDTO.Text" maxlength="160">
-            <input type="submit" value="Share">
-        </form>
-    </div>
+        <div class="cheepbox">
+            <h3>What's on your mind @(Model.Username)?</h3>
+            <form method="post">
+                <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
+                <input type="submit" value="Share">
+            </form>
+        </div>
+    }
+    <br/>
+    @if (User.Identity is { IsAuthenticated: true })
+    {
+        @if(!Model.AuthorService.isSelf(Model.Email, other.Email) && routeName != "[DELETED]"){
+            <span style="
+            float: right;
+            transform: translateY(-15%) translateX(-10px);
+            display: flex;
+            flex-direction: row;
+            align-items: center;">
+                @if (!Model.AuthorService.isBlocking(Model.Email, other.Email))
+                {
+                    <form method="post">
+                        <button class="button" asp-page-handler="ToggleFollow" style="margin-right: 10px">
+                            @if (Model.AuthorService.isFollowing(Model.Email, other.Email))
+                            {
+                                <span>UnFollow</span>
+                            }
+                            else
+                            {
+                                <span>Follow</span>
+                            }
+                        </button>
+                        <input type="hidden" name="self" value="@Model.Email"/>
+                        <input type="hidden" name="follow" value="@other.Email"/>
+                    </form>
+                }
+                <form method="post">
+                    <button class="button" asp-page-handler="ToggleBlocking">
+                        @if (Model.AuthorService.isBlocking(Model.Email, other.Email))
+                        {
+                            <span>UnBlock</span>
+                        }
+                        else
+                        {
+                            <span>Block</span>
+                        }
+
+                    </button>
+                    <input type="hidden" name="self" value="@Model.Email"/>
+                    <input type="hidden" name="follow" value="@other.Email"/>
+                </form>
+            </span>
+        }
     }
     
-    <h2> @routeName's Timeline </h2>
-
+    <h3> @routeName's Timeline </h3>
+    <br/>
+    
     @if (Model.Cheeps.Any())
     {
         <ul id="messagelist" class="cheeps">
@@ -29,50 +76,54 @@
             {
                 <li>
                     <p>
+                        <div style="float: right">
+                            @if (User.Identity is { IsAuthenticated: true }
+                                 && !Model.AuthorService.isSelf(Model.Email, cheep.Email)
+                                 && Model.AuthorService.isSelf(Model.Email, other.Email)
+                                 && cheep.Author != "[DELETED]"
+                                 && !Model.AuthorService.isBlocking(Model.Email, Model.AuthorService.GetAuthorDtoByName(routeName).Email))
+                            {
+                                <form method="post">
+                                    <button class="button" asp-page-handler="ToggleFollow">
+                                        @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
+                                        {
+                                            <span>UnFollow</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Follow</span>
+                                        }
+                                    </button>
+                                    <input type="hidden" name="self" value="@Model.Email"/>
+                                    <input type="hidden" name="follow" value="@cheep.Email"/>
+                                </form>
+                            }
+                        </div>
                         <strong>
                             <div>
                                 <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
-                                {
-                                    <form method="post">
-
-                                        <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model._authorService.isFollowing(Model.Username, cheep.Author))
-                                            {
-                                                <span>UnFollow</span>
-                                            }
-                                            else
-                                            {
-                                                <span>Follow</span>
-                                            }
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
-                                    </form>
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
-                                    </form>
-                                }
+                                <small>&mdash; @cheep.Timestamp</small>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text
                         </div>
-                        <small>&mdash; @cheep.Timestamp</small>
-                    </p>
                 </li>
             }
         </ul>
     }
     else
     {
-        <em>There are no cheeps so far.</em>
+        <div class="paragraph">
+            <b>There are no cheeps so far.</b>
+        </div>
     }
-    <div>
+    <div style="float: left">
+        <a href="#top" class="button">
+            <button style="color: white;">▲</button>
+        </a>
+    </div>
+    <div style="margin-inline: auto; max-width: fit-content">
         @if (previous > 0)
         {
             <a href="?page=@previous" class="button" style="text-decoration: none">
@@ -81,13 +132,22 @@
         }
         else
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
-                <button style="color: white; background-color: dimgrey">◀</button>
+            <a  class="button" style="text-decoration: none">
+                <button style="color: white; background-color: #a4d4ec">◀</button>
             </a>
         }
-        @(previous+1)
-        <a href="?page=@next" class="button" style="text-decoration: none">
-            <button style="color: white;">▶</button>
-        </a>
+        <b>@(previous+1)</b>
+        @if (Model.Cheeps.Count() == 32 && Model.nextPageExits)
+        {
+            <a href="?page=@next" class="button" style="text-decoration: none;">
+                <button style="color: white;">▶</button>
+            </a>
+        }
+        else
+        {
+            <a class="button" style="text-decoration: none">
+                <button style="color: white; background-color: #a4d4ec">▶</button>
+            </a>
+        }
     </div>
 </div>

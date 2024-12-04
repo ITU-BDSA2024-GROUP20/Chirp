@@ -8,18 +8,18 @@
 }
 
 <div>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity is { IsAuthenticated: true })
     {
         <div class="cheepbox">
             <h3>What's on your mind @(Model.Username)?</h3>
             <form method="post">
-                <input required style="float: left" type="text" asp-for="cheepDTO.Text" maxlength="160">
+                <input required style="float: left" type="text" asp-for="CheepDto.Text" maxlength="160">
                 <input type="submit" value="Share">
             </form>
         </div>
     }
     
-    <h2> Public Timeline </h2>
+    <h3> Public Timeline </h3>
     
     @if (Model.Cheeps.Any())
     {
@@ -28,14 +28,13 @@
             {
                 <li>
                     <p>
-                        <strong>
-                            <div>
-                                <a href="/@cheep.Author">@cheep.Author</a>
-                                @if (User.Identity.IsAuthenticated && !Model._authorService.isSelf(Model.Username, cheep.Author) && cheep.Author != "[DELETED]")
-                                {
+                        <div style="float: right">
+                            @if (User.Identity is { IsAuthenticated: true } && !Model.AuthorService.isSelf(Model.Email, cheep.Email) && cheep.Author != "[DELETED]")
+                            {
+                                <span style="float: right;">
                                     <form method="post">
                                         <button class="button" asp-page-handler="ToggleFollow">
-                                            @if (Model._authorService.isFollowing(Model.Username, cheep.Author))
+                                            @if (Model.AuthorService.isFollowing(Model.Email, cheep.Email))
                                             {
                                                 <span>UnFollow</span>
                                             }
@@ -44,23 +43,24 @@
                                                 <span>Follow</span>
                                             }
                                         </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
+                                        <input type="hidden" name="self" value="@Model.Email"/>
+                                        <input type="hidden" name="follow" value="@cheep.Email"/>
+                                        <input type="hidden" name="page" value="@Model.page"/>
                                     </form>
-                                    <form method="post">
-                                        <button class="button" asp-page-handler="ToggleBlocking">
-                                            <span>Block</span>
-                                        </button>
-                                        <input type="hidden" name="self" value="@Model.Username"/>
-                                        <input type="hidden" name="follow" value="@cheep.Author"/>
-                                    </form>
-                                }
+                                </span>
+                            }
+                        </div>
+                        <strong>
+                            <div>
+                                <a href="/@cheep.Author">@cheep.Author</a>
+                                <small>
+                                    - @cheep.Timestamp
+                                </small>
                             </div>
                         </strong>
                         <div style="word-wrap: break-word;">
                             @cheep.Text
                         </div>
-                        <small>&mdash; @cheep.Timestamp</small>
                     </p>
                 </li>
             }
@@ -68,24 +68,41 @@
     }
     else
     {
-        <em>There are no cheeps so far.</em>
+        <div class="paragraph">
+            <b>There are no cheeps so far.</b>
+        </div>
     }
-    <div>
+    <div style="float: left">
+        <a href="#top" class="button">
+            <button style="color: white;">▲</button>
+        </a>
+    </div>
+    <div style="margin-inline: auto; max-width: fit-content">
         @if (previous > 0)
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
+            <a href="?page=@previous" class="button" style="text-decoration: none;">
                 <button style="color: white;">◀</button>
             </a>
         }
         else
         {
-            <a href="?page=@previous" class="button" style="text-decoration: none">
-                <button style="color: white; background-color: dimgrey">◀</button>
+            <a class="button" style="text-decoration: none;">
+                <button style="color: white; background-color: #a4d4ec">◀</button>
             </a>
         }
-        @(previous+1)
-        <a href="?page=@next" class="button" style="text-decoration: none">
-            <button style="color: white;">▶</button>
-        </a>
+        <b>@(previous+1)</b>
+        @if (Model.Cheeps.Count() == 32 && Model.nextPageExits)
+        {
+            <a href="?page=@next" class="button" style="text-decoration: none;">
+                <button style="color: white;">▶</button>
+            </a>
+        }   
+        else
+        {
+            <a class="button" style="text-decoration: none">
+                <button style="color: white; background-color: #a4d4ec">▶</button>
+            </a>
+        }
+        
     </div>
 </div>

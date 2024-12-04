@@ -10,7 +10,7 @@ public class Cheep
     
     [Required]
     [StringLength(160)]
-    public required string Text { get; set; }
+    public required string? Text { get; set; }
     [StringLength(128)]
     public required string AuthorId { get; set; }
     public required Author Author { get; set; }
@@ -20,11 +20,14 @@ public class Cheep
 
 public class Author : IdentityUser
 {
+    
     [StringLength(50)]
     public required string Name { get; set; }
-    public required ICollection<Cheep> Cheeps { get; set; }
+
+    public required ICollection<Cheep> Cheeps { get; set; } = new List<Cheep>();
     public required ICollection<Author> Following { get; set; } = new List<Author>();
-    public required ICollection<Author> Blocking { get; set; } = new List<Author>(); }
+    public required ICollection<Author> Blocking { get; set; } = new List<Author>(); 
+}
 
 
 

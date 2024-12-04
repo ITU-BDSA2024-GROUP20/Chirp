@@ -105,14 +105,14 @@ public class AuthorRepository : IAuthorRepository
         var query = (
             from author in _service.Authors
             where author.Name == name
-            select new {author.Name, author.UserName}
+            select new {author.Name, author.Email}
         );
         AuthorDTO authordto = new AuthorDTO();
         var result = query.ToList();
         foreach (var author in result)
         {
             authordto.Name = author.Name;
-            authordto.Email = author.UserName;
+            authordto.Email = author.Email;
         }
 
         return authordto;
@@ -123,14 +123,14 @@ public class AuthorRepository : IAuthorRepository
         var query = (
             from author in _service.Authors
             where author.Email == email
-            select new {author.Name, author.UserName}
+            select new {author.Name, author.Email}
         );
         AuthorDTO authordto = new AuthorDTO();
         var result = query.ToList();
         foreach (var author in result)
         {
             authordto.Name = author.Name;
-            authordto.Email = author.UserName;
+            authordto.Email = author.Email;
         }
 
         return authordto;

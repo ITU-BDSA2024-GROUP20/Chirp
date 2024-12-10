@@ -320,4 +320,45 @@ private IBrowser? browser;
 
         }
     }
+    
+    [Test]
+    public async Task BlocksFollowingShownOnAboutMe()
+    {
+        if(Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
+        {
+            Assert.Ignore("Test ignored on GitHub Actions");
+        }
+        else
+        {
+            await Page.GotoAsync("http://localhost:5273/");
+            await Page.GetByRole(AriaRole.Link, new() { Name = "REGISTER" }).ClickAsync();
+            await Page.GetByPlaceholder("username").ClickAsync();
+            await Page.GetByPlaceholder("username").FillAsync("Anonymous4");
+            await Page.GetByPlaceholder("name@example.com").ClickAsync();
+            await Page.GetByPlaceholder("name@example.com").FillAsync("Anonymous4@gmail.com");
+            await Page.GetByPlaceholder("name@example.com").PressAsync("Tab");
+            await Page.GetByLabel("Password", new() { Exact = true }).FillAsync("Password1!");
+            await Page.GetByLabel("Password", new() { Exact = true }).PressAsync("Tab");
+            await Page.GetByLabel("Confirm Password").FillAsync("Password1!");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Register" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = "PUBLIC TIMELINE" }).ClickAsync();
+            await Page.Locator("li").Filter(new() { HasText = "Jacqualine Gilcoine" }).GetByRole(AriaRole.Button).First.ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = "Mellie Yost" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Block" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = "ABOUT ME" }).ClickAsync();
+            
+            var followingJacqualine = Page.GetByText("UnFollow Jacqualine Gilcoine");
+            bool isfollowingJacqualine = await followingJacqualine.IsVisibleAsync();
+            Console.WriteLine("isfollowingJacqualine: " + isfollowingJacqualine + (isfollowingJacqualine ? " PASS" : " FAIL"));
+            Assert.IsTrue(isfollowingJacqualine);
+            var blockingMellie = Page.GetByText("UnBlock Mellie Yost");
+            bool isblockingMellie = await blockingMellie.IsVisibleAsync();
+            Console.WriteLine("isblockingMellie: " + isblockingMellie + (isblockingMellie ? " PASS" : " FAIL"));
+            Assert.IsTrue(isblockingMellie);
+        }
+    }
+    
+    
+    
+    
 }

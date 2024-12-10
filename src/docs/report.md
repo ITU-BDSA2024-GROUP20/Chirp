@@ -24,6 +24,8 @@ illustrate that accordingly. </redColor>
 which layers exist in your (onion) architecture. Make sure to illustrate which 
 part of your code is residing in which layer.</redColor>
 
+<img src="OnionArch.drawio.png">
+
 ## Architecture of deployed application
 <redColor>Illustrate the architecture of your deployed application. Remember, 
 you developed a client-server application. Illustrate the server component and 

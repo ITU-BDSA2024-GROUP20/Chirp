@@ -17,6 +17,8 @@ Illustration of the Chirp! data model as UML class diagram. </redColor>
 correct and complete. In case you are using ASP.NET Identity, make sure to 
 illustrate that accordingly. </redColor>
 
+<img src="Domain%20model.drawio.png">
+
 ## Architecture — In the small
 <redColor>Illustrate the organization of your code base. That is, illustrate 
 which layers exist in your (onion) architecture. Make sure to illustrate which 

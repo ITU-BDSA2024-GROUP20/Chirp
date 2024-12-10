@@ -4,7 +4,7 @@ using Core;
 public interface IAuthorRepository
 {
     public List<CheepDTO> AuthorCheep(int page, string? userName, string? selfemail);
-    public void DeleteAuthor(string? email);
+    public Author DeleteAuthor(string? email);
     public AuthorDTO GetAuthorDtoByName(string? name);
     public AuthorDTO GetAuthorDtoByEmail(string? email);
     public void ToggleFollow(string? selfemail, string? otheremail);
@@ -14,4 +14,5 @@ public interface IAuthorRepository
     public void ToggleBlocking(string? selfemail, string? otheremail);
     public bool isBlocking(string? selfemail, string? otheremail);
     public List<AuthorDTO> GetBlocking(string? selfemail);
+    public void save();
 }

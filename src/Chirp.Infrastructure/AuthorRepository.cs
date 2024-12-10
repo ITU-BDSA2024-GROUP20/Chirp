@@ -6,12 +6,10 @@ using Core;
 public class AuthorRepository : IAuthorRepository
 {
     private readonly ChirpDBContext _service;
-    private readonly SignInManager<Author> _signInManager;
 
-    public AuthorRepository(ChirpDBContext service, SignInManager<Author> signInManager)
+    public AuthorRepository(ChirpDBContext service)
     {
         this._service = service;
-        this._signInManager = signInManager;
     }
 
     public List<CheepDTO> AuthorCheep(int page, string? user, string? selfemail)
@@ -59,22 +57,21 @@ public class AuthorRepository : IAuthorRepository
         }
         return cheeps;
     }
+
+    public void save()
+    {
+        _service.SaveChanges();
+    }
     
     
     /// <summary>
     /// While this function may imply deletion of said user, due to the current implementation of the userId system, should not be fully removed from the database.
     /// However, their username, name, and email will be anonymised and who they followed.
     /// </summary>
-    public async void DeleteAuthor(string? email)
+    public Author DeleteAuthor(string? email)
     {
-        var info = await _signInManager.GetExternalLoginInfoAsync();
         Author author = GetAuthorByEmail(email);
-        if (info != null)
-        {
-             await _signInManager.UserManager.RemoveLoginAsync(author,
-                 info.LoginProvider, info.ProviderKey);
-        }
-
+        
         var temp = GenerateRandNum();
         author.Name = "[DELETED"+temp+"]";
         author.Email = "[DELETED"+temp+"]";
@@ -85,7 +82,9 @@ public class AuthorRepository : IAuthorRepository
         author.NormalizedEmail = "[DELETED " + author.Id + "]";
         author.NormalizedUserName = "[DELETED " + author.Id + "]";
         author.Following.Clear();
+        author.Blocking.Clear();
         _service.SaveChanges();
+        return author;
     }
     
     private string GenerateRandNum()

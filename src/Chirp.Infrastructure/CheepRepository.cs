@@ -11,7 +11,7 @@ public class CheepRepository : ICheepRepository
         this._service = service;
     }
 
-    public static bool ValiddateString(string? str)
+    public static bool ValidateString(string? str)
     {
         if (str == null)
             return false;
@@ -24,7 +24,7 @@ public class CheepRepository : ICheepRepository
     
     public void CreateCheep(CheepDTO newCheep)
     {
-        if (ValiddateString(newCheep.Text))
+        if (ValidateString(newCheep.Text))
         {
             var query = (
                 from aut in _service.Authors

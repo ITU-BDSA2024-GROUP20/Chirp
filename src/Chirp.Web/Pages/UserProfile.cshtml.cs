@@ -50,7 +50,15 @@ public class UserProfileModel : PageModel
     
     public async Task<IActionResult> OnPostDeleteUser(string email)
     {
-        Service.DeleteAuthor(email); // Anon user
+        var info = await _signInManager.GetExternalLoginInfoAsync(); 
+        Author author = Service.DeleteAuthor(email); // Anon user
+        if (info != null)
+        {
+            await _signInManager.UserManager.RemoveLoginAsync(author,
+                info.LoginProvider, info.ProviderKey);
+        }
+        Service.save();
+        
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main
     }

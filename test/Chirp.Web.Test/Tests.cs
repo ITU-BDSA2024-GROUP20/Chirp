@@ -13,7 +13,7 @@ public class Tests
     {
         if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
         {
-            Assert.Ignore("Test ignored on GitHub Actions");
+            //Assert.Ignore("Test ignored on GitHub Actions");
         }
         else
         {
@@ -33,7 +33,7 @@ public class Tests
     {
         if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
         {
-            Assert.Ignore("Test ignored on GitHub Actions");
+            //Assert.Ignore("Test ignored on GitHub Actions");
         }
         else
         {

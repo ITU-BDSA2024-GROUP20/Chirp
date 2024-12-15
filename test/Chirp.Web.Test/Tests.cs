@@ -357,6 +357,7 @@ public class Tests
             bool isblockingMellie = await blockingMellie.IsVisibleAsync();
             Console.WriteLine("isblockingMellie: " + isblockingMellie + (isblockingMellie ? " PASS" : " FAIL"));
             Assert.IsTrue(isblockingMellie);
+            Assert.Ignore("what happens");
         }
     }
     

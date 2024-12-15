@@ -13,6 +13,7 @@ public class Tests
     {
         if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
         {
+            //this needs to be commented out because it makes it fail on github
             //Assert.Ignore("Test ignored on GitHub Actions");
         }
         else
@@ -33,6 +34,7 @@ public class Tests
     {
         if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
         {
+            //this needs to be commented out because it makes it fail on github
             //Assert.Ignore("Test ignored on GitHub Actions");
         }
         else
@@ -357,7 +359,6 @@ public class Tests
             bool isblockingMellie = await blockingMellie.IsVisibleAsync();
             Console.WriteLine("isblockingMellie: " + isblockingMellie + (isblockingMellie ? " PASS" : " FAIL"));
             Assert.IsTrue(isblockingMellie);
-            Assert.Ignore("what happens");
         }
     }
     

@@ -1,0 +1,31 @@
+name: livetest.yml
+
+run-name: Checking if Chirp is Live
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "* */6 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Restoring Projects
+        run: |
+          dotnet restore ./test/Chirp.Live.Test
+      - name: Building Projects
+        run: |
+          dotnet build ./test/Chirp.Live.Test --no-restore
+      - name: Ensure browsers are installed
+        run: pwsh ./test/Chirp.Web.Test/bin/Debug/net8.0/playwright.ps1 install --with-deps
+      - name: Testing Projects
+        run: |
+          dotnet test --no-build --verbosity normal "./test/Chirp.Live.Test"

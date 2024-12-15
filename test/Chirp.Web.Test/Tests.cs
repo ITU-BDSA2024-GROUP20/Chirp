@@ -5,7 +5,7 @@ using Microsoft.Playwright;
 [TestFixture]
 public class Tests
 {
-private IBrowser? browser;
+    private IBrowser? browser;
     private IPage? Page;
 
     [SetUp]
@@ -90,6 +90,8 @@ private IBrowser? browser;
             
             var helgatimeline = Page.GetByRole(AriaRole.Heading, new(){Name = "Helge's Timeline"});
             bool isHelgatimelineVisible = await helgatimeline.IsVisibleAsync();
+            Assert.IsTrue(isHelgatimelineVisible);
+            Console.WriteLine("isHelgatimelineVisible: " + isHelgatimelineVisible + (isHelgatimelineVisible ? " PASS" : " FAIL"));
             Assert.IsTrue(isHelgatimelineVisible);
         }
     }

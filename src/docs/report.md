@@ -32,6 +32,10 @@ you developed a client-server application. Illustrate the server component and
 to where it is deployed, illustrate a client component, and show how these 
 communicate with each other.</redColor>
 
+<img src="Architecture-global.drawio.png"> 
+
+<img src="Architecture-local.drawio.png"> 
+
 ## User activities
 <redColor>Illustrate typical scenarios of a user journey through your Chirp! 
 application. That is, start illustrating the first page that is presented to a 

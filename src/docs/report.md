@@ -46,6 +46,8 @@ authentication. </redColor>
 <redColor>Make sure that the illustrations are in line with the actual behavior of 
 your application.</redColor>
 
+<img src="User activities.drawio.png">
+
 ## Sequence of functionality/calls through Chirp!
 <redColor>With a UML sequence diagram, illustrate the flow of messages and data 
 through your Chirp! application. Start with an HTTP request that is sent by an 

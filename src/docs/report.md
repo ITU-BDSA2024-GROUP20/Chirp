@@ -36,8 +36,10 @@ are hidden (so there cheeps are done invisible from the author.
 And then it extends *Microsoft.AspNetCore.Identity*. And it provides hashed a the 
 passwords and email verification.
 
-
-<img src="Domain%20model.drawio.png">
+<figure>
+    <img src="Domain%20model.drawio.png">
+    <figcaption>UML class diagram of our domain model</figcaption>
+</figure>
 
 ## Architecture — In the small
 <redColor>Illustrate the organization of your code base. That is, illustrate 
@@ -57,8 +59,10 @@ has three main layers:
   ***DbInitializer*** aka our database and the folder ***Pages***, they are responsible for the
   layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
-
-<img src="OnionArch.drawio.png">
+<figure>
+    <img src="OnionArch.drawio.png">
+    <figcaption>Onion architecture of the Chirp</figcaption>
+</figure>
 
 ## Architecture of deployed application
 <redColor>Illustrate the architecture of your deployed application. Remember, 
@@ -66,9 +70,15 @@ you developed a client-server application. Illustrate the server component and
 to where it is deployed, illustrate a client component, and show how these 
 communicate with each other.</redColor>
 
-<img src="Architecture-global.drawio.png"> 
+<figure>
+    <img src="Architecture-global.drawio.png"> 
+    <figcaption>Architecture illustrate of our client-server application</figcaption>
+</figure>
 
-<img src="Architecture-local.drawio.png"> 
+<figure>
+    <img src="Architecture-local.drawio.png"> 
+    <figcaption>Architecture illustrate of our client application</figcaption>
+</figure>
 
 ## User activities
 <redColor>Illustrate typical scenarios of a user journey through your Chirp! 
@@ -80,7 +90,10 @@ authentication. </redColor>
 <redColor>Make sure that the illustrations are in line with the actual behavior of 
 your application.</redColor>
 
-<img src="User activities.drawio.png">
+<figure>
+    <img src="User activities.drawio.png">
+    <figcaption>Illustrate of flowchart of a non-authorized user</figcaption>
+</figure>
 
 ## Sequence of functionality/calls through Chirp!
 <redColor>With a UML sequence diagram, illustrate the flow of messages and data 
@@ -94,7 +107,11 @@ and responses, some calls and responses in C# and likely some more. (Note
 the previous sentence is vague on purpose. I want you create a complete 
 illustration.)</redColor>
 
-<img src="UML%20Sequence%20Diagram.png">
+
+<figure>
+    <img src="UML%20Sequence%20Diagram.png">
+    <figcaption>UML sequence diagram from HTTP request to endpoint</figcaption>
+</figure>
 
 # Process
 ## Build, test, release, and deployment

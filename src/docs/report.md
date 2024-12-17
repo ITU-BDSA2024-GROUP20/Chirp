@@ -47,15 +47,15 @@ part of your code is residing in which layer.</redColor>
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
 - The inner layer - Chirp.Core:
-  Contains our DTOs classes AuthorDTO and CheepDTO
+  Contains our DTOs classes A***uthorDTO*** and ***CheepDTO***
 - The middle layer - Chirp.Infrastructure:
-  Contains AuthorRepository, CheepRepository and their interfaces as well as
-  ChirpDBContext the database and our domain model and it uses the Microsoft packed
-  'Microsoft.AspNetCore.Identity'.
+  Contains ***AuthorRepository***, ***CheepRepository*** and their interfaces as well as
+  ***ChirpDBContext*** the database and our domain model and it uses the Microsoft packed
+  '*Microsoft.AspNetCore.Identity*'.
 - The outer layer - Chirp.Web:
-  Represents the web application as it contains Program as run the program, our
-  DbInitializer aka our database and the folder Pages, they are responsible for the
-  layout, and it uses the Microsoft packed 'Microsoft.AspNetCore.Mvc.RazerPages'.
+  Represents the web application as it contains ***Program*** as run the program, our
+  ***DbInitializer*** aka our database and the folder ***Pages***, they are responsible for the
+  layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
 
 <img src="OnionArch.drawio.png">

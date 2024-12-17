@@ -82,6 +82,8 @@ and responses, some calls and responses in C# and likely some more. (Note
 the previous sentence is vague on purpose. I want you create a complete 
 illustration.)</redColor>
 
+<img src="UML%20Sequence%20Diagram.png">
+
 # Process
 ## Build, test, release, and deployment
 <redColor>Illustrate with a UML activity diagram how your Chirp! applications are 

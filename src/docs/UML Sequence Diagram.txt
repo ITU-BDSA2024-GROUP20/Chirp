@@ -1,0 +1,33 @@
+actor Unautherized User #lightgreen
+participantgroup #00A2F4 **Chirp!**
+participant HTML
+participant CS
+end
+database mychirp.db #red
+
+
+// Start with getting HTTPS
+Unautherized User ->  CS: HTTP Request
+activate CS
+Unautherized User <<-- CS: Redirect to HTTPS
+deactivateafter CS
+Unautherized User ->  CS: HTTPS Request
+activate CS
+
+// Check authorization
+CS->OAuth:
+
+// Get Cheeps from database
+CS  ->  mychirp.db: Get cheeps of page
+activate mychirp.db
+CS  <<-- mychirp.db: Return cheeps
+deactivateafter mychirp.db
+
+// Create page
+HTML  <<-- CS: Create page
+activate HTML
+deactivateafter CS
+
+// Send page to user
+Unautherized User <<-- HTML: Return page
+deactivateafter HTML

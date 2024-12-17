@@ -1,8 +1,5 @@
 actor Unauthorized User #lightgreen
-participantgroup #00A2F4 **Chirp!**
-participant HTML
-participant CS
-end
+participant WebApp
 database mychirp.db #red
 participant Identity
 
@@ -10,30 +7,25 @@ activate Unauthorized User
 
 messagestyle <background:#white>
 // Start with getting HTTPS
-Unauthorized User ->  CS: HTTP Request 
-activate CS
-Unauthorized User <<-- CS: Redirect to HTTPS
-deactivateafter CS
-Unauthorized User ->  CS: HTTPS Request
-activate CS
+Unauthorized User ->  WebApp: HTTP Request 
+activate WebApp
+Unauthorized User <<-- WebApp: Redirect to HTTPS
+deactivateafter WebApp
+Unauthorized User ->  WebApp: HTTPS Request
+activate WebApp
 
 // Check authorization
-CS -> Identity: Is Authorized?
+WebApp -> Identity: Is Authorized?
 activate Identity
-CS <<-- Identity: Return not authorized
+WebApp <<-- Identity: Return not authorized
 deactivateafter Identity
 
 // Get Cheeps from database
-CS  ->  mychirp.db: Get cheeps of page
+WebApp  ->  mychirp.db: Get cheeps of page
 activate mychirp.db
-CS  <<-- mychirp.db: Return cheeps
+WebApp  <<-- mychirp.db: Return cheeps
 deactivateafter mychirp.db
 
-// Create page
-HTML  <<-- CS: Create page
-activate HTML
-deactivateafter CS
-
 // Send page to user
-Unauthorized User <<-- HTML: Return page
-deactivateafter HTML
+Unauthorized User <<-- WebApp: Return page
+deactivateafter WebApp

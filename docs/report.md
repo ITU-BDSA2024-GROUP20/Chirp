@@ -75,10 +75,23 @@ communicate with each other.</redColor>
     <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
 
+On the left side there are some clients in green (there can be a number
+of client, but we have only show 2 clients) and they communicate with
+the internet. There so are interacting with web server there are
+located on Microsoft Azure server. The web server communicates the
+database, as it shall stores or retrieves the data the client should use
+and then it gots send back.
+
 <figure>
-    <img src="Diagrams/Architecture-local.drawio.png"> 
-    <figcaption>Architecture Illustration of our client application</figcaption>
+    <img src="Diagrams/Architecture-global.drawio.png"> 
+    <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
+
+The diagram below are an illustrates of our local client architecture.
+
+On the left side there are our local clients. The client interacting with web server there are
+local server: localhost:5273. The server communicates 'mychirp.db', as it shall stores or
+retrieves the data the client should use and then it gots send back.
 
 ## User activities
 <redColor>Illustrate typical scenarios of a user journey through your Chirp! 

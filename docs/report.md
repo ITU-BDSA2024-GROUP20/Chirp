@@ -135,6 +135,14 @@ illustration.)</redColor>
     <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
+The sequence diagram shown above shows a singular unauthorized user process for being shown the homepage when first finding the website.
+
+Standard protocol when getting a site is requesting its HTTP version, which is not stable and can easily be compromised, which is why Chirp! then redirects to a HTTPS version and stores a cookie for the user, which makes the user always connect to the HTTPS version when requesting the site.
+
+Afterwards, Microsoft Identity attempts to check whether the user is authorized (logged in) or not. Due to this user being completely new and having no prior cookies, it is determined that they are unauthorized.
+
+Then, the Chirp! homepage is gets loaded, meaning the page has to get all available cheeps that can be shown on one page, which is then sent to the user. They are now on a static page.
+
 # Process
 ## Build, test, release, and deployment
 <redColor>Illustrate with a UML activity diagram how your Chirp! applications are 

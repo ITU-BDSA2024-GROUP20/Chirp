@@ -37,7 +37,7 @@ And then it extends *Microsoft.AspNetCore.Identity*. And it provides hashed a th
 passwords and email verification.
 
 <figure>
-    <img src="Domain%20model.drawio.png">
+    <img src="Diagrams/Domain%20model.drawio.png">
     <figcaption>UML class diagram of our domain model</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ has three main layers:
   layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
 <figure>
-    <img src="OnionArch.drawio.png">
+    <img src="Diagrams/OnionArch.drawio.png">
     <figcaption>Onion architecture of the Chirp application</figcaption>
 </figure>
 
@@ -71,12 +71,12 @@ to where it is deployed, illustrate a client component, and show how these
 communicate with each other.</redColor>
 
 <figure>
-    <img src="Architecture-global.drawio.png"> 
+    <img src="Diagrams/Architecture-global.drawio.png"> 
     <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
 
 <figure>
-    <img src="Architecture-local.drawio.png"> 
+    <img src="Diagrams/Architecture-local.drawio.png"> 
     <figcaption>Architecture Illustration of our client application</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ authentication. </redColor>
 your application.</redColor>
 
 <figure>
-    <img src="User activities.drawio.png">
+    <img src="Diagrams/User activities.drawio.png">
     <figcaption>Illustration of flowchart of a non-authorized user</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ illustration.)</redColor>
 
 
 <figure>
-    <img src="UML%20Sequence%20Diagram.png">
+    <img src="Diagrams/UML%20Sequence%20Diagram.png">
     <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
@@ -118,6 +118,11 @@ illustration.)</redColor>
 <redColor>Illustrate with a UML activity diagram how your Chirp! applications are 
 build, tested, released, and deployed. That is, illustrate the flow of activities 
 in your respective GitHub Actions workflows.</redColor>
+
+<figure>
+  <img src="Diagrams/Activity%20Diagram_BuildTest.drawio.png">
+  <figcaption></figcaption>
+</figure>
 
 <redColor>Describe the illustration briefly, i.e., how your application is built, 
 tested, released, and deployed.</redColor>

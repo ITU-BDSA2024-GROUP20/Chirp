@@ -104,6 +104,14 @@ authentication. </redColor>
 <redColor>Make sure that the illustrations are in line with the actual behavior of 
 your application.</redColor>
 
+Here is a flowchart there illustrate the different path there are in our program from the 
+three ‘Log in’ options ‘log in with authorized user’, ‘log in with GitHub’ or ‘log in with 
+non-registered user’.
+After the log in process all the different thing there can be done for example ‘writing a 
+cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user journey 
+with “***log out***” or click on the “***Forget me***” buttons.
+
+
 <figure>
     <img src="Diagrams/User activities.drawio.png" alt="User activities">
     <figcaption>Illustration of flowchart of a non-authorized user</figcaption>

@@ -124,6 +124,16 @@ in your respective GitHub Actions workflows.</redColor>
   <figcaption></figcaption>
 </figure>
 
+<figure>
+  <img src="Diagrams/Activity%20Diagram_LiveTest.drawio.png">
+  <figcaption></figcaption>
+</figure>
+
+<figure>
+  <img src="Diagrams/Activity%20Diagram_Deploy.drawio.png">
+  <figcaption></figcaption>
+</figure>
+
 <redColor>Describe the illustration briefly, i.e., how your application is built, 
 tested, released, and deployed.</redColor>
 

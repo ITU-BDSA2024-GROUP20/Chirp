@@ -18,26 +18,26 @@ correct and complete. In case you are using ASP.NET Identity, make sure to
 illustrate that accordingly. </redColor>
 
 Our domain model for our application: Chirp. It is design with the purpose to simulate 
-‘Twitter’ or ‘X’ as it is call now. It consists of a two parts, a Cheep class and an 
+‘Twitter’ or ‘X’ as it is call now. It consists of two parts, a Cheep class and an 
 Author class there are closely tied.
 
 The Cheep has some felts it stores all the information about a cheeps as example 
-***CheepId***: there has a unique number, ***Text***: there store the actual message 
+***CheepId***: there has a unique number, ***Text***: there store the actual message, 
 but it has a limited on 160 characters, ***AuthorId/Author***: referencing to the 
 other class Author so there comes a connection between all cheeps and Authors and 
 then the last felt are ***TimeStamp***: to get the time the cheep are posted.
 
 The Author has also some felts where it stores its information about a user’s as 
 example ***Name***: there store the username there has a limited on 50 characters,
-***Cheeps***: there store the cheeps in an collection from each author, ***Following***:
+***Cheeps***: there store the cheeps in a collection from each author, ***Following***:
 there store the other authors in a collection from each author(so there cheeps also 
 get add to My Timeline), ***Blocking***: there store a collection of  authors there 
-are hidden (so there cheeps are done invisible from the author. 
-And then it extends *Microsoft.AspNetCore.Identity*. And it provides hashed a the 
-passwords and email verification.
+are hidden (so there cheeps are done invisible from the author). 
+And then it extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
+password and secures proper email verification.
 
 <figure>
-    <img src="Diagrams/Domain%20model.drawio.png">
+    <img src="Diagrams/Domain%20model.drawio.png" alt=>
     <figcaption>UML class diagram of our domain model</figcaption>
 </figure>
 
@@ -49,10 +49,10 @@ part of your code is residing in which layer.</redColor>
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
 - The inner layer - Chirp.Core:
-  Contains our DTOs classes A***uthorDTO*** and ***CheepDTO***
+  Contains our DTOs classes ***AuthorDTO*** and ***CheepDTO***
 - The middle layer - Chirp.Infrastructure:
   Contains ***AuthorRepository***, ***CheepRepository*** and their interfaces as well as
-  ***ChirpDBContext*** the database and our domain model and it uses the Microsoft packed
+  ***ChirpDBContext*** the database and our domain model, and it uses the Microsoft packed
   '*Microsoft.AspNetCore.Identity*'.
 - The outer layer - Chirp.Web:
   Represents the web application as it contains ***Program*** as run the program, our
@@ -60,7 +60,7 @@ has three main layers:
   layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
 <figure>
-    <img src="Diagrams/OnionArch.drawio.png">
+    <img src="Diagrams/OnionArch.drawio.png" alt="Onion">
     <figcaption>Onion architecture of the Chirp application</figcaption>
 </figure>
 
@@ -71,27 +71,28 @@ to where it is deployed, illustrate a client component, and show how these
 communicate with each other.</redColor>
 
 <figure>
-    <img src="Diagrams/Architecture-global.drawio.png"> 
+    <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
     <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
 
 On the left side there are some clients in green (there can be a number
 of client, but we have only show 2 clients) and they communicate with
 the internet. There so are interacting with web server there are
-located on Microsoft Azure server. The web server communicates the
-database, as it shall stores or retrieves the data the client should use
-and then it gots send back.
+located on Microsoft Azure server. The web server communicates to the
+database, as it needs to store or retrieve the data the client should use,
+and then it gets send back.
 
 <figure>
-    <img src="Diagrams/Architecture-global.drawio.png"> 
-    <figcaption>Architecture Illustration of our client-server application</figcaption>
+    <img src="Diagrams/Architecture-local.drawio.png" alt="architecture-local"> 
+    <figcaption>Architecture Illustration of our local client application</figcaption>
 </figure>
 
 The diagram below are an illustrates of our local client architecture.
 
-On the left side there are our local clients. The client interacting with web server there are
-local server: localhost:5273. The server communicates 'mychirp.db', as it shall stores or
-retrieves the data the client should use and then it gots send back.
+On the left side there are our local clients. The client interacting with web server 
+there are local server: localhost:5273. The server communicates 'mychirp.db', 
+as it needs to store or retrieve the data the client should use, and then it gets 
+send back.
 
 ## User activities
 <redColor>Illustrate typical scenarios of a user journey through your Chirp! 
@@ -104,7 +105,7 @@ authentication. </redColor>
 your application.</redColor>
 
 <figure>
-    <img src="Diagrams/User activities.drawio.png">
+    <img src="Diagrams/User activities.drawio.png" alt="User activities">
     <figcaption>Illustration of flowchart of a non-authorized user</figcaption>
 </figure>
 
@@ -122,7 +123,7 @@ illustration.)</redColor>
 
 
 <figure>
-    <img src="Diagrams/UML%20Sequence%20Diagram.png">
+    <img src="Diagrams/UML%20Sequence%20Diagram.png" alt="UML-Sequence">
     <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
@@ -133,17 +134,17 @@ build, tested, released, and deployed. That is, illustrate the flow of activitie
 in your respective GitHub Actions workflows.</redColor>
 
 <figure>
-  <img src="Diagrams/Activity%20Diagram_BuildTest.drawio.png">
+  <img src="Diagrams/Activity%20Diagram_BuildTest.drawio.png" alt="Activity_BuildTest">
   <figcaption></figcaption>
 </figure>
 
 <figure>
-  <img src="Diagrams/Activity%20Diagram_LiveTest.drawio.png">
+  <img src="Diagrams/Activity%20Diagram_LiveTest.drawio.png" alt="Activity_LiveTest">
   <figcaption></figcaption>
 </figure>
 
 <figure>
-  <img src="Diagrams/Activity%20Diagram_Deploy.drawio.png">
+  <img src="Diagrams/Activity%20Diagram_Deploy.drawio.png" alt="Activity_Deploy">
   <figcaption></figcaption>
 </figure>
 

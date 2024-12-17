@@ -145,10 +145,11 @@ the step above.</redColor>
 <redColor>Briefly describe what kinds of tests you have in your test suites and what 
 they are testing.</redColor>
 
+
 # Ethics
-# License
+## License
 <redColor>State which software license you chose for your application.</redColor>
-# LLMs, ChatGPT, CoPilot, and others
+## LLMs, ChatGPT, CoPilot, and others
 <redColor>State which LLM(s) were used during development of your project. In case 
 you were not using any, just state so. In case you were using an LLM to support 
 your development, briefly describe when and how it was applied. Reflect in 

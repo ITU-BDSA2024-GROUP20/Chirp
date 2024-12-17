@@ -61,7 +61,7 @@ has three main layers:
 
 <figure>
     <img src="OnionArch.drawio.png">
-    <figcaption>Onion architecture of the Chirp</figcaption>
+    <figcaption>Onion architecture of the Chirp application</figcaption>
 </figure>
 
 ## Architecture of deployed application
@@ -72,12 +72,12 @@ communicate with each other.</redColor>
 
 <figure>
     <img src="Architecture-global.drawio.png"> 
-    <figcaption>Architecture illustrate of our client-server application</figcaption>
+    <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
 
 <figure>
     <img src="Architecture-local.drawio.png"> 
-    <figcaption>Architecture illustrate of our client application</figcaption>
+    <figcaption>Architecture Illustration of our client application</figcaption>
 </figure>
 
 ## User activities
@@ -92,7 +92,7 @@ your application.</redColor>
 
 <figure>
     <img src="User activities.drawio.png">
-    <figcaption>Illustrate of flowchart of a non-authorized user</figcaption>
+    <figcaption>Illustration of flowchart of a non-authorized user</figcaption>
 </figure>
 
 ## Sequence of functionality/calls through Chirp!
@@ -110,7 +110,7 @@ illustration.)</redColor>
 
 <figure>
     <img src="UML%20Sequence%20Diagram.png">
-    <figcaption>UML sequence diagram from HTTP request to endpoint</figcaption>
+    <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
 # Process

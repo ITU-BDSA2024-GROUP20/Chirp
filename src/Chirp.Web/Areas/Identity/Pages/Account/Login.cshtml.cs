@@ -68,6 +68,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
+            /// this has been changed to not only accept emails
             /// </summary>
             [Required]
             public string EmailUserName { get; set; }
@@ -90,6 +91,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
 
         public ActionResult onGet()
         {
+            //to get the logged in user this is need for layout to work
             if (User.Identity.IsAuthenticated)
             {
                 Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
@@ -121,8 +123,9 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-
+                
                 var username = Input.EmailUserName;
+                //gets the email that matches the username if no email was input
                 if (!Input.EmailUserName.Contains("@"))
                 {
                     var user = _service.GetAuthorDtoByName(Input.EmailUserName);

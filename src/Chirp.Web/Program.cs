@@ -14,6 +14,7 @@ builder.Services.AddDefaultIdentity<Author>(options =>
     options.SignIn.RequireConfirmedAccount = false;
 }).AddEntityFrameworkStores<ChirpDBContext>();
 
+//adding Authentication with github
 builder.Services.AddAuthentication(options =>
     {
         /*options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

@@ -10,7 +10,7 @@ public class PublicModel : PostablePage
     
     public ActionResult OnGet()
     {   
-        
+        //to get the person who is logged in
         if (User.Identity is { IsAuthenticated: true })
         {
             if (User.Identity.Name != null)
@@ -20,13 +20,13 @@ public class PublicModel : PostablePage
                 Email = temp.Email;
             }
         }
-
+        //to get the page
         if (!string.IsNullOrEmpty(Request.Query["page"]) && Int32.Parse( Request.Query["page"]! ) > 0)
         {
             page =Int32.Parse( Request.Query["page"]!)-1;
         }
         
-        
+        //to get the cheep that go on the page
         List<CheepDTO> cheeps;
         if (User.Identity is { IsAuthenticated: true })
         {

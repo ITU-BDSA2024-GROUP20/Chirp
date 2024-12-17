@@ -7,6 +7,7 @@ namespace Chirp.Razor.Pages;
 
 public class _Layout_cshtml : PageModel
 {
+    //this page is an artifact of some earlier test we have not deleted
     private readonly IAuthorRepository _service;
     
     public string? UsernameLayout { get; set; } = null!;

@@ -29,6 +29,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
 
         public IActionResult OnGet()
         {
+            //to get the logged in user this is need for layout to work
             if (User.Identity.IsAuthenticated)
             {
                 Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;

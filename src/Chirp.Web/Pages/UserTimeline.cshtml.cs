@@ -17,14 +17,17 @@ public class UserTimelineModel : PostablePage
 
     public ActionResult OnGet(string? author)
     {
+        //gets the logged in user
         if (User.Identity is { IsAuthenticated: true })
         {
             var temp = AuthorService.GetAuthorDtoByEmail(User.Identity.Name);
             Username = temp.Name;
             Email = temp.Email;
         }
+        //gets the current page
         if (!string.IsNullOrEmpty(Request.Query["page"]) && int.Parse( Request.Query["page"]!) > 0) 
             page =int.Parse( Request.Query["page"]!)-1;
+        //finds the cheeps to be displayed
         List<CheepDTO> cheeps;
         if (User.Identity is { IsAuthenticated: true })
         {

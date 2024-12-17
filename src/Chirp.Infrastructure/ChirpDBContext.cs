@@ -16,13 +16,13 @@ public class ChirpDBContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
+        //insuring Name is unique
         builder.Entity<Author>(entity =>
         {
             entity.HasIndex(a => a.Name).IsUnique();
         });
         
-        // Configure the many-to-many relationship for Following
+        //ensures that author has a list of Authors name Following
         builder.Entity("Chirp.Infrastructure.Author", b =>
         {
             b.HasOne("Chirp.Infrastructure.Author", null)
@@ -30,7 +30,7 @@ public class ChirpDBContext : IdentityDbContext
                 .HasForeignKey("AuthorId");
         });
         
-        // Configure the many-to-many relationship for Blocking
+        //ensures that author has a list of Authors name Following
         builder.Entity("Chirp.Infrastructure.Author", b =>
         {
             b.HasOne("Chirp.Infrastructure.Author", null)

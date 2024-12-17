@@ -28,6 +28,7 @@ public class UserProfileModel : PageModel
 
     public IActionResult OnGet()
     {
+        //getting the person who is logged in
         if (User.Identity is { IsAuthenticated: true })
         {
             var authorDto = Service.GetAuthorDtoByEmail(User.Identity.Name);
@@ -42,12 +43,17 @@ public class UserProfileModel : PageModel
             return LocalRedirect("/");
         }
         Console.WriteLine();
+        //return the cheep of the logged in person   
         List<CheepDTO> _Cheeps = Service.AuthorCheep(0, Email, null);
         Cheeps = _Cheeps.TakeLast(32).ToList();
         
         return Page();
     }
-    
+    /// <summary>
+    /// this anonymises the user and makes one unable to log in to the account
+    /// </summary>
+    /// <param name="email"></param> email of the person to be deleted
+    /// <returns></returns>
     public async Task<IActionResult> OnPostDeleteUser(string email)
     {
         var info = await _signInManager.GetExternalLoginInfoAsync(); 
@@ -62,12 +68,25 @@ public class UserProfileModel : PageModel
         await _signInManager.SignOutAsync(); // Log out user
         return RedirectToPage("Public"); // Go to main
     }
-    
+    /// <summary>
+    /// this is a function called buy a button that set the person that presses the button as unfollowing
+    /// the person the button is associated with
+    /// </summary>
+    /// <param name="self"></param> the person who presses the buttons email
+    /// <param name="follow"></param> email of the person to be unfollowed
+    /// <returns></returns>
     public ActionResult OnPostToggleFollow(string? self, string? follow)
     {
         Service.ToggleFollow(self, follow);
         return RedirectToPage();
     }
+    /// <summary>
+    /// this is a function called buy a button that set the person that presses the button as unblocking
+    /// the person the button is associated with
+    /// </summary>
+    /// <param name="self"></param> the person who presses the buttons email
+    /// <param name="follow"></param> email of the person to be unblocked
+    /// <returns></returns>
     public ActionResult OnPostToggleBlocking(string? self, string? follow)
     {
         Service.ToggleBlocking(self, follow);

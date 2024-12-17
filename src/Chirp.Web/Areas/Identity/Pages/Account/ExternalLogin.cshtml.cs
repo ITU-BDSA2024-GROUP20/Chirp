@@ -87,6 +87,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            /// <summary>
+            ///     this is the inputfield for a username which does not accept names shorter than 2 and longer than 25 character
+            ///     and cant have "@,[,],DELETED" in it
+            /// </summary>
             [DataType(DataType.Text)]
             [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
             [RegularExpression(@"^(?!.*(?:@|\[|\]|DELETED)).*$", ErrorMessage = "The username cannot contain '@,[,],DELETED' symbol.")]
@@ -99,14 +103,20 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             /// </summary>
             [EmailAddress]
             public string Email { get; set; }
-            
+            /// <summary>
+            ///     This is to persist the input from the initial detemination
+            /// </summary>
             public bool UsernameTakenIn { get; set; }
+            /// <summary>
+            ///     This is to persist the input from the initial detemination
+            /// </summary>
             public bool EmailTakenIn { get; set; }
         }
         
-
+        
         public IActionResult OnGet()
         {
+            //to get the logged in user this is need for layout to work
             if (User.Identity.IsAuthenticated)
             {
                 Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
@@ -151,9 +161,11 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 return RedirectToPage("./Lockout");
             }
             else if (info.Principal.Identity.Name != null &&   info.Principal.FindFirstValue(ClaimTypes.Email) != null)
-            {
+            {//checks if the information the just make the user is available
+                
                 var user = CreateUser();
                 bool reload = false;
+                //checks if the username is already taken and if so sets the user input field as visible
                 var existingUserByName = _service.GetAuthorDtoByName(info.Principal.Identity.Name);
                 if (existingUserByName.Name != null && existingUserByName.Email != null)
                 {
@@ -161,6 +173,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     UsernameTaken = true;
                     reload = true;
                 }
+                //checks if the email is already taken and if so sets the email input field as visible
                 var existingUserByEmail = _service.GetAuthorDtoByEmail(info.Principal.FindFirstValue(ClaimTypes.Email));
                 if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
                 {
@@ -172,13 +185,12 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 {
                     return Page();
                 }
-                
+                //continues with creating a user
                 user.Name = info.Principal.Identity.Name;
                 user.Cheeps = new List<Cheep>();
                 user.Following = new List<Author>();
                 user.Blocking = new List<Author>();
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                //Console.WriteLine(info.Principal.Identity.Name + " " + info.Principal.FindFirstValue(ClaimTypes.Email));
                 await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
 
@@ -213,8 +225,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                         {
                             returnUrl = "/"+user.Name;
                         }
-                        //Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
-
+                        
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -227,16 +238,17 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 {
                     returnUrl = "/"+user.Name;
                 }
-                //Console.WriteLine(returnUrl+"    shfisanfpajfoisaiofjsafjpsajfpoaojsajfjsjofajpofjsafjpfoajfoajfopsjafsaposajfjapofsjpafjjaoajofsjoajfpajkfpojasfjposajfajfjsoapfjajfpojsaofjajfsajf");
                 ReturnUrl = returnUrl;
                 return Page();
             }
             else
             {
+                //set the email input field as visible
                 if (info.Principal.FindFirstValue(ClaimTypes.Email) == null)
                 {
                     EmailTaken = true;
                 }
+                //set the username input field as visible if it is already taken
                 var existingUserByName = _service.GetAuthorDtoByName(info.Principal.Identity.Name);
                 if (existingUserByName.Name != null && existingUserByName.Email != null)
                 {
@@ -268,6 +280,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 ErrorMessage = "Error loading external login information during confirmation.";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
+            //gets the info github provided
             var usernameinput = info.Principal.Identity.Name;
             var emailinput = info.Principal.FindFirstValue(ClaimTypes.Email);
             if (ModelState.IsValid)
@@ -276,6 +289,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 EmailTaken = Input.EmailTakenIn;
                 var user = CreateUser();
                 bool reload = false;
+                //checks if the username is already taken and if so sets the username input field as visible
                 var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
                 if (existingUserByName.Name != null && existingUserByName.Email != null) 
                 { 
@@ -295,6 +309,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, "please fill out username");
                     reload = true;
                 }
+                //checks if the email is already taken and if so sets the email input field as visible
                 var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email); 
                 if (existingUserByEmail.Name != null && existingUserByEmail.Email != null) 
                 { 
@@ -318,6 +333,8 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 {
                     return Page();
                 }
+                
+                //continues with creating a user
                 user.Name = usernameinput;
                 user.Cheeps = new List<Cheep>();
                 user.Following = new List<Author>();

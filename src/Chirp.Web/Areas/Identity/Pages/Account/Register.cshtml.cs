@@ -76,7 +76,10 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-                
+            /// <summary>
+            ///     this is the inputfield for a username which does not accept names shorter than 2 and longer than 25 character
+            ///     and cant have "@,[,],DELETED" in it
+            /// </summary>
             [Required]
             [DataType(DataType.Text)]
             [StringLength(25, ErrorMessage = "must be at least 2 characters long and can't be longer than 25.", MinimumLength = 2)]
@@ -116,6 +119,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
 
         public ActionResult onGet()
         {
+            //to get the logged in user this is need for layout to work
             if (User.Identity.IsAuthenticated)
             {
                 Username = _service.GetAuthorDtoByEmail(User.Identity.Name).Name;
@@ -136,12 +140,14 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 bool reload = false;
+                //checks if the username is already taken
                 var existingUserByName = _service.GetAuthorDtoByName(Input.Username);
                 if (existingUserByName.Name != null && existingUserByName.Email != null)
                 {
                     ModelState.AddModelError(string.Empty, "The username is already taken.");
                     reload = true;
                 }
+                //checks if the email is already taken
                 var existingUserByEmail = _service.GetAuthorDtoByEmail(Input.Email);
                 if (existingUserByEmail.Name != null && existingUserByEmail.Email != null)
                 {
@@ -149,7 +155,7 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                     reload = true;
                 }
                 if (reload) return Page();
-                
+                //continues with creating a user
                 var user = CreateUser();
                 user.Cheeps = new List<Cheep>();
                 user.Name = Input.Username;

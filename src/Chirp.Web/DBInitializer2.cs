@@ -7,6 +7,7 @@ using Chirp.Core;
 
 public class DBInitializer2
 {
+    //Initializer used if conducting smaller experiments
     public static void SeedDatabase2(ChirpDBContext chirpContext, IServiceProvider serviceProvider)
     {
         Console.WriteLine("Seeding database...");

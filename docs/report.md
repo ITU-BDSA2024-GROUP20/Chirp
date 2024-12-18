@@ -39,9 +39,9 @@ redColor { color: Red }
     - [Build, test, release, and deployment](#build-test-release-and-deployment)
     - [Team work](#team-work)
     - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
-        - [The Web-app](#the-web-app)
+        - [Web app](#web-app)
         - [How to run it Locally](#how-to-run-it-locally)
-        - [How to run release](How to run release)
+        - [How to run release](#how-to-run-release)
     - [How to run test suite locally](#how-to-run-test-suite-locally)
         - [Unit tests](#unit-tests)
         - [Integration and end-to-end tests](#integration-and-end-to-end-tests)
@@ -244,7 +244,7 @@ to a running system. That is, Adrian or Helge have to know precisely what to
 do in which order. Likely, it is best to describe how we clone your project, 
 which commands we have to execute, and what we are supposed to see then.</redColo>
 
-### How to run the Web-app
+### Web-app
 There is a runing version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
 
 ### How to run it Locally
@@ -259,7 +259,7 @@ In order to run Chirp there are 2 options
 
 3. You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
 
-### Release
+### How to run release
 To run the release first go to the main page of the Repository and click on the release section.<br>
 Find the latest version and download one of the following files depending on your operations system:
 - Chirp-Win.zip, for Windows users

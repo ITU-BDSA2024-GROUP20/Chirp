@@ -38,6 +38,7 @@ redColor { color: Red }
 - [Process](#process)
     - [Build, test, release, and deployment](#build-test-release-and-deployment)
     - [Team work](#team-work)
+      - [Our Teamwork]()
     - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
         - [Web app](#web-app)
         - [How to run it Locally](#how-to-run-it-locally)
@@ -54,16 +55,10 @@ redColor { color: Red }
 # Design and Architecture of Chirp!
 
 ## Domain model
-<redColo>Here comes a description of our domain model.
-Illustration of the Chirp! data model as UML class diagram. </redColo>
 
-<redColo>Provide an illustration of your domain model. Make sure that it is 
-correct and complete. In case you are using ASP.NET Identity, make sure to 
-illustrate that accordingly. </redColo>
-
-Our domain model for our application: Chirp. It is design with the purpose to simulate 
-‘Twitter’ or ‘X’ as it is call now. It consists of two parts, a Cheep class and an 
-Author class there are closely tied.
+Our domain model for our application: Chirp. It is designed with the purpose to simulate 
+‘Twitter’ or ‘X’ as it is called now. It consists of two parts, a Cheep class and an 
+Author class that are closely tied.
 
 The Cheep has some felts it stores all the information about a cheeps as example 
 ***CheepId***: there has a unique number, ***Text***: there store the actual message, 
@@ -86,9 +81,6 @@ password and secures proper email verification.
 </figure>
 
 ## Architecture — In the small
-<redColo>Illustrate the organization of your code base. That is, illustrate 
-which layers exist in your (onion) architecture. Make sure to illustrate which 
-part of your code is residing in which layer.</redColo>
 
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
@@ -109,49 +101,37 @@ has three main layers:
 </figure>
 
 ## Architecture of deployed application
-<redColo>Illustrate the architecture of your deployed application. Remember, 
-you developed a client-server application. Illustrate the server component and 
-to where it is deployed, illustrate a client component, and show how these 
-communicate with each other.</redColo>
 
 <figure>
     <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
     <figcaption>Architecture Illustration of our client-server application</figcaption>
 </figure>
 
-On the left side there are some clients in green (there can be a number
-of client, but we have only show 2 clients) and they communicate with
-the internet. There so are interacting with web server there are
-located on Microsoft Azure server. The web server communicates to the
-database, as it needs to store or retrieve the data the client should use,
-and then it gets send back.
+On the left side there are some clients in green (there can be a number of clients, 
+but we have only shown 2 clients) and they communicate with the internet. They are 
+interacting with web servers located on Microsoft Azure server. The web server 
+communicates to the database, as it needs to store or retrieve the data the client 
+should use, and then it gets sent back.
+
 
 <figure>
     <img src="Diagrams/Architecture-local.drawio.png" alt="architecture-local"> 
     <figcaption>Architecture Illustration of our local client application</figcaption>
 </figure>
 
-The diagram below are an illustrates of our local client architecture.
 
-On the left side there are our local clients. The client interacting with web server 
-there are local server: localhost:5273. The server communicates 'mychirp.db', 
-as it needs to store or retrieve the data the client should use, and then it gets 
-send back.
+On the left side there are our local clients. The client interacting with web server
+There is a local server: localhost:5273. The server communicates 'mychirp.db',
+as it needs to store or retrieve the data the client should use, and then it gets sent back.
+
 
 ## User activities
-<redColo>Illustrate typical scenarios of a user journey through your Chirp! 
-application. That is, start illustrating the first page that is presented to a 
-non-authorized user, illustrate what a non-authorized user can do with your 
-Chirp! application, and finally illustrate what a user can do after 
-authentication. </redColo>
 
-<redColo>Make sure that the illustrations are in line with the actual behavior of 
-your application.</redColo>
 
-Here is a flowchart there illustrate the different path there are in our program from the 
-three ‘Log in’ options ‘log in with authorized user’, ‘log in with GitHub’ or ‘log in with 
+Here is a flowchart that illustrates the different paths there are in our program from the 
+three ‘Login’ options ‘login with authorized user’, ‘login with GitHub’ or ‘login with 
 non-registered user’.
-After the log in process all the different thing there can be done for example ‘writing a 
+After the log in process all the different things there can be done for example ‘writing a 
 cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user journey 
 with “***log out***” or click on the “***Forget me***” buttons.
 
@@ -162,17 +142,6 @@ with “***log out***” or click on the “***Forget me***” buttons.
 </figure>
 
 ## Sequence of functionality/calls through Chirp!
-<redColo>With a UML sequence diagram, illustrate the flow of messages and data 
-through your Chirp! application. Start with an HTTP request that is sent by an 
-unauthorized user to the root endpoint of your application and end with the 
-completely rendered web-page that is returned to the user.</redColo>
-
-<redColo>Make sure that your illustration is complete. That is, likely for many of 
-you there will be different kinds of "calls" and responses. Some HTTP calls 
-and responses, some calls and responses in C# and likely some more. (Note 
-the previous sentence is vague on purpose. I want you create a complete 
-illustration.)</redColo>
-
 
 <figure>
     <img src="Diagrams/UML%20Sequence%20Diagram.png" alt="UML-Sequence">
@@ -191,15 +160,12 @@ Afterward, Microsoft Identity attempts to check whether the user is authorized (
 in) or not. Due to this user being completely new and having no prior cookies, it is 
 determined that they are unauthorized.
 
-Then, the Chirp! homepage is gets loaded, meaning the page has to get all available 
-cheeps that can be shown on one page, which is then sent to the user. They are now on a 
-static page.
+Then, the Chirp! homepage gets loaded, meaning the page has to get all available
+cheeps that can be shown on one page, which is then sent to the user. 
+They are now on a static page.
 
 # Process
 ## Build, test, release, and deployment
-<redColor>Illustrate with a UML activity diagram how your Chirp! applications are 
-build, tested, released, and deployed. That is, illustrate the flow of activities 
-in your respective GitHub Actions workflows.</redColor>
 
 | Build and Test                                                                | Live Test                                                                   | Deploy to Azure                                                                    |  
 |-------------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------|  
@@ -214,8 +180,6 @@ Deploy to Azure is run whenever a build is version-tagged. It builds and then pu
 Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if deemed necessary. 
 Build and Test can also be activated this way but will always fail.
 
-<redColor>Describe the illustration briefly, i.e., how your application is built, 
-tested, released, and deployed.</redColor>
 
 ## Team work
 <redColor>Show a screenshot of your project board right before hand-in. Briefly 
@@ -235,14 +199,11 @@ At this point, we were ready to create a new branch and begin working on impleme
 that the implementation meets all acceptance criteria and does not impede previous features, we create a pull request to
 merge the branch into main.
 
-Pull requests has to be peer reviewed and accepted by other team members before it can be resolved, after which,
-the issues will be moved to the Done section of the project board and the feature branch will be automatically be deleted.
+Pull requests have to be peer reviewed and accepted by other team members before 
+it can be resolved, after which, the issues will be moved to the Done section
+of the project board and the feature branch will automatically be deleted.
 
 ## How to make Chirp! work locally
-<redColo>There has to be some documentation on how to come from cloning your project 
-to a running system. That is, Adrian or Helge have to know precisely what to 
-do in which order. Likely, it is best to describe how we clone your project, 
-which commands we have to execute, and what we are supposed to see then.</redColo>
 
 ### Web-app
 There is a runing version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
@@ -280,13 +241,6 @@ Now run the following commands in the terminal:
 When running the application, and it is done starting up, a popup will appear in your terminal indicating which port it is running on "http://localhost:5273"
 
 ## How to run test suite locally
-<redColo>List all necessary steps that Adrian or Helge have to perform to execute 
-your test suites. Here, you can assume that we already cloned your repository in 
-the step above.</redColo>
-
-<redColo>Briefly describe what kinds of tests you have in your test suites and what 
-they are testing.</redColo>
-
 ### Unit tests
 To run the unit test for this program you will need to open a terminal and<br> navigate to the ```Chirp.Razor.Test``` directory which can be done from the root of the repository with:
 ```
@@ -295,9 +249,9 @@ cd .\test\Chirp.Razor.Test\
 Now run ```dotnet test```
 
 ### Integration and end-to-end tests
-Before runing these tests, please delete the mychirp.db file in the ```\src\Chirp.Web``` directory and do the same when the tests are done running.
+Before running these tests, please delete the mychirp.db file in the ```\src\Chirp.Web``` directory and do the same when the tests are done running.
 
-To run integration and end-to-end tests there are some pre-requisites.<br>
+To run integration and end-to-end tests there are some prerequisites.<br>
 To install Playwright, navigate to the root of Chirp, then run:
 ```
 cd .\test\Chirp.Web.Test\ 
@@ -326,13 +280,13 @@ When the program is running, go to the terminal that is in ```.\test\Chirp.Web.T
 ``` 
 dotnet test
 ```
-Now, as the test are running you should see a browser popup where things are happening. That is the tests running.<br>
+Now, as the tests are running you should see a browser popup where things are happening. That is the tests running.<br>
 At some point, a GitHub window may appear where it asks you to authorize, please press the button otherwise the test will fail.
 
 ### Tests
-The unit test we have go over all the different functions we have in the Author Repository and Cheep Repository checking if they are working as intended.<br>
+The unit test we have goes over all the different functions we have in the Author Repository and Cheep Repository checking if they are working as intended.<br>
 
-The integration tests go over all the different actions a user can take while on the web app and checks if the things that should show up when doing those actions are there.<br>
+The integration tests go over all the different actions a user can take while on the web app and check if the things that should show up when doing those actions are there.<br>
 
 And the end-to-end test goes over all the different features in one go, like logging in, cheeping, following, blocking, and so on.
 

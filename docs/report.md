@@ -45,6 +45,7 @@ redColor { color: Red }
     - [How to run test suite locally](#how-to-run-test-suite-locally)
         - [Unit tests](#unit-tests)
         - [Integration and end-to-end tests](#integration-and-end-to-end-tests)
+    - [Tests](#tests)
 - [Ethics](#ethics)
     - [License](#license)
     - [LLMs, ChatGPT, CoPilot, and others](#llms-chatgpt-copilot-and-others)
@@ -314,6 +315,15 @@ dotnet test
 ```
 Now, as the test are running you should see a browser popup where things are happening. That is the tests running.<br>
 At some point, a GitHub window may appear where it asks you to authorize, please press the button otherwise the test will fail.
+
+### Tests
+The unit test we have go over all the different functions we have in the Author Repository and Cheep Repository checking if they are working as intended.<br>
+
+The integration tests go over all the different actions a user can take while on the web app and checks if the things that should show up when doing those actions are there.<br>
+
+And the end-to-end test goes over all the different features in one go, like logging in, cheeping, following, blocking, and so on.
+
+
 
 # Ethics
 ## License

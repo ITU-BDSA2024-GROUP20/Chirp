@@ -52,16 +52,18 @@ public class UserProfileModel : PageModel
     /// <summary>
     /// this anonymises the user and makes one unable to log in to the account
     /// </summary>
-    /// <param name="email"></param> email of the person to be deleted
+    /// <param name="email"> email of the person to be deleted</param>
     /// <returns></returns>
     public async Task<IActionResult> OnPostDeleteUser(string email)
     {
         var info = await _signInManager.GetExternalLoginInfoAsync(); 
-        Author author = Service.DeleteAuthor(email); // Anon user
         if (info != null)
         {
-            await _signInManager.UserManager.RemoveLoginAsync(author,
-                info.LoginProvider, info.ProviderKey);
+            Service.DeleteAuthor(email, _signInManager, info); // Anon user
+        }
+        else
+        {
+            Service.DeleteAuthor(email,null,null);
         }
         Service.save();
         
@@ -72,8 +74,8 @@ public class UserProfileModel : PageModel
     /// this is a function called buy a button that set the person that presses the button as unfollowing
     /// the person the button is associated with
     /// </summary>
-    /// <param name="self"></param> the person who presses the buttons email
-    /// <param name="follow"></param> email of the person to be unfollowed
+    /// <param name="self">the person who presses the buttons email</param> 
+    /// <param name="follow"> email of the person to be unfollowed</param>
     /// <returns></returns>
     public ActionResult OnPostToggleFollow(string? self, string? follow)
     {

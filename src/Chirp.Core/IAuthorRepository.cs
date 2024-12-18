@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Chirp.Infrastructure;
 using Core;
 
 public interface IAuthorRepository
 {
     public List<CheepDTO> AuthorCheep(int page, string? userName, string? selfemail);
-    public Author DeleteAuthor(string? email);
+    public void DeleteAuthor(string? email, SignInManager<Author>? signInManager, ExternalLoginInfo? info);
     public AuthorDTO GetAuthorDtoByName(string? name);
     public AuthorDTO GetAuthorDtoByEmail(string? email);
     public void ToggleFollow(string? selfemail, string? otheremail);

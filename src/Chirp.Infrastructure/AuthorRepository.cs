@@ -82,8 +82,10 @@ public class AuthorRepository : IAuthorRepository
     /// However, their username, name, and email will be anonymised and who they followed.
     /// </summary>
     /// <param name="email">email of user to be anonymised</param>
+    /// <param name="signInManager">a the signinManager the program uses</param>
+    /// <param name="info">ExternalLoginInfo login info of user to be deleted</param>
     /// <returns>The anonymised Author for disconnection from github</returns>
-    public Author DeleteAuthor(string? email)
+    public async void DeleteAuthor(string? email, SignInManager<Author>? signInManager, ExternalLoginInfo? info)
     {
         //finds the Author
         Author author = GetAuthorByEmail(email);
@@ -100,8 +102,12 @@ public class AuthorRepository : IAuthorRepository
         author.NormalizedUserName = "[DELETED " + author.Id + "]";
         author.Following.Clear();
         author.Blocking.Clear();
+        if (signInManager != null && info != null)
+        {
+            await signInManager.UserManager.RemoveLoginAsync(author,
+                info.LoginProvider, info.ProviderKey);
+        }
         _service.SaveChanges();
-        return author;
     }
     /// <summary>
     /// generates a random sting of 9 digits

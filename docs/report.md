@@ -7,6 +7,7 @@ author:
     - "Sif <esja@itu.dk>"
     - "Radmehr <rads@itu.dk>"
 numbersections: true
+geometry: margin=2cm
 ---
 
 ![](./images/cheeper.png)

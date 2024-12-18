@@ -260,9 +260,9 @@ Find the latest version and download one of the following files depending on you
 
 When the file has been downloaded please unzip it.<br>
 Then open a terminal and navigate to one of the following directories depending on your operations system:
-- Chirp-Win\artifact\win, for windows
-- Chirp-Mac\artifact\mac, for mac
-- Chirp-Linux\artifact\linux, for linux<br>
+- Chirp-Win\\artifact\\win, for windows
+- Chirp-Mac\\artifact\\mac, for mac
+- Chirp-Linux\\artifact\\linux, for linux<br>
 
 Now run the following commands in the terminal:
 

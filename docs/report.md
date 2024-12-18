@@ -61,19 +61,21 @@ Our domain model for our application: Chirp. It is designed with the purpose to 
 ‘Twitter’ or ‘X’ as it is called now. It consists of two parts, a Cheep class and an 
 Author class that are closely tied.
 
-The Cheep has some felts it stores all the information about a cheeps as example 
-***CheepId***: there has a unique number, ***Text***: there store the actual message, 
-but it has a limited on 160 characters, ***AuthorId/Author***: referencing to the 
-other class Author so there comes a connection between all cheeps and Authors and 
-then the last felt are ***TimeStamp***: to get the time the cheep are posted.
+The Cheep has some fields where it stores all the information about a cheep. 
+***CheepId***: A unique number assigned to the cheep.
+***Text***: Store the written message, with a limit of
+160 characters. ***AuthorId/Author***: Referencing the Author that wrote said message, such that the messages
+and authors are connected.
+***TimeStamp***: To get the time the cheep are posted.
 
-The Author has also some felts where it stores its information about a user’s as 
-example ***Name***: there store the username there has a limited on 50 characters,
-***Cheeps***: there store the cheeps in a collection from each author, ***Following***:
-there store the other authors in a collection from each author(so there cheeps also 
-get add to My Timeline), ***Blocking***: there store a collection of  authors there 
-are hidden (so there cheeps are done invisible from the author). 
-And then it extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
+The Author has also some fields where it stores the information about a user. 
+***Name***: The name of the author, which is limited to 50 characters.
+***Cheeps***: Stores all cheeps written by the author.
+***Following***: Stores all other authors that the users has chosen to follow, which get added to their
+timeline and About Me page.
+***Blocking***: Stores all other authors that the users has chosen to block, which get added to their About Me page
+and filtered out everywhere else.
+Author extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
 password and secures proper email verification.
 
 | ![UML class diagram of our domain model](Diagrams/Domain%20model.drawio.png) |
@@ -85,28 +87,28 @@ password and secures proper email verification.
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
 - The inner layer - Chirp.Core:
-  Contains our DTOs classes ***AuthorDTO*** and ***CheepDTO***
+  Contains our DTOs classes ***AuthorDTO*** and ***CheepDTO*** along with
+  interfaces for ***AuthorRepository*** and ***CheepRepository*** and the ***Domain Model***
 - The middle layer - Chirp.Infrastructure:
-  Contains ***AuthorRepository***, ***CheepRepository*** and their interfaces as well as
-  ***ChirpDBContext*** the database and our domain model, and it uses the Microsoft packed
-  '*Microsoft.AspNetCore.Identity*'.
+  Contains ***AuthorRepository***, ***CheepRepository*** as well as
+  ***ChirpDBContext***.
 - The outer layer - Chirp.Web:
-  Represents the web application as it contains ***Program*** as run the program, our
-  ***DbInitializer*** aka our database and the folder ***Pages***, they are responsible for the
-  layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
+  Represents the web application as it contains ***Program*** as to run the program, our
+  ***DbInitializer*** aka our database. The folder ***Pages*** uses the Microsoft package 
+  '*Microsoft.AspNetCore.Mvc.RazorPages*', as they are responsible for the layout.
 
-|![Onion architecture of the Chirp application](Diagrams/OnionArch.drawio.png)|
-|:--:|
-|Onion architecture of the Chirp application|
+| ![Onion architecture of the Chirp application](Diagrams/OnionArch.drawio.png) |
+|:-----------------------------------------------------------------------------:|
+|                  Onion architecture of the Chirp application                  |
 
 ## Architecture of deployed application
 ### Client-server application
 
-|![Architecture Illustration of our client-server application](Diagrams/Architecture-global.drawio.png)|
-|:--:|
-| Architecture Illustration of our client-server application |
+| ![Architecture Illustration of our client-server application](Diagrams/Architecture-global.drawio.png) |
+|:------------------------------------------------------------------------------------------------------:|
+|                       Architecture Illustration of our client-server application                       |
 
-On the left side there are some clients in green (there can be a number of clients,
+On the left side there are some clients (there can be a number of clients,
 but we have only shown 2 clients) and they communicate with the internet. They are
 interacting with web servers located on Microsoft Azure server. The web server
 communicates to the database, as it needs to store or retrieve the data the client
@@ -114,12 +116,12 @@ should use, and then it gets sent back.
 
 ### Local client application
 
-|![Architecture Illustration of our local client application](Diagrams/Architecture-local.drawio.png)|
-|:--:|
-|Architecture Illustration of our local client application|
+| ![Architecture Illustration of our local client application](Diagrams/Architecture-local.drawio.png) |
+|:----------------------------------------------------------------------------------------------------:|
+|                      Architecture Illustration of our local client application                       |
 
 On the left side there are our local clients. The client interacting with web server
-There is a local server: localhost:5273. The server communicates 'mychirp.db',
+There is a local server: localhost:5273. The server communicates with 'mychirp.db',
 as it needs to store or retrieve the data the client should use, and then it gets sent back.
 
 ## User activities
@@ -127,19 +129,19 @@ as it needs to store or retrieve the data the client should use, and then it get
 Here is a flowchart that illustrates the different paths there are in our program from the 
 three ‘Login’ options ‘login with authorized user’, ‘login with GitHub’ or ‘login with 
 non-registered user’.
-After the log in process all the different things there can be done for example ‘writing a 
-cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user
-journey with “***log out***” or click on the “***Forget me***” buttons.
+After the log-in process, all the different things there are many different things that can be done
+For example ‘writing a cheep’, ‘block a user’, and ‘look at the “***About Me***” page’. And our user
+journey ends with clicking “***log out***” or clicking on the “***Forget me***” buttons.
 
-|![Illustration of flowchart of a non-authorized user](Diagrams/User activities.drawio.png)|
-|:--:|
-| Illustration of flowchart of a non-authorized user |
+| ![Illustration of flowchart of a non-authorized user](Diagrams/User activities.drawio.png) |
+|:------------------------------------------------------------------------------------------:|
+|                     Illustration of flowchart of a non-authorized user                     |
 
 ## Sequence of functionality/calls through Chirp!
 
 | ![UML sequence diagram from HTTP request to root endpoint](Diagrams/UML%20sequence%20diagram.drawio.png) |
 |:--------------------------------------------------------------------------------------------------------:|
-| UML sequence diagram from HTTP request to root endpoint|
+|                         UML sequence diagram from HTTP request to root endpoint                          |
 
 The sequence diagram shown above shows a singular unauthorized user process for being 
 shown the homepage when first finding the website.
@@ -160,9 +162,9 @@ They are now on a static page.
 # Process
 ## Build, test, release, and deployment
 
-| Build and Test                                                               | Live Test                                                                  | Deploy to Azure                                                                   |  
-|------------------------------------------------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|  
 | ![Activity Diagram_BuildTest](Diagrams/ActivityDiagram_BuildTest.drawio.png) | ![Activity Diagram_LiveTest](Diagrams/ActivityDiagram_LiveTest.drawio.png) | ![Activity Diagram_Deploy.drawio.png](Diagrams/ActivityDiagram_Deploy.drawio.png) |
+|:----------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|  
+|                                Build and Test                                |                                 Live Test                                  |                                  Deploy to Azure                                  |
 
 Build and Test were made to create a release of the newest version-tagged build, as a compressed 
 zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
@@ -179,9 +181,9 @@ Build and Test can also be activated this way but will always fail.
 
 ## Team work
 
-|![Flowchart of feature development](Diagrams/FlowOfFeatures.drawio.png)|
-|:--:|
-| Flowchart of feature development |
+| ![Flowchart of feature development](Diagrams/FlowOfFeatures.drawio.png) |
+|:-----------------------------------------------------------------------:|
+|                    Flowchart of feature development                     |
 
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
@@ -198,15 +200,15 @@ the feature branch will automatically be deleted.
 
 
 Throughout the project we made a project board where we took the weekly assignment on 
-‘README_PROJECT’ and thereafter made them into as small a task as we could. And we try to do 
+‘README_PROJECT’ and thereafter made them into as small a task as we could. We attempted to do 
 it as structured as we could with naming them after the week they came from and the part of 
-the week like “Week 9 1.1) …”. And with this structure we were about to keep up the workload 
-done in an okay timeframe, so now all the tasks are in ‘Done’. But we were not perfect at assigning 
+the week, like “Week 9 1.1) …”. And with this structure we were able to keep up the workload 
+in an okay timeframe, so now all the tasks are in ‘Done’. But we were not perfect at assigning 
 the task on the board.
 
-|![Github Project board in the end of development](images/projectBoard.png)|
-|:--:|
-| Github Project board in the end of development|
+| ![Github Project board in the end of development](images/projectBoard.png) |
+|:--------------------------------------------------------------------------:|
+|               Github Project board in the end of development               |
 
 Like there can be seen on the screenshot, every task from ‘Todo’ and ‘In Progress’ are moved to 
 ‘Done’. But in week 13 we made a list of things (a brainstorm of sorts) so we could add 
@@ -227,10 +229,10 @@ TA during the second session.
 ## How to make Chirp! work locally
 
 ### Web-app
-There is a runing version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
+There is a running version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
 
+In order to run Chirp there are 2 options:
 ### How to run it Locally
-In order to run Chirp there are 2 options
 1. Make sure you have dotnet 8.0 installed see [download](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 2. Run this locally from a cloned repository
    - Clone the repository with this git command: ```git clone https://github.com/ITU-BDSA2024-GROUP20/Chirp.git```
@@ -242,17 +244,21 @@ In order to run Chirp there are 2 options
 3. You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
 
 ### How to run release
-To run the release first go to the main page of the Repository and click on the release section.<br>
+To run the release first go to the main page of the Repository and click on the
+[release section](https://github.com/ITU-BDSA2024-GROUP20/Chirp/releases).
+
 Find the latest version and download one of the following files depending on your operations system:
 - Chirp-Win.zip, for Windows users
 - Chirp-Mac.zip, for Mac users
-- Chirp-Linux.zip , for Linux users<br>
+- Chirp-Linux.zip , for Linux users
 
-When the file has been downloaded please unzip it.<br>
+
+When the file has been downloaded please unzip it.
 Then open a terminal and navigate to one of the following directories depending on your operations system:
 - Chirp-Win\\artifact\\win, for windows
 - Chirp-Mac\\artifact\\mac, for mac
-- Chirp-Linux\\artifact\\linux, for linux<br>
+- Chirp-Linux\\artifact\\linux, for linux
+
 
 Now run the following commands in the terminal:
 
@@ -264,7 +270,8 @@ indicating which port it is running on "http://localhost:5273"
 
 ## How to run test suite locally
 ### Unit tests
-To run the unit test for this program you will need to open a terminal and<br> navigate to 
+To run the unit test for this program you will need to open a terminal and
+ navigate to 
 the ```Chirp.Razor.Test``` directory which can be done from the root of the repository with:
 ```
 cd .\test\Chirp.Razor.Test\ 
@@ -275,7 +282,8 @@ Now run ```dotnet test```
 Before running these tests, please delete the mychirp.db file in the ```\src\Chirp.Web``` 
 directory and do the same when the tests are done running.
 
-To run integration and end-to-end tests there are some prerequisites.<br>
+To run integration and end-to-end tests there are some prerequisites.
+
 To install Playwright, navigate to the root of Chirp, then run:
 ```
 cd .\test\Chirp.Web.Test\ 
@@ -307,18 +315,20 @@ and run the test with
 dotnet test
 ```
 Now, as the test are running you should see a browser popup where things are happening. That is 
-the tests running.<br> 
+the tests running.
+ 
 At some point, a GitHub window may appear where it asks you to authorize, please press the 
 button otherwise the test will fail.
 
 ### Tests
 The unit test we have go over all the different functions we have in the Author Repository and 
-Cheep Repository checking if they are working as intended.<br>
+Cheep Repository checking if they are working as intended.
+
 
 The integration tests go over all the different actions a user can take while on the web app 
-and checks if the things that should show up when doing those actions are there.<br>
+and checks if the things that should show up when doing those actions are there.
 
-And the end-to-end test goes over all the different features in one go, like logging in, 
+The end-to-end test goes over all the different features in one go, like logging in, 
 cheeping, following, blocking, and so on.
 
 # Ethics

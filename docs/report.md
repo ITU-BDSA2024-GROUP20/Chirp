@@ -78,8 +78,6 @@ password and secures proper email verification.
 
 ![UML class diagram of our domain model](Diagrams/Domain%20model.drawio.png)
 
-
-
 ## Architecture In the small
 
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
@@ -95,16 +93,12 @@ has three main layers:
   ***DbInitializer*** aka our database and the folder ***Pages***, they are responsible for the
   layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
-> ![Onion Diagram](Diagrams/OnionArch.drawio.png)
-> 
-> Onion architecture of the Chirp application
+![Onion architecture of the Chirp application](Diagrams/OnionArch.drawio.png)
 
 ## Architecture of deployed application
 ### Client-server application
 
-> ![architecture-global](Diagrams/Architecture-global.drawio.png)
-> 
-> Architecture Illustration of our client-server application
+![Architecture Illustration of our client-server application](Diagrams/Architecture-global.drawio.png)
 
 On the left side there are some clients in green (there can be a number of clients,
 but we have only shown 2 clients) and they communicate with the internet. They are
@@ -114,9 +108,7 @@ should use, and then it gets sent back.
 
 ### Local client application
 
-> ![architecture-local](Diagrams/Architecture-local.drawio.png)
-> 
-> Architecture Illustration of our local client application
+![Architecture Illustration of our local client application](Diagrams/Architecture-local.drawio.png)
 
 On the left side there are our local clients. The client interacting with web server
 There is a local server: localhost:5273. The server communicates 'mychirp.db',
@@ -131,15 +123,11 @@ After the log in process all the different things there can be done for example 
 cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user
 journey with “***log out***” or click on the “***Forget me***” buttons.
 
-> ![User activities](Diagrams/User activities.drawio.png)
-> 
-> Illustration of flowchart of a non-authorized user
+![Illustration of flowchart of a non-authorized user](Diagrams/User activities.drawio.png)
 
 ## Sequence of functionality/calls through Chirp!
 
-> ![UML-Sequence](Diagrams/UML%20sequence%20diagram.drawio.png)
-> 
-> UML sequence diagram from HTTP request to root endpoint
+![UML sequence diagram from HTTP request to root endpoint](Diagrams/UML%20sequence%20diagram.drawio.png)
 
 The sequence diagram shown above shows a singular unauthorized user process for being 
 shown the homepage when first finding the website.
@@ -179,9 +167,7 @@ Build and Test can also be activated this way but will always fail.
 
 ## Team work
 
-> ![Flowchart of new issue](Diagrams/FlowOfFeatures.drawio.png)
->
-> Flowchart of feature development
+![Flowchart of feature development](Diagrams/FlowOfFeatures.drawio.png)
 
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
@@ -204,9 +190,7 @@ the week like “Week 9 1.1) …”. And with this structure we were about to ke
 done in an okay timeframe, so now all the tasks are in ‘Done’. But we were not perfect at assigning 
 the task on the board.
 
-> ![Projectboard](images/projectBoard.png)
-> 
-> Github Project board in the end of development
+![Github Project board in the end of development](images/projectBoard.png)
 
 Like there can be seen on the screenshot, every task from ‘Todo’ and ‘In Progress’ are moved to 
 ‘Done’. But in week 13 we made a list of things (a brainstorm of sorts) so we could add 

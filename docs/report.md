@@ -51,6 +51,7 @@ geometry: margin=2cm
     - [License](#license)
     - [LLMs, ChatGPT, CoPilot, and others](#llms-chatgpt-copilot-and-others)
 
+\pagebreak
 
 # Design and Architecture of Chirp!
 
@@ -75,9 +76,9 @@ are hidden (so there cheeps are done invisible from the author).
 And then it extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
 password and secures proper email verification.
 
-> ![Domain Model](Diagrams/Domain%20model.drawio.png)
-> 
-> UML class diagram of our domain model
+![UML class diagram of our domain model](Diagrams/Domain%20model.drawio.png)
+
+
 
 ## Architecture In the small
 

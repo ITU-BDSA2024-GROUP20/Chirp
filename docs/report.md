@@ -327,7 +327,7 @@ And the end-to-end test goes over all the different features in one go, like log
 
 # Ethics
 ## License
-<redColor>State which software license you chose for your application.</redColor>
+We choose to use a MIT License since it allows others to download and change it however they want without restrictions.
 ## LLMs, ChatGPT, CoPilot, and others
 <redColor>State which LLM(s) were used during development of your project. In case 
 you were not using any, just state so. In case you were using an LLM to support 

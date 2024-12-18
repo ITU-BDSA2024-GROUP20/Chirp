@@ -108,7 +108,7 @@ public class AuthorRepoTests
         Assert.Equal(name,context.Authors.First().Name);
         Assert.Equal(email,context.Authors.First().Email);
         //deleting a author is anonymizing them so we check if there name and email Starts with [DELETED
-        authorRepository.DeleteAuthor(email);
+        authorRepository.DeleteAuthor(email,null,null);
         Assert.StartsWith("[DELETED",context.Authors.First().Name);
         Assert.StartsWith("[DELETED",context.Authors.First().Email);
         

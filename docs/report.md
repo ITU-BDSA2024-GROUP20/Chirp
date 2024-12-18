@@ -1,12 +1,54 @@
-﻿<style>
+﻿---
+title: ___Chirp!___
+subtitle: Group 20
+author:
+- "Alexander <alefr@itu.dk>"
+- "Simon <simoh@itu.dk>"
+- "Sif <esja@itu.dk>"
+- "Radmehr<rads@itu.dk>"
+numbersections: true
+---
+
+<style>
 redColor { color: Red }
-redColo {color: #00A2F4}
 </style>
 
-https://www.markdownguide.org/cheat-sheet/
+![](./images/cheeper.png)
+![](./images/logo_itu.jpg)
 
-<img src="cheeper.png" alt="drawing" width="200"/>
-<img src="cheeper.png" alt="drawing" width="200" height="150"/>
+
+|                |                                            |
+|----------------|--------------------------------------------|
+| Course code    | BSANDSA1KU                                 |
+| Name of course | Analysis, Design and Software Architecture |
+| Course manager | Helge Pfeiffer - ropf@itu.dk               |
+| Project title  | Chirp!                                     |
+| Group number   | 20                                         |
+| Date           | December 19 2024                           |
+| School         | IT-University of Copenhagen                |
+
+# Table of contents:
+- [Table of contest](#table-of-contents)
+- [Design and Architecture of Chirp!](#design-and-architecture-of-chirp)
+    - [Domain model](#domain-model)
+    - [Architecture — In the small](#architecture--in-the-small)
+    - [Architecture of deployed application](#architecture-of-deployed-application)
+    - [User activities](#user-activities)
+    - [Sequence of functionality/calls through Chirp!](#sequence-of-functionalitycalls-through-chirp)
+- [Process](#process)
+    - [Build, test, release, and deployment](#build-test-release-and-deployment)
+    - [Team work](#team-work)
+    - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
+        - [The Web-app](#the-web-app)
+        - [How to run it Locally](#how-to-run-it-locally)
+        - [How to run release](How to run release)
+    - [How to run test suite locally](#how-to-run-test-suite-locally)
+        - [Unit tests](#unit-tests)
+        - [Integration and end-to-end tests](#integration-and-end-to-end-tests)
+- [Ethics](#ethics)
+    - [License](#license)
+    - [LLMs, ChatGPT, CoPilot, and others](#llms-chatgpt-copilot-and-others)
+
 
 # Design and Architecture of Chirp!
 

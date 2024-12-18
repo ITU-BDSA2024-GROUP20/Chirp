@@ -131,6 +131,7 @@ cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And t
 journey with “***log out***” or click on the “***Forget me***” buttons.
 
 > ![User activities](Diagrams/User activities.drawio.png)
+> 
 > Illustration of flowchart of a non-authorized user
 
 ## Sequence of functionality/calls through Chirp!

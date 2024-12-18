@@ -132,8 +132,8 @@ Here is a flowchart that illustrates the different paths there are in our progra
 three ‘Login’ options ‘login with authorized user’, ‘login with GitHub’ or ‘login with 
 non-registered user’.
 After the log in process all the different things there can be done for example ‘writing a 
-cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user journey 
-with “***log out***” or click on the “***Forget me***” buttons.
+cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user
+journey with “***log out***” or click on the “***Forget me***” buttons.
 
 
 <figure>
@@ -171,13 +171,16 @@ They are now on a static page.
 |-------------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------|  
 | ![Activity Diagram_BuildTest](Diagrams/Activity Diagram_BuildTest.drawio.png) | ![Activity Diagram_LiveTest](Diagrams/Activity Diagram_LiveTest.drawio.png) | ![Activity Diagram_Deploy.drawio.png](Diagrams/Activity Diagram_Deploy.drawio.png) |
 
-Build and Test were made to create a release of the newest version-tagged build, as a compressed zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
+Build and Test were made to create a release of the newest version-tagged build, as a compressed 
+zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
 
 Live Test runs every 6 hours to check if our server is still alive and currently running.
 
-Deploy to Azure is run whenever a build is version-tagged. It builds and then publishes it and sends it to Azures server to override the previous build.
+Deploy to Azure is run whenever a build is version-tagged. It builds and then publishes it and 
+sends it to Azures server to override the previous build.
 
-Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if deemed necessary. 
+Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if 
+deemed necessary. 
 Build and Test can also be activated this way but will always fail.
 
 
@@ -191,17 +194,42 @@ the new creation of an issue (task description), over development, etc. until a
 feature is finally merged into the main branch of your repository.</redColor>
 
 ![Flowchart of new issue](Diagrams/Flow of Features.drawio.png)
-Whenever we were assigned a new feature, we made sure to properly understand the assignment and first then create an
-issue on our GitHub project board, which is placed in the ToDo section, with plenty of acceptance criteria.
-While we weren't entirely consistent in assigning issues to people in the team, we still tried to uphold it whenever possible.
+Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
+first then create an issue on our GitHub project board, which is placed in the ToDo section, 
+with plenty of acceptance criteria. While we weren't entirely consistent in assigning issues 
+to people in the team, we still tried to uphold it whenever possible.
 
-At this point, we were ready to create a new branch and begin working on implementing the feature. Only after confirming
-that the implementation meets all acceptance criteria and does not impede previous features, we create a pull request to
-merge the branch into main.
+At this point, we were ready to create a new branch and begin working on implementing the 
+feature. Only after confirming that the implementation meets all acceptance criteria and does 
+not impede previous features, we create a pull request to merge the branch into main.
 
-Pull requests have to be peer reviewed and accepted by other team members before 
-it can be resolved, after which, the issues will be moved to the Done section
-of the project board and the feature branch will automatically be deleted.
+Pull requests has to be peer reviewed and accepted by other team members before it can be 
+resolved, after which, the issues will be moved to the Done section of the project board and 
+the feature branch will automatically be deleted.
+
+
+Throughout the project we made a project board where we took the weekly assignment on 
+‘README_PROJECT’ and thereafter made them into as small a task as we could. And we try to do 
+it as structured as we could with naming them after the week they came from and the part of 
+the week like “Week 9 1.1) …”. And with this structure we were about to keep up the workload 
+done in an okay timeframe, so now all the tasks are in ‘Done’. But we were now super to assign 
+the task on the board. 
+![projectboard](images/project%20board.png)
+Like there can be seen on the screenshot all from ‘Todo’ and ‘In Progress’ are moved to 
+‘Done’. But in week 13 we made a listed over thing (a brainstorm of sorts) so we could add 
+the most interesting things like ‘Block user’, ‘like cheep’, ‘Mobile friendly’, ‘comment on 
+cheeps’, … But we did not add the things on the board, when we knew the change of, we could 
+make all then in time was very slim. So, we added our main feature, ’Block a user’ and then 
+if someone got the time more could be added.
+
+
+### Our team work
+While we did initially start out as a team of five, during development the group did deteriorate 
+a little bit. After a few weeks, Mathias dropped out of ITU, leaving us down to four people. 
+When starting out, we gave Radmehr a decent bit of leeway in his productivity, however, during 
+this entire semester, he has not contributed to the project nor report at all, except for a 
+co-authored commit back on the 4th of September. This problem with Radmehr was brought up to our
+TA during the second session.
 
 ## How to make Chirp! work locally
 
@@ -238,18 +266,21 @@ Now run the following commands in the terminal:
 - ```dotnet dev-certs https -t```
 - ```./Chirp.Web  --urls="http://localhost:5273" --"authentication_github_clientId" "Ov23liGbRbgORjmb9wUp" --"authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e" --development```
 
-When running the application, and it is done starting up, a popup will appear in your terminal indicating which port it is running on "http://localhost:5273"
+When running the application, and it is done starting up, a popup will appear in your terminal 
+indicating which port it is running on "http://localhost:5273"
 
 ## How to run test suite locally
 ### Unit tests
-To run the unit test for this program you will need to open a terminal and<br> navigate to the ```Chirp.Razor.Test``` directory which can be done from the root of the repository with:
+To run the unit test for this program you will need to open a terminal and<br> navigate to 
+the ```Chirp.Razor.Test``` directory which can be done from the root of the repository with:
 ```
 cd .\test\Chirp.Razor.Test\ 
 ```
 Now run ```dotnet test```
 
 ### Integration and end-to-end tests
-Before running these tests, please delete the mychirp.db file in the ```\src\Chirp.Web``` directory and do the same when the tests are done running.
+Before running these tests, please delete the mychirp.db file in the ```\src\Chirp.Web``` 
+directory and do the same when the tests are done running.
 
 To run integration and end-to-end tests there are some prerequisites.<br>
 To install Playwright, navigate to the root of Chirp, then run:
@@ -268,7 +299,8 @@ Followed by
 ``` 
 npx playwright install --with-deps
 ```
-When Playwright is installed, open a separate terminal and navigate to the Chirp repository root and run:
+When Playwright is installed, open a separate terminal and navigate to the Chirp repository 
+root and run:
 ``` 
 cd .\src\Chirp.Web
 ```
@@ -276,25 +308,32 @@ And then run:
 ``` 
 dotnet run
 ```
-When the program is running, go to the terminal that is in ```.\test\Chirp.Web.Test``` and run the test with
+When the program is running, go to the terminal that is in ```.\test\Chirp.Web.Test``` 
+and run the test with
 ``` 
 dotnet test
 ```
-Now, as the tests are running you should see a browser popup where things are happening. That is the tests running.<br>
-At some point, a GitHub window may appear where it asks you to authorize, please press the button otherwise the test will fail.
+Now, as the test are running you should see a browser popup where things are happening. That is 
+the tests running.<br> 
+At some point, a GitHub window may appear where it asks you to authorize, please press the 
+button otherwise the test will fail.
 
 ### Tests
-The unit test we have goes over all the different functions we have in the Author Repository and Cheep Repository checking if they are working as intended.<br>
+The unit test we have go over all the different functions we have in the Author Repository and 
+Cheep Repository checking if they are working as intended.<br>
 
-The integration tests go over all the different actions a user can take while on the web app and check if the things that should show up when doing those actions are there.<br>
+The integration tests go over all the different actions a user can take while on the web app 
+and checks if the things that should show up when doing those actions are there.<br>
 
-And the end-to-end test goes over all the different features in one go, like logging in, cheeping, following, blocking, and so on.
+And the end-to-end test goes over all the different features in one go, like logging in, 
+cheeping, following, blocking, and so on.
 
 
 
 # Ethics
 ## License
-We choose to use a MIT License since it allows others to download and change it however they want without restrictions.
+We choose to use a MIT License since it allows others to download and change it however they 
+want without restrictions.
 ## LLMs, ChatGPT, CoPilot, and others
 <redColor>State which LLM(s) were used during development of your project. In case 
 you were not using any, just state so. In case you were using an LLM to support 

@@ -83,6 +83,7 @@ password and secures proper email verification.
 |:----------------------------------------------------------------------------:|
 |                    UML class diagram of our domain model                     |
 
+\pagebreak
 ## Architecture In the small
 
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
@@ -102,6 +103,7 @@ has three main layers:
 |:-----------------------------------------------------------------------------:|
 |                  Onion architecture of the Chirp application                  |
 
+\pagebreak
 ## Architecture of deployed application
 ### Client-server application
 
@@ -115,6 +117,7 @@ interacting with web servers located on Microsoft Azure server. The web server
 communicates to the database, as it needs to store or retrieve the data the client
 should use, and then it gets sent back.
 
+\pagebreak
 ### Local client application
 
 | ![Architecture Illustration of our local client application](Diagrams/Architecture-local.drawio.png) |
@@ -125,6 +128,7 @@ On the left side there are our local clients. The client interacting with web se
 There is a local server: localhost:5273. The server communicates with 'mychirp.db',
 as it needs to store or retrieve the data the client should use, and then it gets sent back.
 
+\pagebreak
 ## User activities
 
 Here is a flowchart that illustrates the different paths there are in our program from the 
@@ -138,6 +142,7 @@ journey ends with clicking “***log out***” or clicking on the “***Forget m
 |:------------------------------------------------------------------------------------------:|
 |                     Illustration of flowchart of a non-authorized user                     |
 
+\pagebreak
 ## Sequence of functionality/calls through Chirp!
 
 | ![UML sequence diagram from HTTP request to root endpoint](Diagrams/UML%20sequence%20diagram.drawio.png) |
@@ -160,6 +165,7 @@ Then, the Chirp! homepage gets loaded, meaning the page has to get all available
 cheeps that can be shown on one page, which is then sent to the user. 
 They are now on a static page.
 
+\pagebreak
 # Process
 ## Build, test, release, and deployment
 
@@ -179,7 +185,7 @@ Both Live Test and Deploy to Azure can also be activated via the GitHub actions 
 deemed necessary. 
 Build and Test can also be activated this way but will always fail.
 
-
+\pagebreak
 ## Team work
 
 | ![Flowchart of feature development](Diagrams/FlowOfFeatures.drawio.png) |
@@ -199,7 +205,6 @@ Pull requests has to be peer-reviewed and accepted by other team members before 
 resolved, after which, the issues will be moved to the Done section of the project board and 
 the feature branch will automatically be deleted.
 
-
 Throughout the project we made a project board where we took the weekly assignment on 
 ‘README_PROJECT’ and thereafter made them into as small a task as we could. We attempted to do 
 it as structured as we could with naming them after the week they came from and the part of 
@@ -218,7 +223,6 @@ cheeps’, … But we did not add these things on the board, since we were unsur
 in the allotted timeframe. So, we added our main feature, ‘Block a user’ and then 
 if someone got the time more could be added.
 
-
 ### Our team work
 While we did initially start out as a team of five, during development the group did deteriorate 
 a little bit. After a few weeks, Mathias dropped out of ITU, leaving us down to four people. 
@@ -227,6 +231,7 @@ this entire semester, he has not contributed to the project nor report at all, e
 co-authored commit back on the 4th of September. This problem with Radmehr was brought up to our
 TA during the second session.
 
+\pagebreak
 ## How to make Chirp! work locally
 
 ### Web-app
@@ -278,6 +283,7 @@ Now run the following commands in the terminal:
 When running the application, and it is done starting up, a popup will appear in your terminal 
 indicating which port it is running on "http://localhost:5273"
 
+\pagebreak
 ## How to run test suite locally
 ### Unit tests
 To run the unit test for this program you will need to open a terminal and
@@ -341,6 +347,7 @@ and checks if the things that should show up when doing those actions are there.
 The end-to-end test goes over all the different features in one go, like logging in, 
 cheeping, following, blocking, and so on.
 
+\pagebreak
 # Ethics
 
 ## License

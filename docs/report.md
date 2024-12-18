@@ -256,7 +256,9 @@ Then go to the Chirp.Web directory with:
 cd .\src\Chirp.Web\
 ```
 Now run these commands inside the directory
+
 - ```dotnet user-secrets set "authentication_github_clientId" "Ov23liGbRbgORjmb9wUp"```
+
 - ```dotnet user-secrets set "authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e"```
 
 You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
@@ -277,7 +279,9 @@ Then open a terminal and navigate to one of the following directories depending 
 - Chirp-Linux\\artifact\\linux, for linux
 
 Now run the following commands in the terminal:
+
 - ```dotnet dev-certs https -t```
+
 - ```./Chirp.Web  --urls="http://localhost:5273" --"authentication_github_clientId" "Ov23liGbRbgORjmb9wUp" --"authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e" --development```
 
 When running the application, and it is done starting up, a popup will appear in your terminal 

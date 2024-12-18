@@ -1,0 +1,11 @@
+name: Create PDF
+
+on: workflow_dispatch
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: docker://pandoc/core:3.5
+        with:
+          args: "pandoc ./docs/report.md -o 2024_itubdsa_group_20_report.pdf"

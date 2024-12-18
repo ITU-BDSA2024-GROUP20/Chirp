@@ -2,10 +2,10 @@
 title: ___Chirp!___
 subtitle: Group 20
 author:
-- "Alexander <alefr@itu.dk>"
-- "Simon <simoh@itu.dk>"
-- "Sif <esja@itu.dk>"
-- "Radmehr<rads@itu.dk>"
+    - "Alexander <alefr@itu.dk>"
+    - "Simon <simoh@itu.dk>"
+    - "Sif <esja@itu.dk>"
+    - "Radmehr<rads@itu.dk>"
 numbersections: true
 ---
 

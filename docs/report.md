@@ -9,10 +9,6 @@ author:
 numbersections: true
 ---
 
-<style>
-redColor { color: Red }
-</style>
-
 ![](./images/cheeper.png)
 ![](./images/logo_itu.jpg)
 
@@ -185,13 +181,6 @@ Build and Test can also be activated this way but will always fail.
 
 
 ## Team work
-<redColor>Show a screenshot of your project board right before hand-in. Briefly 
-describe which tasks are still unresolved, i.e., which features are missing 
-from your applications or which functionality is incomplete.</redColor>
-
-<redColor>Briefly describe and illustrate the flow of activities that happen from 
-the new creation of an issue (task description), over development, etc. until a 
-feature is finally merged into the main branch of your repository.</redColor>
 
 ![Flowchart of new issue](Diagrams/Flow of Features.drawio.png)
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 

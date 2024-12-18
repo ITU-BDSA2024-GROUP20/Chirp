@@ -27,7 +27,7 @@ numbersections: true
 - [Table of contest](#table-of-contents)
 - [Design and Architecture of Chirp!](#design-and-architecture-of-chirp)
     - [Domain model](#domain-model)
-    - [Architecture — In the small](#architecture--in-the-small)
+    - [Architecture In the small](#architecture-in-the-small)
     - [Architecture of deployed application](#architecture-of-deployed-application)
       - [Client-server application](#client-server-application)
       - [Local client application](#local-client-application)
@@ -78,7 +78,7 @@ password and secures proper email verification.
     <figcaption>UML class diagram of our domain model</figcaption>
 </figure>
 
-## Architecture — In the small
+## Architecture In the small
 
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
@@ -328,9 +328,11 @@ And the end-to-end test goes over all the different features in one go, like log
 cheeping, following, blocking, and so on.
 
 # Ethics
+
 ## License
 We choose to use a MIT License since it allows others to download and change it however they 
 want without restrictions.
+
 ## LLMs, ChatGPT, CoPilot, and others
 During this project, we agreed that we would limit ourselves to use LLMs as little as possible. We used LLMs like
 ChatGPT and Gemini when certain problems would arise that a normal search would not help. However, the code written

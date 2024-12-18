@@ -41,8 +41,9 @@ geometry: margin=2cm
       - [Our Team work](#our-team-work)
     - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
         - [Web app](#web-app)
-        - [How to run it Locally](#how-to-run-it-locally)
-        - [How to run release](#how-to-run-release)
+        - [Locally](#locally)
+        - [Cloned Repository](#cloned-repository)
+        - [Release](#release)
     - [How to run test suite locally](#how-to-run-test-suite-locally)
         - [Unit tests](#unit-tests)
         - [Integration and end-to-end tests](#integration-and-end-to-end-tests)
@@ -231,19 +232,31 @@ TA during the second session.
 ### Web-app
 There is a running version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
 
-In order to run Chirp there are 2 options:
-### How to run it Locally
-1. Make sure you have dotnet 8.0 installed see [download](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Run this locally from a cloned repository
-   - Clone the repository with this git command: ```git clone https://github.com/ITU-BDSA2024-GROUP20/Chirp.git```
-   - Then go to the Chirp.Web directory with: ```cd .\src\Chirp.Web\```
-   - Now run these commands inside the directory
-     - ```dotnet user-secrets set "authentication_github_clientId" "Ov23liGbRbgORjmb9wUp"```
-     -  ```dotnet user-secrets set "authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e"```
+### Locally
+In order to run Chirp there are 2 options
+1. Clone the repository
+2. Run the release
 
-3. You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
+#### Cloned Repository
+To run this locally from a cloned repository, please do the following:
 
-### How to run release
+Make sure you have dotnet 8.0 installed; see [download](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+Clone the repository with this git command:
+```
+git clone https://github.com/ITU-BDSA2024-GROUP20/Chirp.git
+```
+Then go to the Chirp.Web directory with:
+```
+cd .\src\Chirp.Web\
+```
+Now run these commands inside the directory
+- ```dotnet user-secrets set "authentication_github_clientId" "Ov23liGbRbgORjmb9wUp"```
+- ```dotnet user-secrets set "authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e"```
+
+You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
+
+#### Release
 To run the release first go to the main page of the Repository and click on the
 [release section](https://github.com/ITU-BDSA2024-GROUP20/Chirp/releases).
 
@@ -252,16 +265,13 @@ Find the latest version and download one of the following files depending on you
 - Chirp-Mac.zip, for Mac users
 - Chirp-Linux.zip , for Linux users
 
-
 When the file has been downloaded please unzip it.
 Then open a terminal and navigate to one of the following directories depending on your operations system:
 - Chirp-Win\\artifact\\win, for windows
 - Chirp-Mac\\artifact\\mac, for mac
 - Chirp-Linux\\artifact\\linux, for linux
 
-
 Now run the following commands in the terminal:
-
 - ```dotnet dev-certs https -t```
 - ```./Chirp.Web  --urls="http://localhost:5273" --"authentication_github_clientId" "Ov23liGbRbgORjmb9wUp" --"authentication_github_clientSecret" "0293ae8fdb1f1b046f42ab98234b11469648708e" --development```
 

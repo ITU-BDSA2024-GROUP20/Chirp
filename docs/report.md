@@ -10,8 +10,9 @@ numbersections: true
 geometry: margin=2cm
 ---
 
-![](./images/cheeper.png)
-![](./images/logo_itu.jpg)
+| ![](./images/cheeper.png)   |
+|-----------------------------|
+| ![](./images/logo_itu.jpg)  |
 
 
 |                |                                            |
@@ -74,10 +75,9 @@ are hidden (so there cheeps are done invisible from the author).
 And then it extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
 password and secures proper email verification.
 
-<figure>
-    <img src="Diagrams/Domain%20model.drawio.png" alt=>
-    <figcaption>UML class diagram of our domain model</figcaption>
-</figure>
+> ![Domain Model](Diagrams/Domain%20model.drawio.png)
+> 
+> UML class diagram of our domain model
 
 ## Architecture In the small
 
@@ -94,17 +94,16 @@ has three main layers:
   ***DbInitializer*** aka our database and the folder ***Pages***, they are responsible for the
   layout, and it uses the Microsoft packed '*Microsoft.AspNetCore.Mvc.RazerPages*'.
 
-<figure>
-    <img src="Diagrams/OnionArch.drawio.png" alt="Onion">
-    <figcaption>Onion architecture of the Chirp application</figcaption>
-</figure>
+> ![Onion Diagram](Diagrams/OnionArch.drawio.png)
+> 
+> Onion architecture of the Chirp application
 
 ## Architecture of deployed application
 ### Client-server application
-<figure>
-    <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
-    <figcaption>Architecture Illustration of our client-server application</figcaption>
-</figure>
+
+> ![architecture-global](Diagrams/Architecture-global.drawio.png)
+> 
+> Architecture Illustration of our client-server application
 
 On the left side there are some clients in green (there can be a number of clients,
 but we have only shown 2 clients) and they communicate with the internet. They are
@@ -114,19 +113,15 @@ should use, and then it gets sent back.
 
 ### Local client application
 
-<figure>
-    <img src="Diagrams/Architecture-local.drawio.png" alt="architecture-local"> 
-    <figcaption>Architecture Illustration of our local client application</figcaption>
-</figure>
-
+> ![architecture-local](Diagrams/Architecture-local.drawio.png)
+> 
+> Architecture Illustration of our local client application
 
 On the left side there are our local clients. The client interacting with web server
 There is a local server: localhost:5273. The server communicates 'mychirp.db',
 as it needs to store or retrieve the data the client should use, and then it gets sent back.
 
-
 ## User activities
-
 
 Here is a flowchart that illustrates the different paths there are in our program from the 
 three ‘Login’ options ‘login with authorized user’, ‘login with GitHub’ or ‘login with 
@@ -135,18 +130,14 @@ After the log in process all the different things there can be done for example 
 cheep’, ‘block a user’, ‘look at the “***About Me***” page’. And then you can end our user
 journey with “***log out***” or click on the “***Forget me***” buttons.
 
-
-<figure>
-    <img src="Diagrams/User activities.drawio.png" alt="User activities">
-    <figcaption>Illustration of flowchart of a non-authorized user</figcaption>
-</figure>
+> ![User activities](Diagrams/User activities.drawio.png)
+> Illustration of flowchart of a non-authorized user
 
 ## Sequence of functionality/calls through Chirp!
 
-<figure>
-    <img src="Diagrams/UML%20sequence%20diagram.drawio.png" alt="UML-Sequence">
-    <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
-</figure>
+> ![UML-Sequence](Diagrams/UML%20sequence%20diagram.drawio.png)
+> 
+> UML sequence diagram from HTTP request to root endpoint
 
 The sequence diagram shown above shows a singular unauthorized user process for being 
 shown the homepage when first finding the website.
@@ -185,10 +176,11 @@ Build and Test can also be activated this way but will always fail.
 
 
 ## Team work
-<figure>
-    <img src="Diagrams/FlowOfFeatures.drawio.png" alt="Flowchart of new issue"> 
-    <figcaption>Flowchart of feature development</figcaption>
-</figure>
+
+> ![Flowchart of new issue](Diagrams/FlowOfFeatures.drawio.png)
+>
+> Flowchart of feature development
+
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
 with plenty of acceptance criteria. While we weren't entirely consistent in assigning issues 
@@ -210,10 +202,9 @@ the week like “Week 9 1.1) …”. And with this structure we were about to ke
 done in an okay timeframe, so now all the tasks are in ‘Done’. But we were not perfect at assigning 
 the task on the board.
 
-<figure>
-    <img src="images/projectBoard.png" alt="projectboard"> 
-    <figcaption>Github Project board in the end of development</figcaption>
-</figure>
+> ![Projectboard](images/projectBoard.png)
+> 
+> Github Project board in the end of development
 
 Like there can be seen on the screenshot, every task from ‘Todo’ and ‘In Progress’ are moved to 
 ‘Done’. But in week 13 we made a list of things (a brainstorm of sorts) so we could add 

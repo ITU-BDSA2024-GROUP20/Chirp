@@ -328,19 +328,13 @@ and checks if the things that should show up when doing those actions are there.
 And the end-to-end test goes over all the different features in one go, like logging in, 
 cheeping, following, blocking, and so on.
 
-
-
 # Ethics
 ## License
 We choose to use a MIT License since it allows others to download and change it however they 
 want without restrictions.
 ## LLMs, ChatGPT, CoPilot, and others
-<redColor>State which LLM(s) were used during development of your project. In case 
-you were not using any, just state so. In case you were using an LLM to support 
-your development, briefly describe when and how it was applied. Reflect in 
-writing to which degree the responses of the LLM were helpful. Discuss 
-briefly if application of LLMs sped up your development or if the contrary 
-was the case.</redColor>
-
-
-
+During this project, we agreed that we would limit ourselves to use LLMs as little as possible. We used LLMs like
+ChatGPT and Gemini when certain problems would arise that a normal search would not help. However, the code written
+by them were never useful except as a hint at what direction to go with the actual code. We always ended up finding
+the answer to our problem somewhere else. Therefore, we recommend not using LLMs for this type of project, as doing so
+slowed down development.

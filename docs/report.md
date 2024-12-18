@@ -76,8 +76,9 @@ are hidden (so there cheeps are done invisible from the author).
 And then it extends *Microsoft.AspNetCore.Identity*. It also provides a hashed 
 password and secures proper email verification.
 
-|![UML class diagram of our domain model](Diagrams/Domain%20model.drawio.png)|
-|:--:|
+| ![UML class diagram of our domain model](Diagrams/Domain%20model.drawio.png) |
+|:----------------------------------------------------------------------------:|
+|                    UML class diagram of our domain model                     |
 
 ## Architecture In the small
 
@@ -96,11 +97,14 @@ has three main layers:
 
 |![Onion architecture of the Chirp application](Diagrams/OnionArch.drawio.png)|
 |:--:|
+|Onion architecture of the Chirp application|
+
 ## Architecture of deployed application
 ### Client-server application
 
 |![Architecture Illustration of our client-server application](Diagrams/Architecture-global.drawio.png)|
 |:--:|
+| Architecture Illustration of our client-server application |
 
 On the left side there are some clients in green (there can be a number of clients,
 but we have only shown 2 clients) and they communicate with the internet. They are
@@ -112,6 +116,8 @@ should use, and then it gets sent back.
 
 |![Architecture Illustration of our local client application](Diagrams/Architecture-local.drawio.png)|
 |:--:|
+|Architecture Illustration of our local client application|
+
 On the left side there are our local clients. The client interacting with web server
 There is a local server: localhost:5273. The server communicates 'mychirp.db',
 as it needs to store or retrieve the data the client should use, and then it gets sent back.
@@ -127,10 +133,14 @@ journey with “***log out***” or click on the “***Forget me***” buttons.
 
 |![Illustration of flowchart of a non-authorized user](Diagrams/User activities.drawio.png)|
 |:--:|
+| Illustration of flowchart of a non-authorized user |
+
 ## Sequence of functionality/calls through Chirp!
 
 | ![UML sequence diagram from HTTP request to root endpoint](Diagrams/UML%20sequence%20diagram.drawio.png) |
 |:--------------------------------------------------------------------------------------------------------:|
+| UML sequence diagram from HTTP request to root endpoint|
+
 The sequence diagram shown above shows a singular unauthorized user process for being 
 shown the homepage when first finding the website.
 
@@ -171,6 +181,7 @@ Build and Test can also be activated this way but will always fail.
 
 |![Flowchart of feature development](Diagrams/FlowOfFeatures.drawio.png)|
 |:--:|
+| Flowchart of feature development |
 
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
@@ -195,6 +206,7 @@ the task on the board.
 
 |![Github Project board in the end of development](images/projectBoard.png)|
 |:--:|
+| Github Project board in the end of development|
 
 Like there can be seen on the screenshot, every task from ‘Todo’ and ‘In Progress’ are moved to 
 ‘Done’. But in week 13 we made a list of things (a brainstorm of sorts) so we could add 

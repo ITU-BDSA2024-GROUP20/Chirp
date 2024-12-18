@@ -1,5 +1,6 @@
 ﻿<style>
 redColor { color: Red }
+redColo {color: #00A2F4}
 </style>
 
 https://www.markdownguide.org/cheat-sheet/
@@ -10,12 +11,12 @@ https://www.markdownguide.org/cheat-sheet/
 # Design and Architecture of Chirp!
 
 ## Domain model
-<redColor>Here comes a description of our domain model.
-Illustration of the Chirp! data model as UML class diagram. </redColor>
+<redColo>Here comes a description of our domain model.
+Illustration of the Chirp! data model as UML class diagram. </redColo>
 
-<redColor>Provide an illustration of your domain model. Make sure that it is 
+<redColo>Provide an illustration of your domain model. Make sure that it is 
 correct and complete. In case you are using ASP.NET Identity, make sure to 
-illustrate that accordingly. </redColor>
+illustrate that accordingly. </redColo>
 
 Our domain model for our application: Chirp. It is design with the purpose to simulate 
 ‘Twitter’ or ‘X’ as it is call now. It consists of two parts, a Cheep class and an 
@@ -42,9 +43,9 @@ password and secures proper email verification.
 </figure>
 
 ## Architecture — In the small
-<redColor>Illustrate the organization of your code base. That is, illustrate 
+<redColo>Illustrate the organization of your code base. That is, illustrate 
 which layers exist in your (onion) architecture. Make sure to illustrate which 
-part of your code is residing in which layer.</redColor>
+part of your code is residing in which layer.</redColo>
 
 The diagram below illustrates our chirp program in Onion Architecture. The architecture
 has three main layers:
@@ -65,10 +66,10 @@ has three main layers:
 </figure>
 
 ## Architecture of deployed application
-<redColor>Illustrate the architecture of your deployed application. Remember, 
+<redColo>Illustrate the architecture of your deployed application. Remember, 
 you developed a client-server application. Illustrate the server component and 
 to where it is deployed, illustrate a client component, and show how these 
-communicate with each other.</redColor>
+communicate with each other.</redColo>
 
 <figure>
     <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
@@ -95,14 +96,14 @@ as it needs to store or retrieve the data the client should use, and then it get
 send back.
 
 ## User activities
-<redColor>Illustrate typical scenarios of a user journey through your Chirp! 
+<redColo>Illustrate typical scenarios of a user journey through your Chirp! 
 application. That is, start illustrating the first page that is presented to a 
 non-authorized user, illustrate what a non-authorized user can do with your 
 Chirp! application, and finally illustrate what a user can do after 
-authentication. </redColor>
+authentication. </redColo>
 
-<redColor>Make sure that the illustrations are in line with the actual behavior of 
-your application.</redColor>
+<redColo>Make sure that the illustrations are in line with the actual behavior of 
+your application.</redColo>
 
 Here is a flowchart there illustrate the different path there are in our program from the 
 three ‘Log in’ options ‘log in with authorized user’, ‘log in with GitHub’ or ‘log in with 
@@ -118,16 +119,16 @@ with “***log out***” or click on the “***Forget me***” buttons.
 </figure>
 
 ## Sequence of functionality/calls through Chirp!
-<redColor>With a UML sequence diagram, illustrate the flow of messages and data 
+<redColo>With a UML sequence diagram, illustrate the flow of messages and data 
 through your Chirp! application. Start with an HTTP request that is sent by an 
 unauthorized user to the root endpoint of your application and end with the 
-completely rendered web-page that is returned to the user.</redColor>
+completely rendered web-page that is returned to the user.</redColo>
 
-<redColor>Make sure that your illustration is complete. That is, likely for many of 
+<redColo>Make sure that your illustration is complete. That is, likely for many of 
 you there will be different kinds of "calls" and responses. Some HTTP calls 
 and responses, some calls and responses in C# and likely some more. (Note 
 the previous sentence is vague on purpose. I want you create a complete 
-illustration.)</redColor>
+illustration.)</redColo>
 
 
 <figure>
@@ -135,13 +136,21 @@ illustration.)</redColor>
     <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
-The sequence diagram shown above shows a singular unauthorized user process for being shown the homepage when first finding the website.
+The sequence diagram shown above shows a singular unauthorized user process for being 
+shown the homepage when first finding the website.
 
-Standard protocol when getting a site is requesting its HTTP version, which is not stable and can easily be compromised, which is why Chirp! then redirects to a HTTPS version and stores a cookie for the user, which makes the user always connect to the HTTPS version when requesting the site.
+Standard protocol when getting a site is requesting its HTTP version, which is not 
+stable and can easily be compromised, which is why Chirp! then redirects to a HTTPS 
+version and stores a cookie for the user, which makes the user always connect to the 
+HTTPS version when requesting the site.
 
-Afterwards, Microsoft Identity attempts to check whether the user is authorized (logged in) or not. Due to this user being completely new and having no prior cookies, it is determined that they are unauthorized.
+Afterward, Microsoft Identity attempts to check whether the user is authorized (logged 
+in) or not. Due to this user being completely new and having no prior cookies, it is 
+determined that they are unauthorized.
 
-Then, the Chirp! homepage is gets loaded, meaning the page has to get all available cheeps that can be shown on one page, which is then sent to the user. They are now on a static page.
+Then, the Chirp! homepage is gets loaded, meaning the page has to get all available 
+cheeps that can be shown on one page, which is then sent to the user. They are now on a 
+static page.
 
 # Process
 ## Build, test, release, and deployment
@@ -177,10 +186,10 @@ the new creation of an issue (task description), over development, etc. until a
 feature is finally merged into the main branch of your repository.</redColor>
 
 ## How to make Chirp! work locally
-<redColor>There has to be some documentation on how to come from cloning your project 
+<redColo>There has to be some documentation on how to come from cloning your project 
 to a running system. That is, Adrian or Helge have to know precisely what to 
 do in which order. Likely, it is best to describe how we clone your project, 
-which commands we have to execute, and what we are supposed to see then.</redColor>
+which commands we have to execute, and what we are supposed to see then.</redColo>
 
 ### How to run the Web-app
 There is a runing version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
@@ -218,12 +227,12 @@ Now run the following commands in the terminal:
 When running the application, and it is done starting up, a popup will appear in your terminal indicating which port it is running on "http://localhost:5273"
 
 ## How to run test suite locally
-<redColor>List all necessary steps that Adrian or Helge have to perform to execute 
+<redColo>List all necessary steps that Adrian or Helge have to perform to execute 
 your test suites. Here, you can assume that we already cloned your repository in 
-the step above.</redColor>
+the step above.</redColo>
 
-<redColor>Briefly describe what kinds of tests you have in your test suites and what 
-they are testing.</redColor>
+<redColo>Briefly describe what kinds of tests you have in your test suites and what 
+they are testing.</redColo>
 
 ### Unit tests
 To run the unit test for this program you will need to open a terminal and<br> navigate to the ```Chirp.Razor.Test``` directory which can be done from the root of the repository with:

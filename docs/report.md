@@ -29,12 +29,14 @@ numbersections: true
     - [Domain model](#domain-model)
     - [Architecture — In the small](#architecture--in-the-small)
     - [Architecture of deployed application](#architecture-of-deployed-application)
+      - [Client-server application](#client-server-application)
+      - [Local client application](#local-client-application)
     - [User activities](#user-activities)
     - [Sequence of functionality/calls through Chirp!](#sequence-of-functionalitycalls-through-chirp)
 - [Process](#process)
     - [Build, test, release, and deployment](#build-test-release-and-deployment)
     - [Team work](#team-work)
-      - [Our Teamwork]()
+      - [Our Team work](#our-team-work)
     - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
         - [Web app](#web-app)
         - [How to run it Locally](#how-to-run-it-locally)
@@ -97,7 +99,19 @@ has three main layers:
 </figure>
 
 ## Architecture of deployed application
+### Client-server application
+<figure>
+    <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
+    <figcaption>Architecture Illustration of our client-server application</figcaption>
+</figure>
 
+On the left side there are some clients in green (there can be a number of clients,
+but we have only shown 2 clients) and they communicate with the internet. They are
+interacting with web servers located on Microsoft Azure server. The web server
+communicates to the database, as it needs to store or retrieve the data the client
+should use, and then it gets sent back.
+
+### Local client application
 <figure>
     <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
     <figcaption>Architecture Illustration of our client-server application</figcaption>
@@ -163,9 +177,9 @@ They are now on a static page.
 # Process
 ## Build, test, release, and deployment
 
-| Build and Test                                                                | Live Test                                                                   | Deploy to Azure                                                                    |  
-|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------|  
-| ![Activity Diagram_BuildTest](Diagrams/Activity Diagram_BuildTest.drawio.png) | ![Activity Diagram_LiveTest](Diagrams/Activity Diagram_LiveTest.drawio.png) | ![Activity Diagram_Deploy.drawio.png](Diagrams/Activity Diagram_Deploy.drawio.png) |
+| Build and Test                                                               | Live Test                                                                  | Deploy to Azure                                                                   |  
+|------------------------------------------------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|  
+| ![Activity Diagram_BuildTest](Diagrams/ActivityDiagram_BuildTest.drawio.png) | ![Activity Diagram_LiveTest](Diagrams/ActivityDiagram_LiveTest.drawio.png) | ![Activity Diagram_Deploy.drawio.png](Diagrams/ActivityDiagram_Deploy.drawio.png) |
 
 Build and Test were made to create a release of the newest version-tagged build, as a compressed 
 zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
@@ -182,7 +196,7 @@ Build and Test can also be activated this way but will always fail.
 
 ## Team work
 
-![Flowchart of new issue](Diagrams/Flow of Features.drawio.png)
+![Flowchart of new issue](Diagrams/FlowOfFeatures.drawio.png)
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
 with plenty of acceptance criteria. While we weren't entirely consistent in assigning issues 
@@ -192,7 +206,7 @@ At this point, we were ready to create a new branch and begin working on impleme
 feature. Only after confirming that the implementation meets all acceptance criteria and does 
 not impede previous features, we create a pull request to merge the branch into main.
 
-Pull requests has to be peer reviewed and accepted by other team members before it can be 
+Pull requests has to be peer-reviewed and accepted by other team members before it can be 
 resolved, after which, the issues will be moved to the Done section of the project board and 
 the feature branch will automatically be deleted.
 
@@ -203,12 +217,12 @@ it as structured as we could with naming them after the week they came from and 
 the week like “Week 9 1.1) …”. And with this structure we were about to keep up the workload 
 done in an okay timeframe, so now all the tasks are in ‘Done’. But we were now super to assign 
 the task on the board. 
-![projectboard](images/project%20board.png)
+![projectboard](images/projectBoard.png)
 Like there can be seen on the screenshot all from ‘Todo’ and ‘In Progress’ are moved to 
 ‘Done’. But in week 13 we made a listed over thing (a brainstorm of sorts) so we could add 
 the most interesting things like ‘Block user’, ‘like cheep’, ‘Mobile friendly’, ‘comment on 
 cheeps’, … But we did not add the things on the board, when we knew the change of, we could 
-make all then in time was very slim. So, we added our main feature, ’Block a user’ and then 
+make all then in time was very slim. So, we added our main feature, ‘Block a user’ and then 
 if someone got the time more could be added.
 
 

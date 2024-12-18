@@ -233,9 +233,9 @@ TA during the second session.
 There is a running version at this [link](https://bdsagroup20chirprazor-hdb4bch7ejb3abbd.northeurope-01.azurewebsites.net)
 
 ### Locally
-In order to run Chirp there are 2 options
-1. Clone the repository
-2. Run the release
+In order to run Chirp there are 2 options 
+- Clone the repository 
+- Run the release
 
 #### Cloned Repository
 To run this locally from a cloned repository, please do the following:
@@ -257,7 +257,7 @@ Now run these commands inside the directory
 You should now be able to run Chirp with:```dotnet run``` and access it at http://localhost:5273 when it is running
 
 #### Release
-To run the release first go to the main page of the Repository and click on the
+To run the release, first go to the main page of the Repository and click on the
 [release section](https://github.com/ITU-BDSA2024-GROUP20/Chirp/releases).
 
 Find the latest version and download one of the following files depending on your operations system:
@@ -311,7 +311,7 @@ Followed by
 npx playwright install --with-deps
 ```
 When Playwright is installed, open a separate terminal and navigate to the Chirp repository 
-root and run:
+root and then run the following command:
 ``` 
 cd .\src\Chirp.Web
 ```
@@ -328,7 +328,7 @@ Now, as the test are running you should see a browser popup where things are hap
 the tests running.
  
 At some point, a GitHub window may appear where it asks you to authorize, please press the 
-button otherwise the test will fail.
+button, otherwise the test will fail.
 
 ### Tests
 The unit test we have go over all the different functions we have in the Author Repository and 

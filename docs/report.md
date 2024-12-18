@@ -200,20 +200,17 @@ static page.
 build, tested, released, and deployed. That is, illustrate the flow of activities 
 in your respective GitHub Actions workflows.</redColor>
 
-<figure>
-  <img src="Diagrams/Activity%20Diagram_BuildTest.drawio.png" alt="Activity_BuildTest">
-  <figcaption></figcaption>
-</figure>
+| Build and Test                                                                        | Live Test                                  | Deploy to Azure                         |  
+|---------------------------------------------------------------------------------------|-------------------------------------------|-----------------------------------------|  
+|![Activity Diagram_BuildTest](Diagrams/Activity Diagram_BuildTest.drawio.png)|![Activity Diagram_LiveTest](Diagrams/Activity Diagram_LiveTest.drawio.png)| ![Activity Diagram_Deploy.drawio.png](Diagrams/Activity Diagram_Deploy.drawio.png)|
 
-<figure>
-  <img src="Diagrams/Activity%20Diagram_LiveTest.drawio.png" alt="Activity_LiveTest">
-  <figcaption></figcaption>
-</figure>
+Build and Test were made to create a release of the newest version-tagged build, as a compressed zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
 
-<figure>
-  <img src="Diagrams/Activity%20Diagram_Deploy.drawio.png" alt="Activity_Deploy">
-  <figcaption></figcaption>
-</figure>
+Live Test runs every 6 hours to check if our server is still alive and currently running.
+
+Deploy to Azure is run whenever a build is version-tagged. It builds and then publishes it and sends it to Azures server to override the previous build.
+
+Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if deemed necessary.
 
 <redColor>Describe the illustration briefly, i.e., how your application is built, 
 tested, released, and deployed.</redColor>

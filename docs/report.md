@@ -10,7 +10,7 @@ numbersections: true
 geometry: margin=2cm
 ---
 
-![](./images/cheeper.png)
+![](./images/cheeper2.png )
 ![](./images/logo_itu.jpg)
 
 

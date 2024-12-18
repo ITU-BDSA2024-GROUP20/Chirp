@@ -112,17 +112,6 @@ communicates to the database, as it needs to store or retrieve the data the clie
 should use, and then it gets sent back.
 
 ### Local client application
-<figure>
-    <img src="Diagrams/Architecture-global.drawio.png" alt="architecture-global"> 
-    <figcaption>Architecture Illustration of our client-server application</figcaption>
-</figure>
-
-On the left side there are some clients in green (there can be a number of clients, 
-but we have only shown 2 clients) and they communicate with the internet. They are 
-interacting with web servers located on Microsoft Azure server. The web server 
-communicates to the database, as it needs to store or retrieve the data the client 
-should use, and then it gets sent back.
-
 
 <figure>
     <img src="Diagrams/Architecture-local.drawio.png" alt="architecture-local"> 
@@ -154,7 +143,7 @@ journey with “***log out***” or click on the “***Forget me***” buttons.
 ## Sequence of functionality/calls through Chirp!
 
 <figure>
-    <img src="Diagrams/UML%20Sequence%20Diagram.png" alt="UML-Sequence">
+    <img src="Diagrams/UML%20sequence%20diagram.drawio.png" alt="UML-Sequence">
     <figcaption>UML sequence diagram from HTTP request to root endpoint</figcaption>
 </figure>
 
@@ -195,8 +184,10 @@ Build and Test can also be activated this way but will always fail.
 
 
 ## Team work
-
-![Flowchart of new issue](Diagrams/FlowOfFeatures.drawio.png)
+<figure>
+    <img src="Diagrams/FlowOfFeatures.drawio.png" alt="Flowchart of new issue"> 
+    <figcaption>Flowchart of feature development</figcaption>
+</figure>
 Whenever we were assigned a new feature, we made sure to properly understand the assignment and 
 first then create an issue on our GitHub project board, which is placed in the ToDo section, 
 with plenty of acceptance criteria. While we weren't entirely consistent in assigning issues 
@@ -215,14 +206,19 @@ Throughout the project we made a project board where we took the weekly assignme
 ‘README_PROJECT’ and thereafter made them into as small a task as we could. And we try to do 
 it as structured as we could with naming them after the week they came from and the part of 
 the week like “Week 9 1.1) …”. And with this structure we were about to keep up the workload 
-done in an okay timeframe, so now all the tasks are in ‘Done’. But we were now super to assign 
-the task on the board. 
-![projectboard](images/projectBoard.png)
-Like there can be seen on the screenshot all from ‘Todo’ and ‘In Progress’ are moved to 
-‘Done’. But in week 13 we made a listed over thing (a brainstorm of sorts) so we could add 
-the most interesting things like ‘Block user’, ‘like cheep’, ‘Mobile friendly’, ‘comment on 
-cheeps’, … But we did not add the things on the board, when we knew the change of, we could 
-make all then in time was very slim. So, we added our main feature, ‘Block a user’ and then 
+done in an okay timeframe, so now all the tasks are in ‘Done’. But we were not perfect at assigning 
+the task on the board.
+
+<figure>
+    <img src="images/projectBoard.png" alt="projectboard"> 
+    <figcaption>Github Project board in the end of development</figcaption>
+</figure>
+
+Like there can be seen on the screenshot, every task from ‘Todo’ and ‘In Progress’ are moved to 
+‘Done’. But in week 13 we made a list of things (a brainstorm of sorts) so we could add 
+the most interesting thing like ‘Block user’, ‘liking cheep’, ‘Mobile friendliness’, and ‘comment on 
+cheeps’, … But we did not add these things on the board, since we were unsure of how many extra features we could add
+in the allotted timeframe. So, we added our main feature, ‘Block a user’ and then 
 if someone got the time more could be added.
 
 

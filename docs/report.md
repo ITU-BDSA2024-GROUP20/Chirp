@@ -238,6 +238,13 @@ merge the branch into main.
 Pull requests has to be peer reviewed and accepted by other team members before it can be resolved, after which,
 the issues will be moved to the Done section of the project board and the feature branch will be automatically be deleted.
 
+### Our team work
+While we did initially start out as a team of five, during development the group did deteriorate a little bit. After a
+few weeks, Mathias dropped out of ITU, leaving us down to four people. When starting out, we gave Radmehr a decent bit
+of leeway in his productivity, however, during this entire semester, he has not contributed to the project nor report
+at all, except for one co-authored commit back in the 4th of September. This problem with Radmehr was brought up to our
+TA during the second session.
+
 ## How to make Chirp! work locally
 <redColo>There has to be some documentation on how to come from cloning your project 
 to a running system. That is, Adrian or Helge have to know precisely what to 

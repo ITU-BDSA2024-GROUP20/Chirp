@@ -128,7 +128,7 @@ On the left side there are our local clients. The client interacting with web se
 There is a local server: localhost:5273. The server communicates with 'mychirp.db',
 as it needs to store or retrieve the data the client should use, and then it gets sent back.
 
-\pagebreak
+
 ## User activities
 
 Here is a flowchart that illustrates the different paths there are in our program from the 
@@ -165,7 +165,7 @@ Then, the Chirp! homepage gets loaded, meaning the page has to get all available
 cheeps that can be shown on one page, which is then sent to the user. 
 They are now on a static page.
 
-\pagebreak
+
 # Process
 ## Build, test, release, and deployment
 

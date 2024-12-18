@@ -211,7 +211,8 @@ Live Test runs every 6 hours to check if our server is still alive and currently
 
 Deploy to Azure is run whenever a build is version-tagged. It builds and then publishes it and sends it to Azures server to override the previous build.
 
-Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if deemed necessary.
+Both Live Test and Deploy to Azure can also be activated via the GitHub actions interface, if deemed necessary. 
+Build and Test can also be activated this way but will always fail.
 
 <redColor>Describe the illustration briefly, i.e., how your application is built, 
 tested, released, and deployed.</redColor>

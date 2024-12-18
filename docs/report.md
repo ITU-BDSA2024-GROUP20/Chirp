@@ -225,6 +225,18 @@ from your applications or which functionality is incomplete.</redColor>
 the new creation of an issue (task description), over development, etc. until a 
 feature is finally merged into the main branch of your repository.</redColor>
 
+![Flowchart of new issue](Diagrams/Flow of Features.drawio.png)
+Whenever we were assigned a new feature, we made sure to properly understand the assignment and first then create an
+issue on our GitHub project board, which is placed in the ToDo section, with plenty of acceptance criteria.
+While we weren't entirely consistent in assigning issues to people in the team, we still tried to uphold it whenever possible.
+
+At this point, we were ready to create a new branch and begin working on implementing the feature. Only after confirming
+that the implementation meets all acceptance criteria and does not impede previous features, we create a pull request to
+merge the branch into main.
+
+Pull requests has to be peer reviewed and accepted by other team members before it can be resolved, after which,
+the issues will be moved to the Done section of the project board and the feature branch will be automatically be deleted.
+
 ## How to make Chirp! work locally
 <redColo>There has to be some documentation on how to come from cloning your project 
 to a running system. That is, Adrian or Helge have to know precisely what to 

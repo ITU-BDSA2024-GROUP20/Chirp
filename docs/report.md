@@ -201,9 +201,9 @@ static page.
 build, tested, released, and deployed. That is, illustrate the flow of activities 
 in your respective GitHub Actions workflows.</redColor>
 
-| Build and Test                                                                        | Live Test                                  | Deploy to Azure                         |  
-|---------------------------------------------------------------------------------------|-------------------------------------------|-----------------------------------------|  
-|![Activity Diagram_BuildTest](Diagrams/Activity Diagram_BuildTest.drawio.png)|![Activity Diagram_LiveTest](Diagrams/Activity Diagram_LiveTest.drawio.png)| ![Activity Diagram_Deploy.drawio.png](Diagrams/Activity Diagram_Deploy.drawio.png)|
+| Build and Test                                                                | Live Test                                                                   | Deploy to Azure                                                                    |  
+|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------|  
+| ![Activity Diagram_BuildTest](Diagrams/Activity Diagram_BuildTest.drawio.png) | ![Activity Diagram_LiveTest](Diagrams/Activity Diagram_LiveTest.drawio.png) | ![Activity Diagram_Deploy.drawio.png](Diagrams/Activity Diagram_Deploy.drawio.png) |
 
 Build and Test were made to create a release of the newest version-tagged build, as a compressed zip-file for Mac, Linux and Windows. It also runs through all unit tests and UI tests.
 

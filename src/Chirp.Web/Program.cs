@@ -1,6 +1,7 @@
 using Chirp.Web;
 using Microsoft.EntityFrameworkCore;
 using Chirp.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);   
@@ -34,6 +35,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<SignInManager<Author>, CustomSignInManager<Author>>();
 
 
 var app = builder.Build();

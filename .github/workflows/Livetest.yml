@@ -3,8 +3,6 @@ name: livetest.yml
 run-name: Checking if Chirp is Live
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "* */6 * * *"
 
 jobs:
   Test:
